@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-118,
+				-117
+			],
+			"indices": [],
+			"fps": 20,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "herobrine"
+		},
+		{
+			"offsets": [
+				-86,
+				-205
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "herobrine"
+		},
+		{
+			"offsets": [
+				-82,
+				-263
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "herobrine"
+		},
+		{
+			"offsets": [
+				25,
+				-86
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "herobrine"
+		},
+		{
+			"offsets": [
+				-142,
+				-239
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "herobrine"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		-6,
+		280
+	]
+}

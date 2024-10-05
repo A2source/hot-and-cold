@@ -1,0 +1,136 @@
+var cats = [
+    'eraser',
+    'sexylegs',
+    'titan',
+    'catellite'
+];
+
+var enemies = [
+    'sirseal',
+    'hippoe',
+    'leboin',
+    'pigge'
+];
+
+var speeds = [
+    'eraser' => -300,
+    'sexylegs' => -140,
+    'titan' => -100,
+    'catellite' => -120,
+    'sirseal' => 120,
+    'hippoe' => 160,
+    'leboin' => 100,
+    'pigge' => 160
+];
+
+var fps = [
+    'eraser' => 4,
+    'sexylegs' => 8,
+    'titan' => 4,
+    'catellite' => 4,
+    'sirseal' => 4,
+    'hippoe' => 4,
+    'leboin' => 4,
+    'pigge' => 4
+];
+
+var offsets = [
+    'eraser' => {x: 0, y: 35},
+    'sexylegs' => {x: 0, y: 15},
+    'titan' => {x: 0, y: 45},
+    'catellite' => {x: 0, y: 10},
+    'sirseal' => {x: 0, y: 30},
+    'hippoe' => {x: 0, y: 22},
+    'leboin' => {x: 0, y: 15},
+    'pigge' => {x: 0, y: 15}
+];
+
+var scales = [
+    'eraser' => 5,
+    'sexylegs' => 5,
+    'titan' => 5,
+    'catellite' => 5,
+    'sirseal' => 5,
+    'hippoe' => 5,
+    'leboin' => 5,
+    'pigge' => 5
+];
+
+var cooldown = [
+    'eraser' => false,
+    'sexylegs' => false,
+    'titan' => false,
+    'catellite' => false,
+    'sirseal' => false,
+    'hippoe' => false,
+    'leboin' => false,
+    'pigge' => false
+];
+
+function start(song)
+{
+    var doChoice = FlxG.random.bool(33);
+    var rare = FlxG.random.bool(25);
+    var choice = FlxG.random.int(0, 2);
+
+    trace(doChoice, rare, choice);
+
+    var bg = new FlxBackdrop(Paths.timeImage(Paths.stageImage('battlecats/bg/' + (doChoice ? (rare ? 'rare' : '') : ''), '' + (doChoice ? choice : 0))), 0x01);
+    bg.scale.set(3, 3);
+    addSprite(bg, BEHIND_ALL);
+}
+
+function beatHit(beat)
+{
+    if (beat >= 16 && FlxG.random.bool(2))
+        spawnWalker();
+}
+
+function spawnWalker()
+{
+    var isEnemy = FlxG.random.bool(50);
+
+    var focus = isEnemy ? enemies : cats;
+
+    var walker = focus[FlxG.random.int(0, focus.length - 1)];
+
+    if (cooldown[walker])
+    {
+        cooldown[walker] = false;
+        spawnWalker();
+
+        return;
+    }
+
+    var spawnPosition = {
+        x: isEnemy ? -1000 : 1200,
+        y: FlxG.random.int(550, 675)
+    }
+
+    var sprite = new FlxSprite(spawnPosition.x + offsets[walker].x, spawnPosition.y + offsets[walker].y).loadSparrow('stages/battlecats/walkers', walker);
+    sprite.scale.set(scales[walker], scales[walker]);
+    sprite.animation.addByPrefix('idle', walker, fps[walker], true);
+    sprite.animation.play('idle');
+    sprite.antialiasing = false;
+    sprite.updateHitbox();
+    sprite.y -= sprite.height;
+
+    trace('spawning walker "' + walker + '" ' + isEnemy + ' ' + spawnPosition.y);
+
+    var above = spawnPosition.y >= 625;
+
+    if (above)
+        insert(game.length, sprite);
+    else
+        addSprite(sprite, BEHIND_ALL);
+
+    sprite.velocity.x = speeds[walker];
+
+    cooldown[walker] = true;
+
+    FlxTimer.wait(30, ()->
+    {
+        remove(sprite);
+        sprite.destroy();
+    });
+}

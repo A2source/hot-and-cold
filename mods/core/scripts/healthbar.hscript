@@ -1,0 +1,146 @@
+var missNums = [];
+var accNums = [];
+
+var miss;
+var acc;
+
+function start(song)
+{
+    var healthBar = new FlxBar(0, FlxG.height * 0.89, FlxBarFillDirection.LEFT_TO_RIGHT, 515, 40, game,
+        'health', 0, 2);
+    healthBar.scrollFactor.set();
+    healthBar.visible = !ClientPrefs.data.hideHud;
+    healthBar.alpha = ClientPrefs.data.healthBarAlpha;
+    healthBar.createFilledBar(0xFFFF0000, 0xFF00FF00);
+
+    var barCover = new FlxSprite().load(Paths.modsImage('healthBar'));
+    barCover.scale.set(0.6, 0.6);
+    barCover.updateHitbox();
+    barCover.screenCenter();
+    barCover.y = FlxG.height * (ClientPrefs.data.downScroll ? 0.025 : 0.89);
+
+    healthBar.x = FlxG.width / 2 - healthBar.width / 2;
+    if (ClientPrefs.data.downScroll) healthBar.y = FlxG.height * 0.075;
+
+    miss = new FlxSprite().loadSparrow('images', 'miss');
+    miss.animation.addByPrefix('idle', 'miss', 12, true);
+    miss.animation.play('idle');
+    miss.scale.set(0.5, 0.5);
+    miss.updateHitbox();
+
+    miss.x = healthBar.x + 20;
+    miss.y = healthBar.y + 25;
+
+    acc = new FlxSprite().loadSparrow('images', 'acc');
+    acc.animation.addByPrefix('idle', 'acc', 12, true);
+    acc.animation.play('idle');
+    acc.scale.set(0.5, 0.5);
+    acc.updateHitbox();
+
+    acc.x = miss.x + 250;
+    acc.y = healthBar.y + 50;
+
+    add(healthBar);
+    add(barCover);
+    add(miss);
+    add(acc);
+
+    for (item in [healthBar, barCover, miss, acc])
+        item.cameras = [game.camHUD];
+}
+
+var prevMiss = -1;
+var prevAcc = -1;
+function update(dt)
+{
+    var curAcc = Std.int(accuracy * 100);
+    var curMiss = tally.miss;
+
+    if (curAcc != prevAcc)
+        getNums(acc.x + 105, acc.y + 5, curAcc, true);
+
+    if (curMiss != prevMiss)
+        getNums(miss.x + 115, miss.y + 25, curMiss, false);
+
+    prevAcc = curAcc;
+    prevMiss = curMiss;
+}
+
+var width = [
+    '0' => 30,
+    '1' => 10,
+    '2' => 30,
+    '3' => 30,
+    '4' => 35,
+    '5' => 45,
+    '6' => 35,
+    '7' => 33,
+    '8' => 38,
+    '9' => 40,
+    '%' => 40
+];
+function getNums(x, y, number, percent)
+{
+    if (percent)
+    {
+        for (num in accNums)
+        {
+            remove(num);
+            num.destroy();
+        }
+        accNums = [];
+    }
+    else
+    {
+        for (num in missNums)
+        {
+            remove(num);
+            num.destroy();
+        }
+        missNums = [];
+    }
+
+    var split = ('' + number).split('');
+
+    var i = 0;
+    for (digit in split)
+    {
+        var spr = new FlxSprite(x, y).loadSparrow('images', 'nums');
+        spr.animation.addByPrefix('idle', 'point-' + digit, 12, true);
+        spr.animation.play('idle');
+        spr.cameras = [game.camHUD];
+
+        spr.scale.set(0.65, 0.65);
+        spr.updateHitbox();
+
+        add(spr);
+
+        if (percent)
+            accNums.push(spr);
+        else
+            missNums.push(spr);
+
+        for (x in 0...i)
+            spr.x += width[split[x]];
+            
+        i++;
+    }
+
+    if (!percent)
+        return;
+
+    var sprite = new FlxSprite(x, y).loadSparrow('images', 'nums');
+    sprite.animation.addByPrefix('idle', '%', 12, true);
+    sprite.animation.play('idle');
+    sprite.cameras = [game.camHUD];
+
+    sprite.scale.set(0.65, 0.65);
+    sprite.updateHitbox();
+
+    for (x in 0...i)
+        sprite.x += width[split[x]];
+
+    add(sprite);
+
+    accNums.push(sprite);
+}

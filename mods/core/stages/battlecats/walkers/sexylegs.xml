@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="sexylegs.png" width="360" height="151">
+	<SubTexture name="sexylegs0001" x="2" y="2" width="49" height="145" frameX="-12" frameY="-3" frameWidth="75" frameHeight="149"/>
+	<SubTexture name="sexylegs0002" x="126" y="2" width="50" height="147" frameX="-11" frameY="-1" frameWidth="75" frameHeight="149"/>
+	<SubTexture name="sexylegs0003" x="178" y="2" width="63" height="147" frameX="-1" frameY="-1" frameWidth="75" frameHeight="149"/>
+	<SubTexture name="sexylegs0004" x="53" y="2" width="71" height="145" frameX="-1" frameY="-3" frameWidth="75" frameHeight="149"/>
+	<SubTexture name="sexylegs0005" x="243" y="2" width="64" height="147" frameX="-11" frameY="-1" frameWidth="75" frameHeight="149"/>
+	<SubTexture name="sexylegs0006" x="309" y="2" width="49" height="147" frameX="-12" frameY="-1" frameWidth="75" frameHeight="149"/>
+</TextureAtlas>

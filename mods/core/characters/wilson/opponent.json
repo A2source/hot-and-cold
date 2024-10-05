@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				98,
+				-227
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "wilson"
+		},
+		{
+			"offsets": [
+				98,
+				-226
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "wilson"
+		},
+		{
+			"offsets": [
+				98,
+				-227
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "wilson"
+		},
+		{
+			"offsets": [
+				98,
+				-226
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "wilson"
+		},
+		{
+			"offsets": [
+				99,
+				-228
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "wilson"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		-414,
+		323
+	]
+}

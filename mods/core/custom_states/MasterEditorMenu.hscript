@@ -1,0 +1,162 @@
+buttons = [
+    'Options',
+    'Chart Editor',
+    'Character Editor',
+    'Create Stage',
+    'Create Notetype'
+];
+
+uiButtons = [];
+
+stateNames = [
+    'OptionsState',
+    new ChartingState(),
+    new CharacterEditorState('bf', false),
+    'MakeStageState',
+    'MakeCustomNoteState'
+];
+
+isCustomState = [
+    true,
+    false,
+    false,
+    true,
+    true
+];
+
+diff = [
+    'easy',
+    'normal',
+    'hard'
+];
+
+var initialized = false;
+function create()
+{
+    Main.resizeWindow(720, 720);
+
+    DiscordClient.changePresence('');
+
+    if (FlxG.sound.music != null)
+		FlxG.sound.music.stop();
+
+    FlxG.mouse.visible = true;
+
+    view = new HBox();
+    formatBox = new VBox();
+
+    UiS.addSpacer(75, 0, view);
+    view.addComponent(formatBox);
+    UiS.addSpacer(0, 75, formatBox);
+
+    for (i in 0...buttons.length)
+    {
+        var button = getButton(buttons[i]);
+        button.onClick = (e)->
+        {
+            if (isCustomState[buttons.indexOf(button.text)])
+                LoadingState.loadAndSwitchCustomState(stateNames[i]);
+            else
+                LoadingState.loadAndSwitchState(stateNames[i]);
+        }
+
+        formatBox.addComponent(button);
+        UiS.addSpacer(0, 25, formatBox);
+
+        uiButtons.push(button);
+    }
+
+    UiS.addSpacer(0, 25, formatBox);
+    UiS.addLabel('Set Working Mod Directory', formatBox);
+
+    var mod = UiS.getModsDropdown(()-> 
+    { 
+        trace(WORKING_MOD_DIRECTORY);
+
+        if (!initialized)
+        {
+            initialized = true;
+            return;
+        }
+
+        LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+    });
+    formatBox.addComponent(mod);
+
+    UiS.addSpacer(125, 0, view);
+
+    quickLoadBox = new VBox();
+    UiS.addSpacer(0, 75, quickLoadBox);
+    UiS.addLabel('Quick Load Song', quickLoadBox);
+
+    listView = new ListView();
+    diffSelect = new ListView();
+
+    source = getDataSource();
+    if (Paths.mods('songs', WORKING_MOD_DIRECTORY) == null)
+    {
+        listView.disabled = true;
+        diffSelect.disabled = true;
+
+        source.add({text: 'Songs folder not found in mod directory "' + WORKING_MOD_DIRECTORY + '"'});
+
+        uiButtons[1].disabled = true;
+    }
+    else
+        for (song in FileSystem.readDirectory(Paths.mods('songs', WORKING_MOD_DIRECTORY)))
+            source.add({text: song});
+
+    listView.dataSource = source;
+    listView.width = 200;
+    listView.height = FlxG.height - 150;
+    listView.onChange = (e)->
+    {
+        if (listView.selectedItem == null)
+            return;
+
+        if (diffSelect.selectedItem == null)
+        {
+            alert('Select difficulty first', ALERT_TITLE);
+            return;
+        }
+
+	    PlayState.SONG = Song.loadFromJson(listView.selectedItem.text, true);
+
+        var dif = diffSelect.selectedItem.text;
+
+        PlayState.difficulty = dif == 'normal' ? '' : dif;
+        PlayState.storyDifficulty = diff.indexOf(dif);
+        PlayState.storyWeek = 1;
+
+        LoadingState.loadAndSwitchState(new PlayState());
+    }
+    quickLoadBox.addComponent(listView);
+
+    diffBox = new VBox();
+    UiS.addSpacer(0, 75, diffBox);
+    UiS.addLabel('Difficulty', diffBox);
+
+    diffSource = getDataSource();
+    for (thing in diff)
+        diffSource.add({text: thing});
+
+    diffSelect.dataSource = diffSource;
+    diffSelect.width = 100;
+    diffBox.addComponent(diffSelect);
+
+    view.addComponent(quickLoadBox);
+    UiS.addSpacer(25, 0, view);
+    view.addComponent(diffBox);
+
+    Screen.addComponent(view);
+}
+
+function getButton(text)
+{
+    var button = new Button();
+    button.text = text;
+    button.width = 90;
+    button.height = 60;
+
+    return button;
+}

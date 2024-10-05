@@ -1,0 +1,156 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				264,
+				-206
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				264,
+				-204
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				298,
+				-206
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				270,
+				-206
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				262,
+				-206
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				264,
+				-206
+			],
+			"indices": [],
+			"fps": 20,
+			"anim": "slap",
+			"loop": false,
+			"name": "slap",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				262,
+				-204
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "idle-intro",
+			"loop": false,
+			"name": "idle",
+			"sheet": "intro"
+		},
+		{
+			"offsets": [
+				264,
+				-206
+			],
+			"indices": [],
+			"fps": 10,
+			"anim": "transition",
+			"loop": false,
+			"name": "turnaround",
+			"sheet": "substitute"
+		},
+		{
+			"offsets": [
+				266,
+				-200
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT-intro",
+			"loop": false,
+			"name": "left",
+			"sheet": "intro"
+		},
+		{
+			"offsets": [
+				273,
+				-200
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT-intro",
+			"loop": false,
+			"name": "right",
+			"sheet": "intro"
+		},
+		{
+			"offsets": [
+				262,
+				-204
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP-intro",
+			"loop": false,
+			"name": "up",
+			"sheet": "intro"
+		},
+		{
+			"offsets": [
+				274,
+				-201
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN-intro",
+			"loop": false,
+			"name": "down",
+			"sheet": "intro"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		-264,
+		400
+	]
+}

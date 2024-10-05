@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="titan.png" width="422" height="165">
+	<SubTexture name="titan0001" x="214" y="2" width="67" height="159" frameX="-4" frameY="-3" frameWidth="81" frameHeight="169"/>
+	<SubTexture name="titan0002" x="2" y="2" width="67" height="158" frameX="-4" frameY="-4" frameWidth="81" frameHeight="169"/>
+	<SubTexture name="titan0003" x="283" y="2" width="67" height="159" frameX="-3" frameY="-3" frameWidth="81" frameHeight="169"/>
+	<SubTexture name="titan0004" x="352" y="2" width="68" height="161" frameX="-3" frameY="-1" frameWidth="81" frameHeight="169"/>
+	<SubTexture name="titan0005" x="71" y="2" width="72" height="158" frameX="-4" frameY="-4" frameWidth="81" frameHeight="169"/>
+	<SubTexture name="titan0006" x="145" y="2" width="67" height="158" frameX="-4" frameY="-4" frameWidth="81" frameHeight="169"/>
+</TextureAtlas>

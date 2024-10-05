@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				-40
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "idle",
+			"loop": true,
+			"name": "idle",
+			"sheet": "alyssa"
+		},
+		{
+			"offsets": [
+				84,
+				-46
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "alyssa"
+		},
+		{
+			"offsets": [
+				-64,
+				-76
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "alyssa"
+		},
+		{
+			"offsets": [
+				-30,
+				-20
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "alyssa"
+		},
+		{
+			"offsets": [
+				-22,
+				-74
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "alyssa"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		0,
+		0
+	]
+}

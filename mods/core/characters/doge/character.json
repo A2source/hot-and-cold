@@ -1,0 +1,20 @@
+{
+	"flip_x": false,
+	"metadata": {
+		"animators": [
+			"[A2]"
+		],
+		"artists": [
+			""
+		]
+	},
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"antialiasing": true,
+	"name": "doge",
+	"sing_duration": 8,
+	"scale": 1
+}

@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				215,
+				-65
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "idle",
+			"loop": true,
+			"name": "idle",
+			"sheet": "kofuku"
+		},
+		{
+			"offsets": [
+				227,
+				-6
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "kofuku"
+		},
+		{
+			"offsets": [
+				179,
+				-156
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "kofuku"
+		},
+		{
+			"offsets": [
+				295,
+				-82
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "kofuku"
+		},
+		{
+			"offsets": [
+				135,
+				-81
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "kofuku"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		-206,
+		111
+	]
+}

@@ -1,0 +1,49 @@
+function start(song)
+{
+    game.camManager.halt();
+
+    game.camHUD.alpha = 0;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 1:
+            FlxTween.tween(game.camManager.currentPos, {x: char('doge').x + 500, y: char('doge').getCameraPosition().y}, 6, {ease: FlxEase.sineInOut});
+            FlxTween.tween(game.camManager, {defaultZoom: 0.6}, 5, {ease: FlxEase.expoOut, startDelay: 1});
+
+        case 60:
+            game.camManager.resume();
+            game.camManager.focusOnPoint(char('doge').getCameraPosition());
+            game.camManager.defaultZoom = 0.9;
+
+        case 64:
+            FlxTween.tween(game.camHUD, {alpha: 1}, 2, {ease: FlxEase.expoOut});
+
+            game.camManager.defaultZoom = 0.7;
+
+        case 320, 864:
+            game.camManager.defaultZoom = 0.6;
+            game.camManager.zoom.interval = 1;
+
+        case 576, 1120, 1248:
+            game.camManager.defaultZoom = 0.7;
+            game.camManager.zoom.interval = 2;
+
+        case 704:
+            game.camManager.defaultZoom = 0.8;
+
+        case 832:
+            game.camManager.defaultZoom = 0.7;
+            game.camManager.zoom.interval = 4;
+
+        case 1244:
+            game.camManager.focusOnPoint(char('doge').getCameraPosition());
+            game.camManager.defaultZoom = 1;
+
+        case 1504:
+            game.camManager.defaultZoom = 0.7;
+            game.camManager.zoom.interval = 4;
+    }
+}

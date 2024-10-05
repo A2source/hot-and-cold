@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="catellite.png" width="127" height="706">
+	<SubTexture name="catellite0001" x="2" y="567" width="123" height="137" frameX="-3" frameY="-6" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0002" x="2" y="286" width="123" height="139" frameX="-3" frameY="-4" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0003" x="2" y="286" width="123" height="139" frameX="-3" frameY="-4" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0004" x="2" y="2" width="123" height="140" frameX="-3" frameY="-3" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0005" x="2" y="2" width="123" height="140" frameX="-3" frameY="-3" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0006" x="2" y="2" width="123" height="140" frameX="-3" frameY="-3" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0007" x="2" y="144" width="123" height="140" frameX="-3" frameY="-3" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0008" x="2" y="144" width="123" height="140" frameX="-3" frameY="-3" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0009" x="2" y="427" width="123" height="138" frameX="-3" frameY="-5" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0010" x="2" y="427" width="123" height="138" frameX="-3" frameY="-5" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0011" x="2" y="567" width="123" height="137" frameX="-3" frameY="-6" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0012" x="2" y="567" width="123" height="137" frameX="-3" frameY="-6" frameWidth="129" frameHeight="143"/>
+	<SubTexture name="catellite0013" x="2" y="567" width="123" height="137" frameX="-3" frameY="-6" frameWidth="129" frameHeight="143"/>
+</TextureAtlas>

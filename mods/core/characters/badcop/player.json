@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				469,
+				-259
+			],
+			"indices": [],
+			"fps": 16,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "badcop"
+		},
+		{
+			"offsets": [
+				469,
+				-257
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "badcop"
+		},
+		{
+			"offsets": [
+				468,
+				-258
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "badcop"
+		},
+		{
+			"offsets": [
+				468,
+				-257
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "badcop"
+		},
+		{
+			"offsets": [
+				469,
+				-257
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "badcop"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		242,
+		338
+	]
+}

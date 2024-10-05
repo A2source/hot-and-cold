@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-27,
+				-84
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "idle",
+			"loop": true,
+			"name": "idle",
+			"sheet": "alice"
+		},
+		{
+			"offsets": [
+				-56,
+				-20
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "alice"
+		},
+		{
+			"offsets": [
+				-44,
+				-142
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "alice"
+		},
+		{
+			"offsets": [
+				46,
+				-98
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "alice"
+		},
+		{
+			"offsets": [
+				-49,
+				-126
+			],
+			"indices": [],
+			"fps": 12,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "alice"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		111,
+		162
+	]
+}

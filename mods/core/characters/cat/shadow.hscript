@@ -1,0 +1,14 @@
+function postStart(song)
+{
+    var me = char('cat');
+
+    var shadow = new AttachedSprite(Paths.timeImage(Paths.modsImage('shadow')));
+    shadow.antialiasing = false;
+    shadow.sprTracker = me;
+    shadow.xAdd = -15;
+    shadow.yAdd = 708;
+
+    shadow.scale.set(0.5, 0.5);
+
+    addSprite(shadow, BEHIND_ALL);
+}
