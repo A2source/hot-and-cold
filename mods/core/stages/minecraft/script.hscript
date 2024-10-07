@@ -1,0 +1,5 @@
+function start(song)
+{
+    var cave = new FlxSprite().load(Paths.stageImage('minecraft', 'cave'));
+    addSprite(cave, BEHIND_ALL);
+}

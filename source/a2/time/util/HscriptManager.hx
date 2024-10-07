@@ -16,6 +16,7 @@ using StringTools;
 class HscriptManager
 {
     private var states:Map<String, Interp> = [];
+	private var counts:Map<String, Int> = [];
 
     private var injectCustomInterp:Dynamic = null;
 
@@ -49,14 +50,22 @@ class HscriptManager
 
 		var interp = CustomState.getBasicInterp('$modDirectory/$fileName');
 
+		var name = scriptName;
+
+		if (counts.get(scriptName) == null)
+			counts.set(scriptName, 0);
+
 		if (exists(scriptName))
-			scriptName += Date.now();
+		{
+			name += Date.now().getTime() + counts.get(scriptName);
+			counts.set(scriptName, counts.get(scriptName) + 1);
+		}
 
         if (injectCustomInterp != null)
             injectCustomInterp(interp);
 
 		interp.execute(program);
-		states.set(scriptName, interp);
+		states.set(name, interp);
 
 		return this;
 	}

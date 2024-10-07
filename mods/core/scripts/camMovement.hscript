@@ -3,6 +3,8 @@ var mult = 1;
 
 var timers = [];
 
+var oppFocus = false;
+
 function start(song)
 {
     for (char in game.characters)
@@ -14,6 +16,17 @@ function start(song)
     }
 
     prevFocus = charFocus;
+
+    switch(song)
+    {
+        case 'White Eyes':
+            mult = 0.3;
+
+        case 'Substitute':
+            mult = 0.5;
+
+            oppFocus = true;
+    }
 }
 
 function goodNoteHit(note)
@@ -23,7 +36,7 @@ function goodNoteHit(note)
     if (!focused)
         return;
 
-    var focus = game.getCurBF();
+    var focus = oppFocus ? game.getCurDad() : game.getCurBF();
     var point = focus.getCameraPosition();
     
     var x = point.x + (offsets[note.noteData][0] * mult);

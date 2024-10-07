@@ -1,0 +1,65 @@
+var screen;
+
+function start(song)
+{
+    game.camManager.snapToPos(180, 200);
+    game.camManager.defaultZoom = 6;
+
+    char('herobrine').alpha = 0;
+
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.scrollFactor.set(0, 0);
+    addSprite(screen, BEHIND_NONE);
+
+    game.camHUD.alpha = 0;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 1:
+            FlxTween.tween(game.camManager.currentPos, {x: 550, y: 210}, 6.7, {ease: FlxEase.expoInOut});
+            FlxTween.tween(game.camManager, {defaultZoom: 1.7}, 5, {ease: FlxEase.sineOut});
+
+            FlxTween.tween(screen, {alpha: 0}, 2, {ease: FlxEase.sineOut, onComplete: (tween) ->
+            {
+                screen.destroy();
+            }});
+
+        case 48:
+            game.camManager.resume();
+            game.camManager.focusOnPoint(char('herobrine').getCameraPosition());
+
+            game.camManager.defaultZoom = 2.2;
+
+            FlxTween.tween(char('herobrine'), {alpha: 1}, 1);
+
+        case 64, 576:
+            game.camManager.defaultZoom = 1.8;
+            game.camManager.zoom.interval = 1;
+
+            FlxTween.tween(game.camHUD, {alpha: 1}, 1);
+
+        case 320:
+            game.camManager.defaultZoom = 2;
+            game.camManager.zoom.interval = 2;
+
+        case 632:
+            game.camManager.defaultZoom = 2;
+
+        case 640:
+            game.camManager.defaultZoom = 1.75;
+
+        case 704:
+            game.camManager.zoom.interval = 8;
+            game.camManager.lockToPoint(char('herobrine').getCameraPosition());
+
+            game.camManager.defaultZoom = 2;
+
+            FlxTween.tween(game.camHUD, {alpha: 0}, 0.5);
+
+        case 712:
+            FlxTween.tween(char('herobrine'), {alpha: 0}, 2);
+    }
+}

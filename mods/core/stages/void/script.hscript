@@ -1,0 +1,14 @@
+var void;
+
+function start(song)
+{
+    void = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
+    void.scrollFactor.set(0, 0);
+    addSprite(void, BEHIND_ALL);
+}
+
+function update(dt)
+{
+    var scale = 1 / (FlxG.camera.zoom - 0.1);
+    void.scale.set(scale, scale);
+}

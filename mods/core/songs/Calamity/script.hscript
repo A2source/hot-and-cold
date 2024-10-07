@@ -1,0 +1,42 @@
+function start(song)
+{
+    game.camManager.snapToPos(-150, -300);
+    game.camManager.defaultZoom = 2;
+
+    game.camHUD.alpha = 0;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 1:
+            FlxTween.tween(game.camManager.currentPos, {y: 200}, 8, {ease: FlxEase.expoInOut});
+            FlxTween.tween(game.camManager, {defaultZoom: 0.8}, 8, {ease: FlxEase.expoOut});
+
+        case 64:
+            game.camManager.resume();
+            game.camManager.focusOnPoint(char('cr00l').getCameraPosition());
+
+            game.camManager.zoom.interval = 1;
+
+            FlxTween.tween(game.camHUD, {alpha: 1}, 2, {ease: FlxEase.expoOut});
+
+        case 320:
+            game.camManager.zoom.interval = 2;
+            game.camManager.defaultZoom = 1;
+
+        case 448:
+            game.camManager.zoom.interval = 1;
+            game.camManager.defaultZoom = 0.8;
+
+        case 976:
+            game.camManager.zoom.interval = 999;
+
+            FlxTween.tween(game.camHUD, {alpha: 0}, 2);
+            FlxTween.tween(game.camManager, {defaultZoom: 0.4}, 2);
+
+            for (name in ['cr00l', 'alyssa'])
+                FlxTween.tween(char(name), {alpha: 0}, 2);
+    }   
+}

@@ -103,19 +103,19 @@ class StrumNote extends FlxSprite
 			switch (Math.abs(noteData) % 4)
 			{
 				case 0:
-					animation.addByPrefix('static', 'arrowLEFT');
+					animation.addByPrefix('static', 'arrowLEFT', 12);
 					animation.addByPrefix('pressed', 'left press', 24, false);
 					animation.addByPrefix('confirm', 'left confirm', 24, false);
 				case 1:
-					animation.addByPrefix('static', 'arrowDOWN');
+					animation.addByPrefix('static', 'arrowDOWN', 12);
 					animation.addByPrefix('pressed', 'down press', 24, false);
 					animation.addByPrefix('confirm', 'down confirm', 24, false);
 				case 2:
-					animation.addByPrefix('static', 'arrowUP');
+					animation.addByPrefix('static', 'arrowUP', 12);
 					animation.addByPrefix('pressed', 'up press', 24, false);
 					animation.addByPrefix('confirm', 'up confirm', 24, false);
 				case 3:
-					animation.addByPrefix('static', 'arrowRIGHT');
+					animation.addByPrefix('static', 'arrowRIGHT', 12);
 					animation.addByPrefix('pressed', 'right press', 24, false);
 					animation.addByPrefix('confirm', 'right confirm', 24, false);
 			}

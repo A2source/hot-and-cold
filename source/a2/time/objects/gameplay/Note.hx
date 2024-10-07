@@ -96,7 +96,7 @@ class Note extends FlxSprite
 
 	public static var swagWidth:Float = 160 * 0.7;
 	
-	private var colArray:Array<String> = ['purple', 'blue', 'green', 'red'];
+	private var dirArray:Array<String> = ['left', 'down', 'up', 'right'];
 	private var pixelInt:Array<Int> = [0, 1, 2, 3];
 
 	// Lua shit
@@ -198,7 +198,7 @@ class Note extends FlxSprite
 			x += swagWidth * (noteData);
 			if(!isSustainNote && noteData > -1 && noteData < 4) { //Doing this 'if' check to fix the warnings on Senpai songs
 				var animToPlay:String = '';
-				animToPlay = colArray[noteData % 4];
+				animToPlay = dirArray[noteData % 4];
 				animation.play(animToPlay + 'Scroll');
 			}
 		}
@@ -208,17 +208,23 @@ class Note extends FlxSprite
 		if(prevNote != null)
 			prevNote.nextNote = this;
 
+		var dir:String = dirArray[noteData % 4];
+
 		if (isSustainNote && prevNote != null)
 		{
-			alpha = 0.6;
-			multAlpha = 0.6;
+			offsetY = -74;
+
+			if (dir == 'up')
+				offsetY -= 10;
+
 			hitsoundDisabled = true;
-			if(ClientPrefs.data.downScroll) flipY = true;
+			if(!ClientPrefs.data.downScroll) 
+				flipY = true;
 
 			offsetX += width / 2;
 			copyAngle = false;
 
-			animation.play(colArray[noteData % 4] + 'holdend');
+			animation.play(dir + 'end');
 
 			updateHitbox();
 
@@ -229,7 +235,7 @@ class Note extends FlxSprite
 
 			if (prevNote.isSustainNote)
 			{
-				prevNote.animation.play(colArray[prevNote.noteData % 4] + 'hold');
+				prevNote.animation.play(dirArray[prevNote.noteData % 4] + 'hold');
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
 				if(PlayState.instance != null)
@@ -244,15 +250,23 @@ class Note extends FlxSprite
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
+			else
+				offsetY += 23;
 
 			if(PlayState.isPixelStage) {
 				scale.y *= PlayState.daPixelZoom;
 				updateHitbox();
 			}
-		} else if(!isSustainNote) {
+		} else if(!isSustainNote) 
+		{
 			earlyHitMult = 1;
+
+			if (dir == 'left' || dir == 'right')
+				offsetX += 20;
 		}
+
 		x += offsetX;
+		y += offsetY;
 	}
 
 	public function loadCustomNote(name:String):Note
@@ -279,7 +293,8 @@ class Note extends FlxSprite
 	var lastNoteOffsetXForPixelAutoAdjusting:Float = 0;
 	var lastNoteScaleToo:Float = 1;
 	public var originalHeightForCalcs:Float = 6;
-	function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') {
+	function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') 
+	{
 		if(prefix == null) prefix = '';
 		if(texture == null) texture = '';
 		if(suffix == null) suffix = '';
@@ -318,7 +333,8 @@ class Note extends FlxSprite
 			loadPixelNoteAnims();
 			antialiasing = false;
 
-			if(isSustainNote) {
+			if(isSustainNote) 
+			{
 				offsetX += lastNoteOffsetXForPixelAutoAdjusting;
 				lastNoteOffsetXForPixelAutoAdjusting = (width - 7) * (PlayState.daPixelZoom / 2);
 				offsetX -= lastNoteOffsetXForPixelAutoAdjusting;
@@ -369,28 +385,26 @@ class Note extends FlxSprite
 		}
 	}
 
-	function loadNoteAnims() {
-		animation.addByPrefix(colArray[noteData] + 'Scroll', colArray[noteData] + '0');
+	function loadNoteAnims() 
+	{
+		animation.addByPrefix(dirArray[noteData] + 'Scroll', dirArray[noteData] + '0', 12);
 
 		if (isSustainNote)
 		{
-			animation.addByPrefix('purpleholdend', 'pruple end hold'); // ?????
-			animation.addByPrefix(colArray[noteData] + 'holdend', colArray[noteData] + ' hold end');
-			animation.addByPrefix(colArray[noteData] + 'hold', colArray[noteData] + ' hold piece');
+			animation.addByPrefix(dirArray[noteData] + 'end', dirArray[noteData] + ' end', 12);
+			animation.addByPrefix(dirArray[noteData] + 'hold', dirArray[noteData] + ' hold', 12);
 		}
 
 		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
-
-
 	}
 
 	function loadPixelNoteAnims() {
 		if(isSustainNote) {
-			animation.add(colArray[noteData] + 'holdend', [pixelInt[noteData] + 4]);
-			animation.add(colArray[noteData] + 'hold', [pixelInt[noteData]]);
+			animation.add(dirArray[noteData] + 'end', [pixelInt[noteData] + 4]);
+			animation.add(dirArray[noteData] + 'hold', [pixelInt[noteData]]);
 		} else {
-			animation.add(colArray[noteData] + 'Scroll', [pixelInt[noteData] + 4]);
+			animation.add(dirArray[noteData] + 'Scroll', [pixelInt[noteData] + 4]);
 		}
 	}
 

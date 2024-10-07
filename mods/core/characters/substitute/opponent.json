@@ -7,7 +7,7 @@
 			],
 			"indices": [],
 			"fps": 12,
-			"anim": "idle",
+			"anim": "idle-revealed",
 			"loop": false,
 			"name": "idle",
 			"sheet": "substitute"
@@ -19,7 +19,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singLEFT",
+			"anim": "singLEFT-revealed",
 			"loop": false,
 			"name": "left",
 			"sheet": "substitute"
@@ -31,7 +31,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singRIGHT",
+			"anim": "singRIGHT-revealed",
 			"loop": false,
 			"name": "right",
 			"sheet": "substitute"
@@ -43,7 +43,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singUP",
+			"anim": "singUP-revealed",
 			"loop": false,
 			"name": "up",
 			"sheet": "substitute"
@@ -55,7 +55,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singDOWN",
+			"anim": "singDOWN-revealed",
 			"loop": false,
 			"name": "down",
 			"sheet": "substitute"
@@ -66,8 +66,8 @@
 				-206
 			],
 			"indices": [],
-			"fps": 20,
-			"anim": "slap",
+			"fps": 30,
+			"anim": "slap-revealed",
 			"loop": false,
 			"name": "slap",
 			"sheet": "substitute"
@@ -79,7 +79,7 @@
 			],
 			"indices": [],
 			"fps": 12,
-			"anim": "idle-intro",
+			"anim": "idle",
 			"loop": false,
 			"name": "idle",
 			"sheet": "intro"
@@ -103,7 +103,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singLEFT-intro",
+			"anim": "singLEFT",
 			"loop": false,
 			"name": "left",
 			"sheet": "intro"
@@ -115,7 +115,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singRIGHT-intro",
+			"anim": "singRIGHT",
 			"loop": false,
 			"name": "right",
 			"sheet": "intro"
@@ -127,7 +127,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singUP-intro",
+			"anim": "singUP",
 			"loop": false,
 			"name": "up",
 			"sheet": "intro"
@@ -139,7 +139,7 @@
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "singDOWN-intro",
+			"anim": "singDOWN",
 			"loop": false,
 			"name": "down",
 			"sheet": "intro"
@@ -150,7 +150,7 @@
 		0
 	],
 	"camera_position": [
-		-264,
-		400
+		-439,
+		291
 	]
 }

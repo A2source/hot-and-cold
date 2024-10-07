@@ -1,0 +1,61 @@
+var splashCam;
+
+var trailArea;
+var emitters = [];
+
+var PARTICLE_AMOUNT = 25;
+
+function start(song)
+{
+    splashCam = new FlxCamera();
+    splashCam.bgColor = 0x00000000;
+
+    FlxG.cameras.add(splashCam, false);
+
+    trailArea = new FlxTrailArea(0, 0, FlxG.width, FlxG.height);
+    trailArea.cameras = [splashCam];
+
+    for (i in 0...4)
+    {
+        emitter = new FlxEmitter(200, FlxG.height / 2, PARTICLE_AMOUNT);
+        emitter.color.set(0xff0000, 0x00ff00);
+        emitter.speed.set(500, 520);
+        emitter.lifespan.set(0.2);
+
+        var particle;
+        for (i in 0...PARTICLE_AMOUNT)
+        {
+            var scale = FlxG.random.int(1, 8);
+            particle = new FlxParticle();
+            particle.makeGraphic(scale, scale);
+            emitter.add(particle);
+
+            trailArea.add(particle);
+        }
+
+        emitter.cameras = [splashCam];
+
+        emitters.push(emitter);
+    }
+
+    add(trailArea);
+    for (emitter in emitters)
+        add(emitter);
+}
+
+function postScoreCalc(note, data)
+{
+    if (note == null)
+        return;
+
+    if (data.rating != 'sick')
+        return;
+
+    var recep = game.playerStrums.members[note.noteData];
+    var emitter = emitters[note.noteData];
+
+    emitter.x = recep.x + recep.width / 2;
+	emitter.y = recep.y + recep.height / 2;
+
+	emitter.start(true);
+}

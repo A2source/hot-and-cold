@@ -183,6 +183,8 @@ class LoadingState extends MusicBeatState
 
 		// Main.resizeWindow(sizeX, 720);
 
+		FlxG.camera.bgColor = 0xFF000000;
+
 		MusicBeatState.transitioning = true;
 		MusicBeatState.switchState(getNextState(target, stopMusic));
 	}

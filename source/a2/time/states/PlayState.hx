@@ -3179,17 +3179,22 @@ class PlayState extends MusicBeatState
 				continue;
 			}
 
+			var angle = ref.getFloat('innerShadowAngle');
+			var dist = ref.getFloat('innerShadowDistance');
+
 			var curFile:CharacterRimLightFile =
 			{
 				satinCol: ref.getFloatArray('satinColor'),
 				innerCol: ref.getFloatArray('innerShadowColor'),
 				overlayCol: ref.getFloatArray('overlayColor'),
 
-				angle: ref.getFloat('innerShadowAngle'),
-				dist: ref.getFloat('innerShadowDistance'),
+				angle: angle == null ? 0 : angle,
+				dist: dist == null ? 0 : dist,
 
 				name: name
 			}
+
+			trace(angle, dist);
 
 			data.lights.push(curFile);
 		}
@@ -3931,6 +3936,9 @@ class PlayState extends MusicBeatState
 	var cameraTwn:FlxTween;
 	public function moveCamera(charToFocus:Int)
 	{
+		if (!canMoveCamera)
+			return;
+
 		var char = characters[charToFocus];
 
 		var point:FlxPoint = char.getCameraPosition();
@@ -3950,20 +3958,6 @@ class PlayState extends MusicBeatState
 	function tweenCamIn(camZoom:Float = 1.3):Void
 	{
 		FlxTween.tween(FlxG.camera, {zoom: camZoom}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
-	}
-
-	function zoomCamera2(zoom:Float = 1, time:Int = 1)
-        {
-        FlxTween.tween(FlxG.camera, {zoom: zoom}, time, {ease: FlxEase.quadInOut, onComplete: 					
-					function (twn:FlxTween)
-					{
-					camlock2();
-					}});
-        }
-
-	function camlock2()
-	{
-        camManager.defaultZoom = FlxG.camera.zoom;
 	}
 
 	public function finishSong(?ignoreNoteOffset:Bool = false):Void

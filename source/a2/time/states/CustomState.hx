@@ -9,6 +9,11 @@ import a2.time.substates.CustomSubState;
 
 import a2.time.objects.InteractableSprite;
 
+import flixel.addons.effects.FlxTrailArea;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
+import flixel.util.FlxDestroyUtil;
+
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -163,6 +168,11 @@ class CustomState extends MusicBeatState
 		});
 
 		interp.variables.set('Date', Date);
+
+		interp.variables.set('FlxTrailArea', FlxTrailArea);
+		interp.variables.set('FlxEmitter', FlxEmitter);
+		interp.variables.set('FlxParticle', FlxParticle);
+		interp.variables.set('FlxDestroyUtil', FlxDestroyUtil);
 
 		interp.variables.set('ClientPrefs', a2.time.util.ClientPrefs);
 		interp.variables.set("MusicBeatState", a2.time.states.MusicBeatState);

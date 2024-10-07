@@ -15,6 +15,6 @@
 	],
 	"antialiasing": true,
 	"name": "steve",
-	"sing_duration": 16,
-	"scale": 1
+	"sing_duration": 6,
+	"scale": 0.25
 }

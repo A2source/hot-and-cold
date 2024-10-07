@@ -170,6 +170,9 @@ class Character extends TimeSprite
 				var charPath:String = null;
 				var animPath:String = null;
 
+				if (charType != NORMAL)
+					Paths.VERBOSE = false;
+
 				for (mod in Paths.getModDirectories())
 				{
 					var charCheck = Paths.charJson(curCharacter, 'character', mod);
@@ -256,18 +259,18 @@ class Character extends TimeSprite
 						{
 							spriteSheets.push(anim.sheet);
 							sheetAnimations.push(new FlxAnimationController(this));
+						}
 
-							switch (spriteType)
-							{
-								case "packer":
-									trace('not supported');
-								
-								case "sparrow":
-									frames = Paths.getCharSparrow(name, anim.sheet, modDirectory);
-								
-								case "texture":
-									frames = AtlasFrameMaker.construct(anim.sheet);
-							}
+						switch (spriteType)
+						{
+							case "packer":
+								trace('not supported');
+							
+							case "sparrow":
+								frames = Paths.getCharSparrow(name, anim.sheet, modDirectory);
+							
+							case "texture":
+								frames = AtlasFrameMaker.construct(anim.sheet);
 						}
 
 						if(animIndices != null && animIndices.length > 0) 
@@ -469,8 +472,8 @@ class Character extends TimeSprite
 			else
 				playAnim('danceLEFT');
 		}
-		else if (hasAnim('idle'))
-			playAnim('idle');
+		else if (hasAnim('idle' + animSuffix))
+			playAnim('idle' + animSuffix);
 	}
 
 	public function getCameraPosition():FlxPoint
@@ -531,16 +534,16 @@ class Character extends TimeSprite
 
 		specialAnim = false;
 
-		var animIndex:Int = spriteSheets.indexOf(getAnimByName(AnimName).sheet);
+		var sheet = getAnimByName(AnimName).sheet;
+		var animIndex:Int = spriteSheets.indexOf(sheet);
 		var controller:FlxAnimationController = sheetAnimations[animIndex];
 
 		curController = controller;
-
+		
 		if (frames != sheetFrames[animIndex])
 			frames = sheetFrames[animIndex];
 
 		animation.copyFrom(controller);
-
 		animation.play(AnimName, Force, Reversed, Frame);
 
 		var daOffset = animOffsets.get(AnimName);

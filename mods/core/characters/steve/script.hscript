@@ -1,0 +1,12 @@
+function onMiss(note)
+{
+    if (note == null)
+        return;
+
+    var me = char('steve');
+
+    FlxTween.cancelTweensOf(me);
+    FlxTween.color(me, 0.8, 0xFFFF0000, 0xFFFFFFFF, {ease: FlxEase.expoOut});
+
+    FlxG.sound.play(Paths.returnModsSound('characters/steve', 'oof'), 0.5);
+}
