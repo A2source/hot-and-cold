@@ -1,0 +1,18 @@
+function start(song)
+{
+    char('bf').visible = false;
+    char('bf').trailChar.visible = false;
+
+    char('dad').visible = false;
+
+    var cover = new FlxSprite().load(Paths.stageImage('mouth moods', 'cover'));
+
+    cover.scrollFactor.set(0, 0);
+    addSprite(cover, BEHIND_NONE);
+
+    cover.setGraphicSize(FlxG.width, FlxG.height);
+    cover.screenCenter();
+
+    game.camManager.zoom.amounts.game = 0;
+    game.camManager.snapToPos(0, 0);
+}

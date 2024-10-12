@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				224,
+				78
+			],
+			"indices": [],
+			"fps": 16,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "bf-jumpman"
+		},
+		{
+			"offsets": [
+				208,
+				73
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "bf-jumpman"
+		},
+		{
+			"offsets": [
+				211,
+				53
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "bf-jumpman"
+		},
+		{
+			"offsets": [
+				239,
+				65
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "bf-jumpman"
+		},
+		{
+			"offsets": [
+				245,
+				68
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "bf-jumpman"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		300,
+		41
+	]
+}

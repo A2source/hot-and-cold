@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="cup.png" width="498" height="191">
+	<SubTexture name="cup0001" x="2" y="2" width="246" height="187" frameX="-0" frameY="-0" frameWidth="246" frameHeight="187"/>
+	<SubTexture name="cup0002" x="2" y="2" width="246" height="187" frameX="-0" frameY="-0" frameWidth="246" frameHeight="187"/>
+	<SubTexture name="cup0003" x="250" y="2" width="246" height="187" frameX="-0" frameY="-0" frameWidth="246" frameHeight="187"/>
+	<SubTexture name="cup0004" x="250" y="2" width="246" height="187" frameX="-0" frameY="-0" frameWidth="246" frameHeight="187"/>
+</TextureAtlas>

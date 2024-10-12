@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="curtains.png" width="1523" height="1999">
+	<SubTexture name="curtains0001" x="2" y="1001" width="1518" height="996" frameX="-0" frameY="-1" frameWidth="1519" frameHeight="997"/>
+	<SubTexture name="curtains0002" x="2" y="1001" width="1518" height="996" frameX="-0" frameY="-1" frameWidth="1519" frameHeight="997"/>
+	<SubTexture name="curtains0003" x="2" y="2" width="1519" height="997" frameX="-0" frameY="-0" frameWidth="1519" frameHeight="997"/>
+	<SubTexture name="curtains0004" x="2" y="2" width="1519" height="997" frameX="-0" frameY="-0" frameWidth="1519" frameHeight="997"/>
+</TextureAtlas>

@@ -1,0 +1,51 @@
+var yPos = FlxG.height * 0.7;
+
+var box;
+var text;
+
+var BOX_ALPHA = 0.6;
+
+function start(song)
+{
+    box = new FlxSprite();
+    box.cameras = [game.camOther];
+    box.alpha = BOX_ALPHA;
+    add(box);
+
+    text = new FlxText();
+    text.setFormat(Paths.modsFont('roboto'), 22);
+    text.alignment = 'center';
+    text.cameras = [game.camOther];
+    add(text);
+}
+
+function onEvent(name, v1, v2, v3)
+{
+    if (name != 'YouTube Captions')
+        return;
+
+    if (v1 == null || v1 == '')
+    {
+        box.alpha = 0;
+        text.text = '';
+
+        return;
+    }
+
+    box.alpha = BOX_ALPHA;
+
+    var split = v1.split('\\n');
+
+    text.text = '';
+    for (line in split)
+        text.text += line + '\n';
+
+    text.screenCenter();
+
+    text.y = yPos - text.height / 2;
+
+    box.x = text.x - 2;
+    box.y = text.y - 2;
+
+    box.makeGraphic(text.width + 4, text.height + 4, 0xFF000000);
+}

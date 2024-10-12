@@ -1,0 +1,6 @@
+Add YouTube style captions to the stage.
+
+Value 1: Text
+
+Use the new line escape character (backslash n) to add a new line in the text.
+If text is blank, captions get removed.

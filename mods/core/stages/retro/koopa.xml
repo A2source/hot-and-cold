@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="koopa.png" width="706" height="96">
+	<SubTexture name="koopa0001" x="550" y="2" width="76" height="92" frameX="-34" frameY="-35" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0002" x="550" y="2" width="76" height="92" frameX="-34" frameY="-35" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0003" x="457" y="2" width="91" height="87" frameX="-29" frameY="-42" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0004" x="363" y="2" width="92" height="86" frameX="-31" frameY="-46" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0005" x="2" y="2" width="85" height="82" frameX="-38" frameY="-50" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0006" x="89" y="2" width="84" height="82" frameX="-38" frameY="-49" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0007" x="175" y="2" width="92" height="82" frameX="-30" frameY="-49" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0008" x="269" y="2" width="92" height="83" frameX="-30" frameY="-47" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0009" x="628" y="2" width="76" height="92" frameX="-36" frameY="-36" frameWidth="130" frameHeight="142"/>
+	<SubTexture name="koopa0010" x="628" y="2" width="76" height="92" frameX="-36" frameY="-36" frameWidth="130" frameHeight="142"/>
+</TextureAtlas>

@@ -1,0 +1,67 @@
+var anims = ['d', 'i', 'l', 'r', 'u'];
+var product = false;
+
+var show;
+
+function start(song)
+{
+    char('bf').visible = false;
+    char('bf').trailChar.visible = false;
+
+    char('dad').visible = false;
+
+    show = new FlxSprite().loadSparrow('stages/show', 'show');
+
+    var i = 0;
+    for (name in anims)
+    {
+        show.animation.addByPrefix(name, name, 6);
+
+        i++;
+    }
+
+    show.animation.addByPrefix('product', 'product');
+
+    show.animation.play('i');
+
+    show.scrollFactor.set(0, 0);
+    addSprite(show, BEHIND_NONE);
+
+    show.setGraphicSize(FlxG.width, FlxG.height);
+    show.screenCenter();
+
+    game.camManager.zoom.amounts.game = 0;
+    game.camManager.snapToPos(0, 0);
+}
+
+var animIndex = 0;
+function beatHit(beat)
+{
+    if (product)
+        return;
+
+    if (beat % 2 != 0)
+        return;
+
+    var anim = anims[animIndex];
+
+    show.animation.play(anim);
+
+    animIndex++;
+
+    if (animIndex == anims.length)
+        animIndex = 0;
+}
+
+function onEvent(name, v1, v2, v3)
+{
+    if (name != 'Show Product')
+        return;
+
+    product = v1 == 'yes';
+
+    if (product)
+        show.animation.play('product')
+    else
+        show.animation.play('i');
+}

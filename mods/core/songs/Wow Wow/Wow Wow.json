@@ -1,0 +1,4305 @@
+{
+	"speed": 3,
+	"stage": "mouth moods",
+	"players": [
+		"bf"
+	],
+	"events": [
+		{
+			"value1": "Some",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 182,
+			"value3": ""
+		},
+		{
+			"value1": "Some people call me the space cowboy",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 731,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki-",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 4284,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wiki",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 4610,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki-",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 5588,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wiki",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 5914,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wiki\\n(cowboy)\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 6241,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki-\\n(cowboy)\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 6837,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wiki\\n(cowboy)\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 7128,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wiki wow\n(cowboy)\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 7398,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 7945,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki wow\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 8286,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki-\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 8627,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki- wiki\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 8852,
+			"value3": ""
+		},
+		{
+			"value1": "Wow\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 9101,
+			"value3": ""
+		},
+		{
+			"value1": "Wow wow\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 9414,
+			"value3": ""
+		},
+		{
+			"value1": "Wow wow wild\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 9682,
+			"value3": ""
+		},
+		{
+			"value1": "Wow wow wild wild\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 9962,
+			"value3": ""
+		},
+		{
+			"value1": "Wow wow wild wild wild west\n(cowboy)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 10242,
+			"value3": ""
+		},
+		{
+			"value1": "Desperado",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 10943,
+			"value3": ""
+		},
+		{
+			"value1": "Rough-  ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 11925,
+			"value3": ""
+		},
+		{
+			"value1": "Rough rider",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 12205,
+			"value3": ""
+		},
+		{
+			"value1": "No you don't want natta",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 12625,
+			"value3": ""
+		},
+		{
+			"value1": "Natta this, ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 14168,
+			"value3": ""
+		},
+		{
+			"value1": "Natta this, six",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 14728,
+			"value3": ""
+		},
+		{
+			"value1": "Natta this, six, gunna this,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 15009,
+			"value3": ""
+		},
+		{
+			"value1": "Brother runnin this,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 15569,
+			"value3": ""
+		},
+		{
+			"value1": "Buffalo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 16411,
+			"value3": ""
+		},
+		{
+			"value1": "Buffalo buffalo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 16831,
+			"value3": ""
+		},
+		{
+			"value1": "Buffalo buffalo buffa",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 17252,
+			"value3": ""
+		},
+		{
+			"value1": "Lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 17532,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 17672,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 17812,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 17953,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18093,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18233,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo lo lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18373,
+			"value3": ""
+		},
+		{
+			"value1": "Lo lo lo lo lo lo lo lo",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18513,
+			"value3": ""
+		},
+		{
+			"value1": "Wiki-",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18654,
+			"value3": ""
+		},
+		{
+			"value1": "Any damsel that's",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 18934,
+			"value3": ""
+		},
+		{
+			"value1": "Any damsel that's\\nin",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 19775,
+			"value3": ""
+		},
+		{
+			"value1": "Any damsel that's\\nin dis",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 20055,
+			"value3": ""
+		},
+		{
+			"value1": "Any damsel that's\\nin distress",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 20336,
+			"value3": ""
+		},
+		{
+			"value1": "Be outta distress when she",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 20756,
+			"value3": ""
+		},
+		{
+			"value1": "Be outta distress when she\\nmeet Jim Dress",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 22018,
+			"value3": ""
+		},
+		{
+			"value1": "Roughneck,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 23140,
+			"value3": ""
+		},
+		{
+			"value1": "Roughneck, so go check,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 23700,
+			"value3": ""
+		},
+		{
+			"value1": "Roughneck, so go check, the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 24121,
+			"value3": ""
+		},
+		{
+			"value1": "Roughneck,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 24261,
+			"value3": ""
+		},
+		{
+			"value1": "Roughneck, so go watch your",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 24755,
+			"value3": ""
+		},
+		{
+			"value1": "Step, or flex,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 25383,
+			"value3": ""
+		},
+		{
+			"value1": "Step, or flex, and get a hold of your",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 26083,
+			"value3": ""
+		},
+		{
+			"value1": "Step, or flex, and get a hold of your dress",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 26925,
+			"value3": ""
+		},
+		{
+			"value1": "Swallow your buffalo,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 27345,
+			"value3": ""
+		},
+		{
+			"value1": "Swallow your buffalo, don't let your neck react",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 28326,
+			"value3": ""
+		},
+		{
+			"value1": "Swallow your buffalo, don't let your neck react,\\nyou don't",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 29588,
+			"value3": ""
+		},
+		{
+			"value1": "Wanna see my hand, ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 29869,
+			"value3": ""
+		},
+		{
+			"value1": "Wanna see my hand, where my hand",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 30710,
+			"value3": ""
+		},
+		{
+			"value1": "Wanna see my hand, where my hand be at",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 31270,
+			"value3": ""
+		},
+		{
+			"value1": "Wanna see my hand, where my hand be at\\nBut James",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 31691,
+			"value3": ""
+		},
+		{
+			"value1": "James Dress",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 32112,
+			"value3": ""
+		},
+		{
+			"value1": "James Dress, from the start of this",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 32392,
+			"value3": ""
+		},
+		{
+			"value1": "Runnin' the game,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 33233,
+			"value3": ""
+		},
+		{
+			"value1": "Runnin' the game, artemis",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 34074,
+			"value3": ""
+		},
+		{
+			"value1": "Runnin' the game, artemis, tame of the west,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 34635,
+			"value3": ""
+		},
+		{
+			"value1": "So remember the James,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 35336,
+			"value3": ""
+		},
+		{
+			"value1": "So remember the James, now",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 36317,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call?",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 36598,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call?\\n(wiki-wiki bees)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 37439,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call? Now,\\n(wiki-wiki bees)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 38560,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call?",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 38841,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call?\\n(You don't wanna see my bees)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 39682,
+			"value3": ""
+		},
+		{
+			"value1": "Who you gonna call? And\\n(You don't wanna see my bees)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 40943,
+			"value3": ""
+		},
+		{
+			"value1": "If you ever wanna see my",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 41084,
+			"value3": ""
+		},
+		{
+			"value1": "If you ever wanna see my bum rush,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 42205,
+			"value3": ""
+		},
+		{
+			"value1": "If you ever wanna see my bum rush,\\nbreakout!",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 43046,
+			"value3": ""
+		},
+		{
+			"value1": "If you ever wanna see my bum rush,\\nbreakout! Before you get",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 43747,
+			"value3": ""
+		},
+		{
+			"value1": "BEES!",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 44448,
+			"value3": ""
+		},
+		{
+			"value1": "BEES!\\nDown at the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 45009,
+			"value3": ""
+		},
+		{
+			"value1": "Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 45570,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 46130,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\\nWhen I roll into the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 46831,
+			"value3": ""
+		},
+		{
+			"value1": "Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 47813,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 48373,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\\nWhen I stroll into the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 48934,
+			"value3": ""
+		},
+		{
+			"value1": "Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 50056,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 50616,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\\nWhen I bounce into the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 51317,
+			"value3": ""
+		},
+		{
+			"value1": "Wow  ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 52299,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 52859,
+			"value3": ""
+		},
+		{
+			"value1": "We going",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 53420,
+			"value3": ""
+		},
+		{
+			"value1": "We going straight",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 54542,
+			"value3": ""
+		},
+		{
+			"value1": "We going straight to",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 55663,
+			"value3": ""
+		},
+		{
+			"value1": "We going straight to the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 56504,
+			"value3": ""
+		},
+		{
+			"value1": "Wild",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 56785,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 57766,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West, we going",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 58186,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West, we going straight,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 59028,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West, we going straight to",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 60149,
+			"value3": ""
+		},
+		{
+			"value1": "the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 60990,
+			"value3": ""
+		},
+		{
+			"value1": "Wow  ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 61271,
+			"value3": ""
+		},
+		{
+			"value1": "Wow\\n(Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 61551,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\n(Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 61831,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\n(Now, Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 62112,
+			"value3": ""
+		},
+		{
+			"value1": "Wow  ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 62392,
+			"value3": ""
+		},
+		{
+			"value1": "Wow\\n(Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 62672,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\n(Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 62953,
+			"value3": ""
+		},
+		{
+			"value1": "Wow Wow\n(Now, Now)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 63233,
+			"value3": ""
+		},
+		{
+			"value1": "Once upon a time, in the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 63514,
+			"value3": ""
+		},
+		{
+			"value1": "Once upon a time, in the\\nwiki wikiw mad man",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 64635,
+			"value3": ""
+		},
+		{
+			"value1": "Lost his damn mind,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 65757,
+			"value3": ""
+		},
+		{
+			"value1": "Lost his damn mind, in the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 66598,
+			"value3": ""
+		},
+		{
+			"value1": "Lost his damn mind, in the\\nwiki wiki love-less",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 66878,
+			"value3": ""
+		},
+		{
+			"value1": "Kidnap a dime,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 68000,
+			"value3": ""
+		},
+		{
+			"value1": "Kidnap a dime, now it",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 68841,
+			"value3": ""
+		},
+		{
+			"value1": "Kidnap a dime, now it\\nwiki wiki",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 69121,
+			"value3": ""
+		},
+		{
+			"value1": "Now I must,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 69542,
+			"value3": ""
+		},
+		{
+			"value1": "Now I must, put this behind",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 70383,
+			"value3": ""
+		},
+		{
+			"value1": "Now I must, put this behind to the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 71084,
+			"value3": ""
+		},
+		{
+			"value1": "Now I must, put this behind to the\\nbum",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 71364,
+			"value3": ""
+		},
+		{
+			"value1": "Now I must, put this behind to the\\nbum rush",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 71644,
+			"value3": ""
+		},
+		{
+			"value1": "In the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 72205,
+			"value3": ""
+		},
+		{
+			"value1": "In the shadows,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 72486,
+			"value3": ""
+		},
+		{
+			"value1": "In the shadows, in the saddles,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 73046,
+			"value3": ""
+		},
+		{
+			"value1": "In the shadows, in the saddles,\\nready for saddles,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 73747,
+			"value3": ""
+		},
+		{
+			"value1": "Bring ALL your bums in,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 74729,
+			"value3": ""
+		},
+		{
+			"value1": "Bring ALL your bums in, here come the saddles!",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 75850,
+			"value3": ""
+		},
+		{
+			"value1": "Behind my bum,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 76972,
+			"value3": ""
+		},
+		{
+			"value1": "Behind my bum, all the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 77813,
+			"value3": ""
+		},
+		{
+			"value1": "Behind my bum, all the\nyiffin' you did,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 78093,
+			"value3": ""
+		},
+		{
+			"value1": "Behind my bum, all the\nyiffin' you did, front and",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 78934,
+			"value3": ""
+		},
+		{
+			"value1": "Center,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 79215,
+			"value3": ""
+		},
+		{
+			"value1": "Center, now where my",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 79775,
+			"value3": ""
+		},
+		{
+			"value1": "hip be at,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 80336,
+			"value3": ""
+		},
+		{
+			"value1": "hip be at, who that is",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 81037,
+			"value3": ""
+		},
+		{
+			"value1": "love-less",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 82018,
+			"value3": ""
+		},
+		{
+			"value1": "love-less, bad for your health",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 82579,
+			"value3": ""
+		},
+		{
+			"value1": "love-less, bad for your health, lookin'",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 83420,
+			"value3": ""
+		},
+		{
+			"value1": "Damn",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 83701,
+			"value3": ""
+		},
+		{
+			"value1": "Damn good",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 83981,
+			"value3": ""
+		},
+		{
+			"value1": "Damn good though",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 84261,
+			"value3": ""
+		},
+		{
+			"value1": "Damn good though\\nIf I could say it myself",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 84542,
+			"value3": ""
+		},
+		{
+			"value1": "Told me",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 85663,
+			"value3": ""
+		},
+		{
+			"value1": "Told me love-less is a good man,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 85944,
+			"value3": ""
+		},
+		{
+			"value1": "Told me love-less is a good man,\\nI don't feel that.",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 87205,
+			"value3": ""
+		},
+		{
+			"value1": "He",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 88046,
+			"value3": ""
+		},
+		{
+			"value1": "He got his behind",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 88187,
+			"value3": ""
+		},
+		{
+			"value1": "He got his behind lookin'",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 88887,
+			"value3": ""
+		},
+		{
+			"value1": "He got his behind lookin'\\ndamn good though!",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 89308,
+			"value3": ""
+		},
+		{
+			"value1": "He got his behind lookin'\\ndamn good though! (wiki wiki)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 89869,
+			"value3": ""
+		},
+		{
+			"value1": "Rough rider",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 90570,
+			"value3": ""
+		},
+		{
+			"value1": "Rough rider, buffalo man",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 91551,
+			"value3": ""
+		},
+		{
+			"value1": "Rough rider, buffalo man, when",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 92392,
+			"value3": ""
+		},
+		{
+			"value1": "Y'all clowns gon' see that I ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 92673,
+			"value3": ""
+		},
+		{
+			"value1": "Y'all clowns gon' see that I\\ncan't love myself",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 93794,
+			"value3": ""
+		},
+		{
+			"value1": "Under",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 94635,
+			"value3": ""
+		},
+		{
+			"value1": "Understand me son,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 94916,
+			"value3": ""
+		},
+		{
+			"value1": "Understand me son, I'm the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 95757,
+			"value3": ""
+		},
+		{
+			"value1": "Slickest they is,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 96037,
+			"value3": ""
+		},
+		{
+			"value1": "Slickest they is, I'm the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 96878,
+			"value3": ""
+		},
+		{
+			"value1": "Slickest they is,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 97159,
+			"value3": ""
+		},
+		{
+			"value1": "Slickest they is, I'm the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98000,
+			"value3": ""
+		},
+		{
+			"value1": "Sli",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98280,
+			"value3": ""
+		},
+		{
+			"value1": "Sliki",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98420,
+			"value3": ""
+		},
+		{
+			"value1": "Sliki-wi",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98560,
+			"value3": ""
+		},
+		{
+			"value1": "Sliki-wiki",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98701,
+			"value3": ""
+		},
+		{
+			"value1": "Sliki-wiki-wickest ",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 98841,
+			"value3": ""
+		},
+		{
+			"value1": "Sliki-wiki-wickest they is!",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 99121,
+			"value3": ""
+		},
+		{
+			"value1": "So if you walkin' up the,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 99402,
+			"value3": ""
+		},
+		{
+			"value1": "So if you walkin' up the,\\nwrong street we comin'",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 100523,
+			"value3": ""
+		},
+		{
+			"value1": "Don't be barkin' up the,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 101645,
+			"value3": ""
+		},
+		{
+			"value1": "Don't be barkin' up the, wrong tree we gonna",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 102906,
+			"value3": ""
+		},
+		{
+			"value1": "Test your health",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 104028,
+			"value3": ""
+		},
+		{
+			"value1": "Test your health love-",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 104729,
+			"value3": ""
+		},
+		{
+			"value1": "Test your health love-less,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 105009,
+			"value3": ""
+		},
+		{
+			"value1": "Can't stand clowns?",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 105570,
+			"value3": ""
+		},
+		{
+			"value1": "Then get out the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 106411,
+			"value3": ""
+		},
+		{
+			"value1": "Then get out the Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 107252,
+			"value3": ""
+		},
+		{
+			"value1": "Then get out the Wild,\\n(We goin')",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 107532,
+			"value3": ""
+		},
+		{
+			"value1": "Then get out the Wild, Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 107813,
+			"value3": ""
+		},
+		{
+			"value1": "Straight, to",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 108374,
+			"value3": ""
+		},
+		{
+			"value1": "Straight, to the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 110336,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 110617,
+			"value3": ""
+		},
+		{
+			"value1": "Wild West, we goin'",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 112018,
+			"value3": ""
+		},
+		{
+			"value1": "Straight, to",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 112860,
+			"value3": ""
+		},
+		{
+			"value1": "Straight, to the",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 114822,
+			"value3": ""
+		},
+		{
+			"value1": "Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 115103,
+			"value3": ""
+		},
+		{
+			"value1": "Wild, Wild",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 115663,
+			"value3": ""
+		},
+		{
+			"value1": "Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 116224,
+			"value3": ""
+		},
+		{
+			"value1": "Wild, Wild",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 116785,
+			"value3": ""
+		},
+		{
+			"value1": "Straight",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 117346,
+			"value3": ""
+		},
+		{
+			"value1": "Straight (Straight)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 117906,
+			"value3": ""
+		},
+		{
+			"value1": "To",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 118467,
+			"value3": ""
+		},
+		{
+			"value1": "To (To)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 119028,
+			"value3": ""
+		},
+		{
+			"value1": "To the (To)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 119308,
+			"value3": ""
+		},
+		{
+			"value1": "Wild, West",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 119589,
+			"value3": ""
+		},
+		{
+			"value1": "We goin'",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 120990,
+			"value3": ""
+		},
+		{
+			"value1": "Straight",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 121832,
+			"value3": ""
+		},
+		{
+			"value1": "Straight (Straight)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 122392,
+			"value3": ""
+		},
+		{
+			"value1": "To",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 122953,
+			"value3": ""
+		},
+		{
+			"value1": "To (To)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 123514,
+			"value3": ""
+		},
+		{
+			"value1": "To the  (To)",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 123794,
+			"value3": ""
+		},
+		{
+			"value1": "Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 124075,
+			"value3": ""
+		},
+		{
+			"value1": "Wild, Wild",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 124635,
+			"value3": ""
+		},
+		{
+			"value1": "Wild,",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 125196,
+			"value3": ""
+		},
+		{
+			"value1": "Wild, Wild",
+			"value2": "",
+			"event": "YouTube Captions",
+			"strumTime": 125757,
+			"value3": ""
+		},
+		{
+			"strumTime": 127159,
+			"value1": "(do do, do do, do)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 128841,
+			"value1": "Ha!",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 129402,
+			"value1": "Ha!\\n(do do, do do, do)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 131084,
+			"value1": "Wiki Wiki Wow Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 131645,
+			"value1": "Wiki Wiki Wow Wow\\n(do do, do do, do)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 133607,
+			"value1": "C'mon,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 134729,
+			"value1": "C'mon, C'mon",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 135290,
+			"value1": "(sweet synth solo)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 143981,
+			"value1": "Baby,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 144262,
+			"value1": "Outlaw tryna draw,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 145383,
+			"value1": "Outlaw tryna draw, with a pen and a pad,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 146505,
+			"value1": "Draw Jim West,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 147486,
+			"value1": "Draw Jim West, with a",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 147626,
+			"value1": "Draw Jim West, with a pen and a pad,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 148327,
+			"value1": "Don't even,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 148748,
+			"value1": "Don't even think about a pen and a pad",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 150009,
+			"value1": "Don't even think about a pen and a pad weighing a ton,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 150710,
+			"value1": "Don't even think about a pen and a pad weighing a ton,\\njust",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 150991,
+			"value1": "Tryna draw just for",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 152112,
+			"value1": "Tryna draw just for\\nfun  ",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 152673,
+			"value1": "Tryna draw just for\\nfun son  ",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 153234,
+			"value1": "Up the sun-down,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 154355,
+			"value1": "Up the sun-down, rollin' around,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 154916,
+			"value1": "Up the sun-down, rollin' around, see where the",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 155477,
+			"value1": "BEEES",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 156037,
+			"value1": "Oughta be found,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 156738,
+			"value1": "Oughta be found, and rolling around,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 157860,
+			"value1": "The defenders of your health,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 159402,
+			"value1": "crushing my hip,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 160103,
+			"value1": "crushing my hip, and rolling around,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 160944,
+			"value1": "crushing my hip, and rolling around, don't",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 161084,
+			"value1": "Mess with us, 'cuz we in the",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 162206,
+			"value1": "Straight",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 163327,
+			"value1": "Straight to",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 164168,
+			"value1": "Straight to the",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 164449,
+			"value1": "Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 165570,
+			"value1": "Wild West",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 166131,
+			"value1": "Wild West, we goin",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 167140,
+			"value1": "Straight",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 167813,
+			"value1": "Straight to",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 168654,
+			"value1": "Straight to the",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 168935,
+			"value1": "Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 170056,
+			"value1": "Wild (Wild)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 170336,
+			"value1": "Wild we goin, (Wild)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 171458,
+			"value1": "Straight",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 172299,
+			"value1": "Straight to,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 172860,
+			"value1": "Straight to, (To)  ",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 173140,
+			"value1": "Straight to, the (To)  ",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 173421,
+			"value1": "Wild,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 174402,
+			"value1": "Wild West",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 174963,
+			"value1": "We goin,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 175804,
+			"value1": "We goin, straight",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 176785,
+			"value1": "We goin, straight to",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 177346,
+			"value1": "We goin, straight to (To)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 177626,
+			"value1": "We goin, straight to the (To)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 177907,
+			"value1": "Wild,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 178467,
+			"value1": "Wild, Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 179028,
+			"value1": "Wild,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 179589,
+			"value1": "Wild, Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 180150,
+			"value1": "Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 180430,
+			"value1": "Wow, Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 180710,
+			"value1": "Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 180991,
+			"value1": "Wow, Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 181411,
+			"value1": "When I roll into the,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 182393,
+			"value1": "Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 182673,
+			"value1": "Wow, Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 182953,
+			"value1": "Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 183234,
+			"value1": "Wow, Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 183654,
+			"value1": "When I stroll into the",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 183935,
+			"value1": "When I stroll into the\\n(We goin')",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 184636,
+			"value1": "When I stroll into the\\n(We goin' straight)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 185757,
+			"value1": "When I stroll into the\\n(We goin' straight to)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 186318,
+			"value1": "(To)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 186598,
+			"value1": "The  (To)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 186879,
+			"value1": "Wild,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 187439,
+			"value1": "Wild Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 188000,
+			"value1": "(Wild,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 188561,
+			"value1": "(Wild Wild)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 189122,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 189402,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 189682,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 189963,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 191365,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 191645,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 191925,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 192206,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 193608,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 193888,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 194168,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 194449,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 194729,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 195009,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 195290,
+			"value1": "(Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 195570,
+			"value1": "(Wow Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 195851,
+			"value1": "Buffalo  ",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 196271,
+			"value1": "Buffalo Buffalo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 196692,
+			"value1": "Buffalo Buffalo Buffa",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 196972,
+			"value1": "Lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197112,
+			"value1": "Lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197252,
+			"value1": "Lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197393,
+			"value1": "Lo lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197533,
+			"value1": "Lo lo lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197673,
+			"value1": "Lo lo lo lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197813,
+			"value1": "Lo lo lo lo lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 197953,
+			"value1": "Lo lo lo lo lo lo lo lo",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 198094,
+			"value1": "(Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 198374,
+			"value1": "(Wild, Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 198654,
+			"value1": "(Wild, Wild West)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 200337,
+			"value1": "(Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 200617,
+			"value1": "(Wild",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 200897,
+			"value1": "(Wild, Wild West)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 201458,
+			"value1": "(Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 201738,
+			"value1": "(Wow, Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 202019,
+			"value1": "(Wow, Wow Wiki-",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 202299,
+			"value1": "(Wow, Wow Wiki-Wacky)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 202860,
+			"value1": "(Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 203280,
+			"value1": "(Wow, Wiki Wow)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 203701,
+			"value1": "(Wiki-",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 203981,
+			"value1": "(Wiki Wow Wow,)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 204823,
+			"value1": "(Boom Wow,",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 205944,
+			"value1": "(Boom Wow, Wiki",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 206224,
+			"value1": "(Boom Wow, Wiki Wiki",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 206505,
+			"value1": "(Boom Wow, Wiki Wiki Wiki",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 206785,
+			"value1": "(Boom Wow, Wiki Wiki Wiki Wiki)",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 207066,
+			"value1": "Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		},
+		{
+			"strumTime": 207626,
+			"value1": "Wow Wow",
+			"value2": "",
+			"value3": "",
+			"event": "YouTube Captions"
+		}
+	],
+	"notes": {
+		"easy": {
+			"bf": [],
+			"dad": []
+		},
+		"normal": {
+			"bf": [
+				{
+					"ms": 182,
+					"t": "",
+					"l": 366,
+					"d": 2
+				},
+				{
+					"ms": 731,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 914,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 1097,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 1280,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 1646,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 1829,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 2195,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 2560,
+					"t": "",
+					"l": 366,
+					"d": 1
+				},
+				{
+					"ms": 4284,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 4447,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 4610,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 4773,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 5588,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 5751,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 5914,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 6077,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 6241,
+					"t": "",
+					"l": 406,
+					"d": 3
+				},
+				{
+					"ms": 6837,
+					"t": "",
+					"l": 422,
+					"d": 0
+				},
+				{
+					"ms": 6837,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 6990,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 7127,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 7263,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 7400,
+					"t": "",
+					"l": 172,
+					"d": 1
+				},
+				{
+					"ms": 7945,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 8116,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 8286,
+					"t": "",
+					"l": 172,
+					"d": 1
+				},
+				{
+					"ms": 8627,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 8741,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 8854,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 8968,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 9101,
+					"t": "",
+					"l": 180,
+					"d": 2
+				},
+				{
+					"ms": 9414,
+					"t": "",
+					"l": 135,
+					"d": 1
+				},
+				{
+					"ms": 9682,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 9962,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 10242,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 10242,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 10523,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 10943,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 11224,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 11364,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 11504,
+					"t": "",
+					"l": 282,
+					"d": 1
+				},
+				{
+					"ms": 11925,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 12205,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 12345,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 12625,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 12906,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 13046,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 13326,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 13607,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 13607,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 13747,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 14168,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 14308,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 14448,
+					"t": "",
+					"l": 141,
+					"d": 1
+				},
+				{
+					"ms": 14728,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 15009,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 15149,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 15289,
+					"t": "",
+					"l": 141,
+					"d": 1
+				},
+				{
+					"ms": 15569,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 15710,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 15850,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 15990,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 16130,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 16411,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 16551,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 16691,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 16831,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 16971,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 17111,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 17252,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 17392,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 17532,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 17672,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 17812,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 17953,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 18093,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 18233,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 18373,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 18513,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 18654,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 18794,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 18934,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 19074,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 19214,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 19401,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 19588,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 19775,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 20055,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 20336,
+					"t": "",
+					"l": 282,
+					"d": 2
+				},
+				{
+					"ms": 20756,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 20897,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 21037,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 21177,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 21457,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 21457,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 21738,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 21878,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 22018,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 22298,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 22579,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 23140,
+					"t": "",
+					"l": 141,
+					"d": 1
+				},
+				{
+					"ms": 23364,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 23560,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 23700,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 23981,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 24149,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 24261,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 24541,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 24763,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 24962,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 25046,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 25242,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 25383,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 25663,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 25839,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 26083,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 26224,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 26364,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 26504,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 26644,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 26784,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 26925,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 27345,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 27345,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 27485,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 27626,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 27766,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 27906,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 28046,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 28326,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 28467,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 28607,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 28747,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 29027,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 29168,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 29588,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 29728,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 29869,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 30009,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 30149,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 30289,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 30429,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 30710,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 30850,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 30990,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 31270,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 31411,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 31691,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 31831,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 32112,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 32392,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 32532,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 32672,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 32812,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 32953,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 33233,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 33373,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 33513,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 33654,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 34074,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 34214,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 34355,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 34635,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 34775,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 34915,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 35055,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 35336,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 35397,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 35476,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 35616,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 35756,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 35897,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 36317,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 36598,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 36738,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 36878,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 37018,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 37158,
+					"t": "",
+					"l": 141,
+					"d": 2
+				},
+				{
+					"ms": 37439,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 37579,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 37719,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 37859,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 37999,
+					"t": "",
+					"l": 705,
+					"d": 3
+				},
+				{
+					"ms": 37999,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 38560,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 38841,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 38981,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 39121,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 39261,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 39401,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 39682,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 39822,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 39962,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 40102,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 40242,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 40383,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 40523,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 40523,
+					"t": "",
+					"l": 423,
+					"d": 0
+				},
+				{
+					"ms": 40943,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 41084,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 41224,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 41364,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 41504,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 41644,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 41784,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 41925,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 42065,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 42205,
+					"t": "",
+					"l": 141,
+					"d": 3
+				},
+				{
+					"ms": 42485,
+					"t": "",
+					"l": 141,
+					"d": 0
+				},
+				{
+					"ms": 43046,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 43186,
+					"t": "",
+					"l": 141,
+					"d": 1
+				},
+				{
+					"ms": 43747,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 43887,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 44027,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 44168,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 44448,
+					"t": "",
+					"l": 423,
+					"d": 2
+				},
+				{
+					"ms": 45009,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 45233,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 45457,
+					"t": "",
+					"l": 0,
+					"d": 1
+				},
+				{
+					"ms": 51317,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 51457,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 51598,
+					"t": "",
+					"l": 0,
+					"d": 2
+				},
+				{
+					"ms": 51878,
+					"t": "",
+					"l": 0,
+					"d": 0
+				},
+				{
+					"ms": 52018,
+					"t": "",
+					"l": 0,
+					"d": 3
+				},
+				{
+					"ms": 52158,
+					"t": "",
+					"l": 0,
+					"d": 0
+				}
+			],
+			"dad": []
+		},
+		"hard": {
+			"bf": [],
+			"dad": []
+		}
+	},
+	"opponents": [
+		"dad"
+	],
+	"sections": [
+		{
+			"charFocus": 0,
+			"sectionBeats": 4,
+			"bpm": 140,
+			"changeBPM": false
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": true,
+			"bpm": 340
+		},
+		{
+			"sectionBeats": 6,
+			"charFocus": 0,
+			"changeBPM": true,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": true,
+			"bpm": 176
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 107
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": true,
+			"bpm": 336
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": true,
+			"bpm": 107
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"charFocus": 0,
+			"sectionBeats": 4,
+			"bpm": 140,
+			"changeBPM": false
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 176
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 140
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"sectionBeats": 4,
+			"charFocus": 0,
+			"changeBPM": false,
+			"bpm": 92
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		},
+		{
+			"charFocus": 0,
+			"bpm": 92,
+			"sectionBeats": 4,
+			"changeBPM": false
+		}
+	],
+	"validScore": true,
+	"bpm": 82,
+	"needsVoices": true,
+	"countdownType": "normal",
+	"metadata": {
+		"additionalAnimators": [
+			""
+		],
+		"charters": [
+			""
+		],
+		"additionalArtists": [
+			""
+		],
+		"programmers": [
+			""
+		],
+		"musicians": [
+			""
+		],
+		"voiceActors": [
+			""
+		]
+	},
+	"song": "Wow Wow",
+	"autoGF": "gf"
+}

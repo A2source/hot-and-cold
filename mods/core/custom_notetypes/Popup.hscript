@@ -1,0 +1,116 @@
+var types = [''];
+var popups = [];
+
+var WINDOW_VELOCITY = 300;
+
+var spin = false;
+
+var timer = 0;
+var i = 0;
+function goodNoteHit(note)
+{
+    if (note.noteType != 'Popup')
+        return;
+
+    var popup = new FlxSprite().load(Paths.stageImage('xp', 'popup'));
+    popup.antialiasing = ClientPrefs.data.antialiasing;
+    popup.setPosition(FlxG.random.int(0, FlxG.width - popup.width), FlxG.random.int(0, FlxG.height - popup.height - 28));
+    insert(game.length, popup);
+
+    popup.scale.set(0.5, 0.5);
+    FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2, {ease: FlxEase.backOut});
+
+    var type = types[FlxG.random.int(0, types.length)];
+    var data = {sprite: popup, type: type, id: i};
+
+    FlxTimer.wait(FlxG.random.int(3, 4), ()->
+    {
+        FlxTween.tween(popup, {alpha: 0}, 2, {onComplete: (tween)->
+        {
+            popup.active = false;
+            popup.destroy();
+
+            popups.remove(data);
+
+            FlxTween.cancelTweensOf(popup);
+        }});
+    });
+
+    switch(type)
+    {
+        case 'bounce':
+            popup.velocity.x = FlxG.random.bool(50) ? WINDOW_VELOCITY : -WINDOW_VELOCITY;
+            popup.velocity.y = FlxG.random.bool(50) ? WINDOW_VELOCITY : -WINDOW_VELOCITY;
+
+        case 'dance':
+            FlxTween.tween(popup, {x: popup.x + 20}, 0.8, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
+            FlxTween.tween(popup, {y: popup.y + 20}, 0.8 / 3, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
+    }
+
+    if (spin && FlxG.random.bool(25))
+        popup.angularVelocity = FlxG.random.int(-WINDOW_VELOCITY, WINDOW_VELOCITY);
+
+    popups.push(data);
+    i++;
+}
+
+function update(dt)
+{
+    timer += dt;
+
+    for (popup in popups)
+    {
+        if (popup.type == '' || !popup.sprite.active)
+            continue;
+
+        switch(popup.type)
+        {
+            case 'bounce':
+                var flipped = {x: false, y: false};
+
+                if (popup.sprite.x > FlxG.width - popup.sprite.width)
+                {
+                    flipped.x = true;
+                    popup.sprite.x = FlxG.width - popup.sprite.width - 1;
+                }
+                    
+                
+                if (popup.sprite.x < 0)
+                {
+                    flipped.x = true;
+                    popup.sprite.x = 1;
+                }
+                    
+                if (flipped.x)
+                    popup.sprite.velocity.x = -popup.sprite.velocity.x;
+
+                if (popup.sprite.y > FlxG.height - popup.sprite.height - 28 )
+                {
+                    flipped.y = true;
+                    popup.sprite.y = FlxG.height - popup.sprite.height - 29;
+                }
+
+                if (popup.sprite.y < 0)
+                {
+                    flipped.y = true;
+                    popup.sprite.y = 1;
+                }
+
+                if (flipped.y)
+                    popup.sprite.velocity.y = -popup.sprite.velocity.y;
+        }
+    }
+}
+
+function sectionHit(sec)
+{
+    switch(sec)
+    {
+        case 18:
+            types.push('bounce');
+
+        case 50:
+            types.push('dance');
+            spin = true;
+    }
+}

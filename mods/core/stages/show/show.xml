@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="show.png" width="220" height="2400">
+	<SubTexture name="d1" x="2" y="2" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="d2" x="2" y="220" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="d3" x="2" y="438" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="i0" x="2" y="656" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="i1" x="2" y="874" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="i2" x="2" y="1092" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="l1" x="2" y="1310" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="product" x="2" y="1528" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="r1" x="2" y="1746" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="u1" x="2" y="1964" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+	<SubTexture name="u2" x="2" y="2182" width="216" height="216" frameX="-0" frameY="-0" frameWidth="216" frameHeight="216"/>
+</TextureAtlas>

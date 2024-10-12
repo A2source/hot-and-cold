@@ -1,0 +1,21 @@
+var arms;
+var me;
+
+function postStart(song)
+{
+    me = char('kofuku');
+
+    arms = new FlxSprite().loadSparrow('characters/kofuku', 'arms');
+    arms.animation.addByPrefix('idle', 'arms', 12, true);
+    arms.animation.play('idle');
+    arms.scale.set(0.9, 0.9);
+    insert(game.length, arms);
+}
+
+function update(dt)
+{
+    if (arms == null)
+        return;
+
+    arms.setPosition(me.x - 87, me.y + 530);
+}

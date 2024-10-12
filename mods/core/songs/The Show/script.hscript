@@ -1,0 +1,31 @@
+function start(song)
+{
+    game.camHUD.alpha = 0;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 10, 14, 16:
+            game.camHUD.alpha = 1;
+
+        case 11, 15:
+            game.camHUD.alpha = 0;
+
+        case 144, 336, 400, 560:
+            game.camManager.zoom.interval = 1;
+
+        case 272, 416, 544:
+            game.camManager.zoom.interval = 4;
+
+        case 816:
+            game.camManager.zoom.interval = 999;
+
+        case 416:
+            game.triggerEventNote('Show Product', 'yes', '', '');
+
+        case 548:
+            game.triggerEventNote('Show Product', 'no', '', '');
+    }
+}

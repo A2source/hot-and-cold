@@ -1,0 +1,20 @@
+{
+	"flip_x": false,
+	"metadata": {
+		"animators": [
+			"[A2]"
+		],
+		"artists": [
+			"[A2]"
+		]
+	},
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"antialiasing": true,
+	"name": "x.nes",
+	"sing_duration": 6,
+	"scale": 1
+}

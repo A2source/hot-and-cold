@@ -4,6 +4,7 @@ var mult = 1;
 var timers = [];
 
 var oppFocus = false;
+var disabled = false;
 
 function start(song)
 {
@@ -19,13 +20,15 @@ function start(song)
 
     switch(song)
     {
-        case 'White Eyes':
+        case 'White Eyes', 'Entropy', 'Jumpman':
             mult = 0.3;
 
         case 'Substitute':
             mult = 0.5;
-
             oppFocus = true;
+
+        case 'Error', 'The Show', 'Wow Wow':
+            disabled = true;
     }
 }
 
@@ -33,7 +36,7 @@ function goodNoteHit(note)
 {
     var focused = game.charFocus == game.charNames.indexOf(note.attachedChar);
 
-    if (!focused)
+    if (!focused || disabled)
         return;
 
     var focus = oppFocus ? game.getCurDad() : game.getCurBF();
@@ -61,7 +64,7 @@ function opponentNoteHit(note)
 {
     var focused = game.charFocus == game.charNames.indexOf(note.attachedChar);
 
-    if (!focused)
+    if (!focused || disabled)
         return;
 
     var focus = game.getCurDad();

@@ -1,0 +1,51 @@
+var screen;
+
+function start(song)
+{
+    game.camManager.snapToPos(460, 250);
+
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.scrollFactor.set(0, 0);
+    addSprite(screen, BEHIND_NONE);
+
+    game.camManager.defaultZoom = 1.5;
+
+    game.camHUD.alpha = 0;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 1:
+            FlxTween.tween(screen, {alpha: 0}, 12);
+            FlxTween.tween(game.camManager, {defaultZoom: 1.34}, 12);
+
+        case 128:
+            FlxTween.tween(game.camHUD, {alpha: 1}, 1);
+            
+            game.camManager.resume();
+            game.camManager.focusOnPoint(char('wilson').getCameraPosition());
+
+        case 440, 1088:
+            game.camManager.defaultZoom = 1.5;
+            game.camManager.zoom.interval = 4;
+
+        case 448, 490, 506:
+            game.camManager.defaultZoom = 1.34;
+            game.camManager.zoom.interval = 2;
+
+        case 486, 502, 768:
+            game.camManager.defaultZoom = 1.45;
+
+        case 704, 896:
+            game.camManager.defaultZoom = 1.4;
+
+        case 832:
+            game.camManager.defaultZoom = 1.5;
+            game.camManager.zoom.interval = 2;
+
+        case 960:
+            game.camManager.defaultZoom = 1.34;
+    }
+}

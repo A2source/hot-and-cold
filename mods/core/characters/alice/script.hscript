@@ -1,0 +1,20 @@
+var cup;
+var me;
+
+function postStart(song)
+{
+    me = char('alice');
+
+    cup = new FlxSprite().loadSparrow('characters/alice', 'cup');
+    cup.animation.addByPrefix('idle', 'cup', 12, true);
+    cup.animation.play('idle');
+    insert(game.length, cup);
+}
+
+function update(dt)
+{
+    if (cup == null)
+        return;
+
+    cup.setPosition(me.x - 25, me.y + 450);
+}

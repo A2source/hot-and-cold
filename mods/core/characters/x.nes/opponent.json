@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				24,
+				-457
+			],
+			"indices": [],
+			"fps": 16,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "sheet"
+		},
+		{
+			"offsets": [
+				12,
+				-405
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "sheet"
+		},
+		{
+			"offsets": [
+				43,
+				-487
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "sheet"
+		},
+		{
+			"offsets": [
+				66,
+				-453
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "sheet"
+		},
+		{
+			"offsets": [
+				15,
+				-441
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "sheet"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		-64,
+		511
+	]
+}

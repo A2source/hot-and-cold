@@ -1,0 +1,7 @@
+function start(song)
+{
+    var bg = new FlxSprite(-500, -280).load(Paths.stageImage('elevator', 'bg'));
+    bg.scale.set(0.55, 0.55);
+    bg.antialiasing = ClientPrefs.data.antialiasing;
+    addSprite(bg, BEHIND_ALL);
+}

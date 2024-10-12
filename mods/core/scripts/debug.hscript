@@ -1,0 +1,9 @@
+// function goodNoteHit(note)
+// {
+//     trace(note.attachedChar);
+// }
+
+// function opponentNoteHit(note)
+// {
+//     trace(note.attachedChar);
+// }

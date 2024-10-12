@@ -1,0 +1,51 @@
+function start(song)
+{
+    game.getCurBF().visible = false;
+    game.getCurBF().trailChar.visible = false;
+
+    game.getCurDad().visible = false;
+
+    game.camManager.lockToPos(FlxG.width / 2, FlxG.height / 2);
+
+    var stuff = [];
+
+    var bliss = new FlxSprite().load(Paths.stageImage('xp', 'bliss'));
+    bliss.scale.y = 1.35;
+    stuff.push(bliss);
+
+    var taskbar = new FlxBackdrop(Paths.timeImage(Paths.stageImage('xp', 'taskbar')), 0x01);
+    taskbar.y = FlxG.height - taskbar.height;
+    stuff.push(taskbar);
+
+    var start = new FlxSprite(0, taskbar.y).load(Paths.stageImage('xp', 'start'));
+    stuff.push(start);
+
+    var bin = new FlxSprite().load(Paths.stageImage('xp', 'recycle'));
+    stuff.push(bin);
+
+    for (thing in stuff)
+    {
+        thing.antialiasing = ClientPrefs.data.antialiasing;
+        thing.scrollFactor.set(0);
+        add(thing);
+    }
+
+    game.camManager.zoom.amounts.game = 0;
+
+    game.camHUD.visible = false;
+}
+
+function stepHit(step)
+{
+    switch(step)
+    {
+        case 1:
+            game.camHUD.visible = true;
+
+        case 80, 288, 672:
+            game.camManager.zoom.interval = 1;
+
+        case 272, 544, 1056:
+            game.camManager.zoom.interval = 4;
+    }
+}

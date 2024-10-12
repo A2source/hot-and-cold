@@ -1,0 +1,21 @@
+function onEvent(name, v1, v2, v3)
+{
+    if (name != 'Spawn Popup')
+        return;
+
+    var popup = new FlxSprite().load(Paths.stageImage('xp', 'popup'));
+    popup.antialiasing = ClientPrefs.data.antialiasing;
+    popup.screenCenter();
+    insert(game.length, popup);
+
+    popup.scale.set(0.5, 0.5);
+    FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2, {ease: FlxEase.backOut});
+
+    FlxTimer.wait(FlxG.random.int(3, 4), ()->
+    {
+        FlxTween.tween(popup, {alpha: 0}, 2, {onComplete: (tween)->
+        {
+            popup.destroy();
+        }});
+    });
+}

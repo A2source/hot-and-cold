@@ -68,7 +68,7 @@ function create()
             texture: textureInput.text
         }, "\t");
 
-        var notePath = Paths.mods('custom_notetypes', WORKING_MOD_DIRECTORY) + '/' + nameInput.text + '/';
+        var notePath = Paths.mods('custom_notetypes', WORKING_MOD_DIRECTORY) + '/';
 
         File.saveContent(notePath + nameInput.text + '.json', dummyData);
 

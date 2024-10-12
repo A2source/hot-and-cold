@@ -1,0 +1,143 @@
+var screen;
+var light;
+
+var order = [
+    'Flickey',
+    'J0J0',
+    'Majin Man',
+    'Vera800',
+    'Veter',
+    '1LazyMF',
+    'Deleted User',
+    'Kindie'
+];
+
+var folders = [
+    'Deleted User',
+    'Kindie'
+];
+
+function start(song)
+{
+    var stuff = [];
+
+    var x = 0;
+    for (person in order)
+    {
+        var stop = false;
+
+        if (folders.contains(person))
+        {
+            for (file in FileSystem.readDirectory(Paths.stageFolder('performance/showcase/' + person)))
+            {
+                var name = file.split('.png')[0];
+
+                var sprite = new FlxSprite(1739.5 + (878 * x), -40).load(Paths.stageImage('performance/showcase/' + person, name));
+                sprite.scale.set(0.26, 0.24);
+                addSprite(sprite, BEHIND_ALL);
+
+                x++;
+            }
+
+            stop = true;
+        }
+        else
+        {
+            var sprite = new FlxSprite(1739.5 + (878 * x), -40).load(Paths.stageImage('performance/showcase/', person.toLowerCase()));
+            sprite.scale.set(0.26, 0.24);
+            addSprite(sprite, BEHIND_ALL);
+        }
+
+        if (!stop)
+            x++;
+    }
+
+    var fanart = new FlxBackdrop(Paths.timeImage(Paths.stageImage('performance', 'fanart')), 0x01, -650);
+    fanart.frames = Paths.modsSparrow('stages/performance', 'fanart');
+    fanart.animation.addByPrefix('idle', 'fanart', 12, true);
+    fanart.scale.set(0.35, 0.35);
+
+    fanart.y -= 900;
+    fanart.x -= 1115;
+
+    stuff.push(fanart);
+    addSprite(fanart, BEHIND_ALL);
+
+    var background = new FlxSprite(-200, -200).makeGraphic(2000, 2000, 0xFF000000);
+    addSprite(background, BEHIND_ALL);
+
+    var back = new FlxSprite().loadSparrow('stages/performance', 'bg');
+    back.animation.addByPrefix('idle', 'bg', 12, true);
+    stuff.push(back);
+    addSprite(back, BEHIND_ALL);
+
+    var curtain = new FlxSprite(-75, -100).loadSparrow('stages/performance', 'curtains');
+    curtain.animation.addByPrefix('idle', 'curtains', 12, true);
+    curtain.scrollFactor.set(0.9, 0.9);
+    curtain.scale.set(1, 1.3);
+    stuff.push(curtain);
+    addSprite(curtain, BEHIND_ALL);
+
+    var table = new FlxSprite(-50, 575).loadSparrow('stages/performance', 'table');
+    table.animation.addByPrefix('idle', 'table', 12, true);
+    stuff.push(table);
+    addSprite(table, BEHIND_NONE);
+
+    for (thing in stuff)
+        thing.animation.play('idle');
+}
+
+function postStart(song)
+{
+    FlxTimer.wait(1, ()->
+    {
+        screen = new FlxSprite(-500, -500).makeGraphic(2000, 2000, 0xFF000000);
+        screen.visible = false;
+        addSprite(screen, BEHIND_NONE);
+
+        light = new FlxSprite(0, -100).load(Paths.stageImage('performance', 'spotlight'));
+        light.alpha = 0.8;
+        light.visible = false;
+        light.blend = 0;
+        light.scale.set(2, 4);
+        addSprite(light, BEHIND_NONE);
+    });
+}
+
+function sectionHit(sec)
+{
+    if (sec >= 66)
+        return;
+
+    switch(charFocus)
+    {
+        case 0:
+            game.camManager.defaultZoom = 0.8;
+
+        case 1:
+            game.camManager.defaultZoom = 0.72;
+    }
+}
+
+function onSpotlight(focus, enable)
+{
+    FlxTween.cancelTweensOf(light);
+
+    if (!enable)
+    {
+        FlxTween.tween(screen, {alpha: 0}, 1);
+        FlxTween.tween(light, {alpha: 0}, 1);
+
+        return;
+    }
+    else    
+        FlxTween.tween(screen, {alpha: 0.6}, 2, {ease: FlxEase.expoOut});
+
+    screen.visible = true;
+    light.visible = true;
+
+    var target = char(focus);
+
+    FlxTween.tween(light, {x: target.x}, 3, {ease: FlxEase.expoOut});
+    FlxTween.tween(light, {angle: 0}, 3, {ease: FlxEase.backOut});
+}

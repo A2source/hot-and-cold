@@ -1,0 +1,139 @@
+var transitionProgress = 0;
+
+var oldNorm = [];
+var trans = [];
+var newNorm = [];
+
+var koopa;
+var lakitu;
+
+function start(song)
+{
+    char('x.nes').visible = false;
+
+    for (prefix in ['normal', 'trans', 'evil'])
+    {
+        var target = [];
+        switch(prefix)
+        {
+            case 'normal':
+                target = oldNorm;
+
+            case 'trans':
+                target = trans;
+
+            case 'evil':
+                target = newNorm;
+        }
+
+        var sky = new FlxSprite().load(Paths.stageImage('retro', 'bg/' + prefix + ' sky'));
+        target.push(sky);
+
+        var clouds = new FlxSprite().load(Paths.stageImage('retro', 'bg/' + prefix + ' clouds'));
+        clouds.scrollFactor.set(0.9, 0.9);
+        target.push(clouds);
+        
+        if (prefix == 'evil')
+        {
+            koopa = new FlxSprite(200, 150).loadSparrow('stages/retro', 'koopa');
+            koopa.animation.addByPrefix('idle', 'koopa', 20, true);
+            koopa.animation.play('idle');
+            target.push(koopa);
+
+            lakitu = new FlxSprite(450, 150).loadSparrow('stages/retro', 'lakitu');
+            lakitu.animation.addByPrefix('idle', 'lakitu', 20, false);
+            lakitu.animation.play('idle');
+            target.push(lakitu);
+        }
+
+        var bg = new FlxSprite().load(Paths.stageImage('retro', 'bg/' + prefix + ' bg'));
+        target.push(bg);
+    }
+
+    for (objects in [oldNorm, trans, newNorm])
+        for (e in objects)
+        {
+            e.antialiasing = false;
+            e.visible = false;
+
+            e.scale.set(4, 4);
+
+            addSprite(e, BEHIND_ALL);
+        }
+
+    for (e in oldNorm)
+        e.visible = true;
+
+    for (peon in [koopa, lakitu])
+    {
+        peon.scale.set(1, 1);
+        peon.y += 600;
+    }
+}
+
+function beatHit(beat)
+{
+    if (beat % 2 != 0)
+        return;
+
+    lakitu.animation.play('idle');
+}
+
+function sectionHit(sec)
+{
+    if (doingIntro)
+        return;
+
+    switch(charFocus)
+    {
+        case 0:
+            game.camManager.defaultZoom = 1.42;
+
+        case 1:
+            game.camManager.defaultZoom = 1;
+
+        case 2:
+            game.camManager.defaultZoom = 1.1;
+    }
+}
+
+function onEvent(name, v1, v2, v3)
+{
+    switch(name)
+    {
+        case 'Increment Jumpman BG Transition':
+            incrementTransition();
+
+        case 'Summon BG Guy':
+            summon(v1);
+    }
+}
+
+function incrementTransition()
+{
+    transitionProgress++;
+
+    switch(transitionProgress)
+    {
+        case 1:
+            for (e in oldNorm)
+                e.destroy();
+
+            for (e in trans)
+                e.visible = true;
+
+        case 2:
+            for (e in trans)
+                e.destroy();
+
+            for (e in newNorm)
+                e.visible = true;
+    }
+}
+
+function summon(name)
+{
+    var target = name == 'koopa' ? koopa : lakitu;
+    
+    FlxTween.tween(target, {y: target.y - 600}, 3, {ease: FlxEase.expoOut});
+}

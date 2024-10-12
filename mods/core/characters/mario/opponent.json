@@ -1,0 +1,115 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-12,
+				-380
+			],
+			"indices": [],
+			"fps": 16,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				-31,
+				-362
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "up",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				-6,
+				-442
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "down",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				-30,
+				-380
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "left",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				-26,
+				-388
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "right",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				24,
+				-389
+			],
+			"indices": [
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				6,
+				6,
+				6,
+				6
+			],
+			"fps": 18,
+			"anim": "transform",
+			"loop": false,
+			"name": "transform",
+			"sheet": "mario"
+		},
+		{
+			"offsets": [
+				24,
+				-390
+			],
+			"indices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			],
+			"fps": 20,
+			"anim": "laugh",
+			"loop": false,
+			"name": "transform",
+			"sheet": "mario"
+		}
+	],
+	"position": [
+		0,
+		0
+	],
+	"camera_position": [
+		5,
+		505
+	]
+}
