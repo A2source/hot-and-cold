@@ -4271,9 +4271,8 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
-		var charIndex:Int = charNames.indexOf(note.attachedChar);
-
-		var char:Dynamic = getCurDad();
+		curDAD = SONG.opponents.indexOf(note.attachedChar);
+		var char:Dynamic = char(note.attachedChar);
 
 		var animToPlay:String = SING_ANIMATIONS[Std.int(Math.abs(note.noteData))] + char.animSuffix;
 		
@@ -4322,7 +4321,8 @@ class PlayState extends MusicBeatState
 
 		var charIndex = charNames.indexOf(note.attachedChar);
 
-		var char:Dynamic = getCurBF();
+		curBF = SONG.players.indexOf(note.attachedChar);
+		var char:Dynamic = char(note.attachedChar);
 
 		var animToPlay:String = SING_ANIMATIONS[Std.int(Math.abs(note.noteData))] + char.animSuffix;
 

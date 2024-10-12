@@ -29,9 +29,6 @@ class DiscordClient
 		while (true)
 		{
 			DiscordRpc.process();
-
-			DiscordClient.changePresence(DiscordClient.currentDetail, DiscordClient.currentState);
-
 			sleep(2);
 		}
 
@@ -50,8 +47,8 @@ class DiscordClient
 			state: null,
 			largeImageKey: 'icon',
 			largeImageText: 'FNF: TIME',
-			startTimestamp: startupTime,
-            endTimestamp: Std.int(Date.now().getTime() / 1000)
+			startTimestamp: null,
+            endTimestamp: null
 		});
 	}
 
@@ -85,8 +82,8 @@ class DiscordClient
 			largeImageKey: 'icon',
 			largeImageText: 'FNF: TIME',
 			smallImageKey : null,
-			startTimestamp: startupTime,
-            endTimestamp: currentTime
+			startTimestamp: null,
+            endTimestamp: null
 		});
 
 		currentDetail = details;

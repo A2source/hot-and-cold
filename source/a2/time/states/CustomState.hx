@@ -18,6 +18,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.math.FlxPoint;
+import flixel.math.FlxAngle;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
@@ -37,7 +38,6 @@ import flixel.FlxState;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.effects.FlxTrailArea;
 import openfl.filters.ShaderFilter;
-import flixel.math.FlxPoint;
 import a2.time.objects.song.Conductor.BPMChangeEvent;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.addons.transition.FlxTransitionableState;
@@ -157,6 +157,8 @@ class CustomState extends MusicBeatState
 		interp.variables.set("CustomSubState", CustomSubState);
 
 		interp.variables.set('InteractableSprite', InteractableSprite);
+
+		interp.variables.set('FlxAngle', FlxAngle);
 
 		interp.variables.set('privateAccess', (func:Dynamic) ->
 		{

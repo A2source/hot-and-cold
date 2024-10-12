@@ -2333,7 +2333,7 @@ If you have any questions about the editor, ask me!';
 				if (file.endsWith('txt') && !eventPushedMap.exists(file))
 				{
 					eventPushedMap.set(file, true);
-					eventStuff.set(file, File.getContent(Paths.eventTxt(file.split('.txt')[0], mod)));
+					eventStuff.set(file.replace('.txt', ''), File.getContent(Paths.eventTxt(file.split('.txt')[0], mod)));
 				}
 			}
 		}
