@@ -65,8 +65,6 @@ class IntroState extends MusicBeatState
 		
 		super.create();
 
-		FlxG.mouse.visible = false;
-
 		FlxG.save.bind('time', '[A2]');
 
 		ClientPrefs.loadPrefs();

@@ -1,0 +1,72 @@
+var screen;
+
+var options = ['resume', 'restart', 'exit'];
+var buttons = [];
+
+function create()
+{
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.alpha = 0.7;
+    screen.cameras = [game.camOther2];
+    add(screen);
+
+    var i = 1;
+    for (item in options)
+    {
+        var button = new InteractableSprite().loadSparrow('IMAGE FOLDER', 'IMAGE NAME');
+        button.animation.addByPrefix('idle', item + '0', 1, false);
+        button.animation.addByPrefix('selec', item + '-selec0', 1, false);
+        button.animation.play('idle');
+
+        button.onHover = ()-> { button.animation.play('selec'); }
+        button.onExit = ()-> { button.animation.play('idle'); }
+        button.onClick = ()-> 
+        {
+            game.closeSubState();
+
+            if (['restart', 'exit'].contains(item))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            FlxG.sound.play(Paths.returnModsSound('SOUND FOLDER HERE', 'SOUND FILE NAME HERE'));
+
+            switch(item)
+            {
+                case 'restart':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'exit':
+                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+            }
+        }
+
+        button.cameras = [game.camOther2];
+
+        button.screenCenter();
+        button.y -= button.height * 1.2 * i;
+
+        add(button);
+        buttons.push(button);
+
+        i--;
+    }
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    screen.destroy();
+
+    for (button in buttons)
+        button.destroy();
+}

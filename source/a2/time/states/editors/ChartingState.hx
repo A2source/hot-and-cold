@@ -2870,8 +2870,6 @@ If you have any questions about the editor, ask me!';
 		for (i in 0...4)
 			strumLineNotes.members[i].y = strumLine.y;
 
-		FlxG.mouse.visible = true; // cause reasons. trust me
-
 		camPos.y = strumLine.y;
 		if(!chartingAutoScroll.selected) 
 		{
@@ -3142,7 +3140,6 @@ If you have any questions about the editor, ask me!';
 		if (FlxG.keys.justPressed.ENTER)
 		{
 			autosaveSong();
-			FlxG.mouse.visible = false;
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			if(vocals != null) vocals.stop();
@@ -3165,7 +3162,6 @@ If you have any questions about the editor, ask me!';
 			PlayState.chartingMode = false;
 			LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
 			FlxG.sound.playMusic(Paths.getModsMusic('menu_theme'));
-			FlxG.mouse.visible = false;
 			return;
 		}
 
@@ -4215,7 +4211,6 @@ If you have any questions about the editor, ask me!';
 
 			saveLevel();
 
-			FlxG.mouse.visible = false;
 			FlxG.sound.music.stop();
 			if(vocals != null) vocals.stop();
 

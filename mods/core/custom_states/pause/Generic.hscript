@@ -1,0 +1,225 @@
+var textOptions = [
+    'Paused',
+    'Game Paused',
+    'Welcome to my\nFractal Pause World',
+    'Ough',
+    'Yup, that\'ll do it.',
+    'Happy Huggy Wuggy',
+    'Fall.',
+    'About that beer I owed ya!',
+    'Trans Rights',
+    'Hey Gordon, it\'s me!\nBarney from Black Mesa!',
+    'Gordon doesn\'t need to hear all this,\nhe\'s a highly trained professional.',
+    'From the screen, to the ring,\nto the pen, to the king',
+    'What is this?\nSome kind of "Amazing Digital Circus"?',
+    'What is this?\nSome kind of "Friday Night" funkin\'?',
+    'You fool! I have 70 alternative accounts!',
+    'You think this is bad? This, this chicanery?',
+    'No, he orchestrated it. Jimmy!',
+    'SWITCHBOUND MENTIONED',
+    'LFG',
+    'Why so serious?',
+    'R-r-r-remix!',
+    'What is this?\nSome kind of "Dead Air"?',
+    'What are we,\nsome kind of "Hot & Cold"?',
+    'Subscribe to @A2music\non YouTube',
+    'Subscribe to @Cr00L_01\non YouTube',
+    'Subscribe to @DaPootisBird\non YouTube',
+    'Welcome back!',
+    'Asdkdfgkdnbfgifdghuioft',
+    'https://A2source.github.io',
+    'Erm, exqueeze me sauce?',
+    'Help me clean up YouTube, if you see a\nbad bad comment take a screencap of it,\nand send it my way to my\nTwitter or my Facebook fan-page',
+    'Ew',
+    'I got 17 bucks, call that 7 quid',
+    'Hot woman no clothes\nwait this isn\'t google',
+    'Mod of the Year',
+    'Mod of All Time',
+    'I hope you enjoy my pause menu :)',
+    'He cometh',
+    'Wow!',
+    'Fire',
+    'Peak',
+    'Heaty',
+    'How can I be homophobic?\nMy bitch is gay',
+    'Also play: VS Rephrase',
+    'Also play: Sunday Night Suicide',
+    '!letters',
+    '!numbers',
+    'That one coworker thats just gotta go.\nGod hes ready. God take him please god',
+    'Gyatt',
+    'A2 please unblock me, i am sorry\nHELLO\n@[A2] PLEASE ANSWER',
+    'After rain, there\'s thunder!',
+    'oh jes oh jes'
+];
+
+var screen;
+var titleText;
+
+var options = ['Resume', 'Restart', 'Exit'];
+
+var splash;
+
+var letters = 'qwertyuiopasdfghjklzxcvbnm';
+var numbers = '0123456789';
+
+var menuItems = [];
+
+function create()
+{
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.alpha = 0.5;
+    screen.cameras = [game.camOther2];
+
+    add(screen);
+
+    var random = textOptions[FlxG.random.int(0, textOptions.length - 1)];
+
+    if (random.split('')[0] == '!')
+        switch(random)
+        {
+            case '!letters':
+                random = '';
+                for (i in 0...FlxG.random.int(1, 10))
+                    random += letters.split('')[FlxG.random.int(0, letters.length - 1)];
+
+            case '!numbers':
+                random = '';
+                for (i in 0...FlxG.random.int(1, 10))
+                    random += numbers.split('')[FlxG.random.int(0, numbers.length - 1)];
+        }
+
+    splash = new FlxText(0, 0, -1, random);
+    splash.alignment = 'center';
+    splash.size = 26;
+    splash.antialiasing = false;
+    splash.cameras = [game.camOther2];
+    splash.screenCenter();
+    splash.y = FlxG.height * 0.15 - splash.height / 2;
+    splash.scale.set(0, 0);
+
+    splash.borderStyle = FlxTextBorderStyle.SHADOW;
+    splash.borderSize = 4;
+    splash.borderColor = 0xFF000000;
+
+    FlxTween.tween(splash.scale, {x: 1, y: 1}, 0.5, {ease: FlxEase.backOut});
+
+    var i = 1 / 3;
+    for (item in options)
+    {
+        var letters = [];
+        var width = 0;
+
+        for (character in item.split(''))
+        {
+            var letter = new FlxText(0, 0, -1, character);
+            letter.size = 26;
+            letter.antialiasing = false;
+            letters.push(letter);
+
+            width += letter.width;
+        }
+
+        var hitbox = new InteractableSprite();
+        hitbox.makeGraphic(width - (4 * (item.split('').length - 1)), 20 * 1.5, 0xFFFF0000);
+        hitbox.alpha = 0;
+        hitbox.cameras = [game.camOther2];
+
+        hitbox.onClick = ()->
+        {
+            game.closeSubState();
+
+            if (['Restart', 'Exit'].contains(item))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            switch(item)
+            {
+                case 'Restart':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'Exit':
+                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+            }
+        }
+        
+        hitbox.onHover = ()->
+        {
+            var i = 0;
+            for (letter in letters)
+            {
+                FlxTween.tween(letter, {y: letter.y - 10}, 1, {ease: FlxEase.sineOut, startDelay: i * 0.1, onComplete: (tween)->
+                {
+                    FlxTween.tween(letter, {y: letter.y + 10}, 1, {ease: FlxEase.sineInOut, type: FlxTween.PINGPONG});
+                }});
+
+                letter.color = colorFromRGB(FlxG.random.int(0, 255), FlxG.random.int(0, 255), FlxG.random.int(0, 255));
+                
+                i++;
+            }
+        }
+
+        hitbox.onExit = ()->
+        {
+            for (letter in letters)
+            {
+                FlxTween.cancelTweensOf(letter);
+                FlxTween.tween(letter, {y: FlxG.height / 2 - letter.height / 4}, 1, {ease: FlxEase.expoOut});
+
+                letter.color = 0xFFFFFFFF;
+            }
+        }
+
+        add(hitbox);
+
+        hitbox.screenCenter();
+        hitbox.x -= FlxG.width * i;
+
+        var total = 0;
+        for (letter in letters)
+        {
+            letter.x = hitbox.x + total;
+            letter.y = FlxG.height / 2 - letter.height / 4;
+
+            letter.borderStyle = FlxTextBorderStyle.SHADOW;
+            letter.borderSize = 4;
+            letter.borderColor = 0xFF000000;
+
+            letter.cameras = [game.camOther2];
+            add(letter);
+
+            total += letter.width - 2;
+        }
+
+        i -= 1 / 3;
+
+        menuItems.push({hitbox: hitbox, letters: letters});
+    }
+
+    add(splash);
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    screen.destroy();
+    splash.destroy();
+
+    for (item in menuItems)
+    {
+        item.hitbox.destroy();
+
+        for (letter in item.letters)
+            letter.destroy();
+    }
+}

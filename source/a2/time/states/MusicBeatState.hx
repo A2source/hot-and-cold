@@ -68,8 +68,6 @@ class MusicBeatState extends FlxUIState
 
 		transitioning = false;
 
-		FlxG.mouse.visible = false;
-
 		Toolkit.screen.addComponent(uiLayer);
 
 		FlxG.cameras.setDefaultDrawTarget(FlxG.camera, true);
@@ -214,6 +212,8 @@ class MusicBeatState extends FlxUIState
 
 		FlxTransitionableState.skipNextTransIn = false;
 		FlxTransitionableState.skipNextTransOut = false;
+
+		openfl.ui.Mouse.cursor = ARROW;
 		
 		FlxG.switchState(nextState);
 	}

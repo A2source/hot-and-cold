@@ -2,7 +2,25 @@ function onPause(bf)
 {
     trace('game paused at ' + Conductor.songPosition);
 
-    var pause = new CustomSubState('PauseSubState', null);
+    var toLoad = 'Generic';
+
+    switch(SONG.song)
+    {
+        case 'White Eyes':
+            toLoad = 'Minecraft';
+
+        case 'Substitute':
+            toLoad = 'Baldi';
+
+        case 'Error', 'The Show', 'Wow Wow':
+            toLoad = 'YouTube';
+
+        case 'Entropy':
+            toLoad = 'Entropy';
+    }
+
+    var pause = new CustomSubState('pause/' + toLoad, null);
     pause.hscriptManager.setAll('game', game);
+    pause.hscriptManager.setAll('curSong', SONG.song);
 	game.openSubState(pause);
 }

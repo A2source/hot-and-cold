@@ -1,0 +1,142 @@
+var accentCol = 0xFFFD1C24;
+
+var screen;
+var titleText;
+
+var options = ['RESUME GAME', 'NEW GAME', 'QUIT'];
+
+var menuItems = [];
+var selec = 0;
+
+var textBG;
+var redSprite;
+
+function create()
+{
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.alpha = 0.6;
+    screen.cameras = [game.camOther2];
+    add(screen);
+
+    titleText = new FlxText(30, 0, -1, 'ENTROPY : ZERO 2');
+    titleText.setFormat(Paths.modsFont('frak'), 48, accentCol);
+    titleText.cameras = [game.camOther2];
+    titleText.y = FlxG.height * 0.35;
+    add(titleText);
+
+    textBG = new FlxSprite(30, 0).makeGraphic(1, 1, 0xFF000000);
+    textBG.alpha = 0.4;
+    textBG.cameras = [game.camOther2];
+    textBG.offset.set(0, textBG.height / 2);
+    add(textBG);
+
+    redSprite = new FlxSprite(30, 0).makeGraphic(1, 1, accentCol);
+    redSprite.cameras = [game.camOther2];
+    redSprite.offset.set(0, redSprite.height / 2);
+    add(redSprite);
+
+    var i = 0;
+    for (option in options)
+    {
+        var text = new FlxText(30, titleText.y, -1, option);
+        text.setFormat(Paths.modsFont('verdana'), 28);
+        text.cameras = [game.camOther2];
+        text.bold = true;
+        text.borderColor = 0xFFFFFFFF;
+        text.borderStyle = FlxTextBorderStyle.OUTLINE;
+        text.borderSize = 0.1;
+        add(text);
+
+        text.y += titleText.height + text.height * 1.25 * i;
+
+        var hitbox = new InteractableSprite(text.x, text.y);
+        hitbox.makeGraphic(text.width, text.height, 0xFFFF0000);
+        hitbox.alpha = 0;
+        hitbox.cameras = [game.camOther2];
+
+        hitbox.onClick = ()-> 
+        {
+            game.closeSubState();
+
+            if (['NEW GAME', 'QUIT'].contains(option))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            switch(option)
+            {
+                case 'NEW GAME':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'QUIT':
+                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+            }
+        }
+
+        var item = {text: text, x: text.x, y: text.y, hitbox: hitbox, id: i};
+
+        hitbox.onHover = ()->
+        {
+            redSprite.y = item.y + text.height / 2 + 4;
+
+            FlxTween.cancelTweensOf(redSprite.scale);
+
+            redSprite.scale.set(1, 1);
+            FlxTween.tween(redSprite.scale, {x: 7, y: text.height + 18}, 0.5, {ease: FlxEase.expoOut});
+
+            textBG.y = redSprite.y;
+
+            FlxTween.cancelTweensOf(textBG.scale);
+
+            textBG.scale.set(1, 1);
+            FlxTween.tween(textBG.scale, {x: text.width + 16, y: text.height + 18}, 0.5, {ease: FlxEase.expoOut});
+            textBG.x = 30 + (text.width + 16) / 2;
+
+            selec = item.id;
+
+            var hitSelec = false;
+            for (item in menuItems)
+            {
+                var selected = item.id == selec;
+                if (selected)
+                    hitSelec = true;
+
+                var col = selected ? accentCol : 0xFFFFFFFF;
+
+                item.text.color = col;
+                item.text.borderColor = col;
+
+                FlxTween.cancelTweensOf(item.text);
+                FlxTween.tween(item.text, {x: item.x + (selected ? 10 : 0), y: item.y + (hitSelec ? 4 : 0)}, 1, {ease: FlxEase.expoOut});
+            }
+        }
+
+        add(hitbox);
+        
+        menuItems.push(item);
+
+        i++;
+    }
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    screen.destroy();
+    titleText.destroy();
+    
+    textBG.destroy();
+    redSprite.destroy();
+
+    for (item in menuItems)
+        item.text.destroy();
+}

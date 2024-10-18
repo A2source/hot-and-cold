@@ -3000,8 +3000,6 @@ class PlayState extends MusicBeatState
 				editingRimLight = true;
 				loadRimLightJson();
 			});
-
-			FlxG.mouse.visible = true;
 		}
 
 		if (FlxG.keys.justPressed.F4)
@@ -3013,8 +3011,6 @@ class PlayState extends MusicBeatState
 
 			botplayBox.selected = true;
 			hudBox.selected = true;
-
-			FlxG.mouse.visible = true;
 		}
 
 		if (FlxG.keys.justPressed.F5)
@@ -3045,8 +3041,6 @@ class PlayState extends MusicBeatState
 
 			botplayBox.selected = true;
 			hudBox.selected = true;
-
-			FlxG.mouse.visible = true;
 
 			FlxTimer.wait(0.1, function()
 			{

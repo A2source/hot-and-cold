@@ -157,8 +157,17 @@ class CustomState extends MusicBeatState
 		interp.variables.set("CustomSubState", CustomSubState);
 
 		interp.variables.set('InteractableSprite', InteractableSprite);
+		interp.variables.set('FlxGraphic', FlxGraphic);
 
 		interp.variables.set('FlxAngle', FlxAngle);
+
+		interp.variables.set('Mouse', openfl.ui.Mouse);
+
+		interp.variables.set('cursorARROW', openfl.ui.MouseCursor.ARROW);
+		interp.variables.set('cursorAUTO', openfl.ui.MouseCursor.AUTO);
+		interp.variables.set('cursorBUTTON', openfl.ui.MouseCursor.BUTTON);
+		interp.variables.set('cursorHAND', openfl.ui.MouseCursor.HAND);
+		interp.variables.set('cursorIBEAM', openfl.ui.MouseCursor.IBEAM);
 
 		interp.variables.set('privateAccess', (func:Dynamic) ->
 		{

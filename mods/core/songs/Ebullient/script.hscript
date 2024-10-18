@@ -10,7 +10,7 @@ function postStart(song)
 
     FlxTimer.wait(1, ()->
     {
-        gameScreen = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 3, FlxG.height * 2.2, 0xFF000000);
+        gameScreen = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2.6, FlxG.height * 2.2, 0xFF000000);
         gameScreen.alpha = 0;
         addSprite(gameScreen, BEHIND_NONE);
     });
@@ -25,7 +25,7 @@ function update(dt)
     if (!scrolling)
         return;
 
-    game.camManager.currentPos.x += 200 * dt;
+    game.camManager.currentPos.x += 217 * dt;
 }
 
 function stepHit(step)
@@ -52,7 +52,7 @@ function stepHit(step)
             game.camManager.snapToPos(game.camManager.currentPos.x, game.camManager.currentPos.y);
 
             FlxTween.tween(gameScreen, {alpha: 1}, 1, {ease: FlxEase.expoIn});
-            FlxTween.tween(game.camManager.currentPos, {x: game.camManager.currentPos.x + 600}, 1, {ease: FlxEase.backIn, onComplete: (tween)->
+            FlxTween.tween(game.camManager.currentPos, {x: game.camManager.currentPos.x + 700}, 1, {ease: FlxEase.backIn, onComplete: (tween)->
             {
                 scrolling = true;
             }});

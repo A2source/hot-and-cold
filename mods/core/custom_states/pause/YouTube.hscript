@@ -1,0 +1,213 @@
+var fade;
+var bottom;
+
+var barBack;
+var bar;
+
+var b_Play;
+var b_Skip;
+var b_Vol;
+
+var titleText;
+var timeText;
+
+var options = ['Resume', 'Restart', 'Exit'];
+var buttons = [];
+
+var closed = false;
+
+var selectedOption = 'Resume';
+
+function create()
+{
+    fade = new FlxSprite(0, 0).load(Paths.modsImage('pause/fade'));
+    fade.cameras = [game.camOther2];
+    fade.alpha = 0.5;
+    add(fade);
+
+    bottom = new FlxSprite().load(Paths.modsImage('pause/fade'));
+    bottom.cameras = [game.camOther2];
+    bottom.angle = 180;
+    bottom.y = FlxG.height - bottom.height;
+    bottom.alpha = 0.5;
+    add(bottom); 
+
+    var title = 'Placeholder Title';
+    switch(curSong)
+    {
+        case 'Error':
+            title = 'Windows Error Remix';
+
+        case 'The Show':
+            title = 'WELCOME TO THE SHOW EPISODE 1';
+
+        case 'Wow Wow':
+            title = 'Neil Cicierega - Wow Wow';
+    }
+
+    titleText = new FlxText(5, 5, -1, title);
+    titleText.setFormat(Paths.modsFont('roboto'), 18);
+    titleText.cameras = [game.camOther2];
+    add(titleText);
+
+    var pause = new FlxSprite().load(Paths.modsImage('pause/pause'));
+    pause.screenCenter();
+    pause.cameras = [game.camOther2];
+    add(pause);
+
+    FlxTween.tween(pause, {alpha: 0}, 1);
+    FlxTween.tween(pause.scale, {x: 1.5, y: 1.5}, 1, {onComplete: (tween)->
+    {
+        pause.destroy();
+    }});
+
+    var i = 1 / 3;
+    for (item in options)
+    {
+        var text = new FlxText(0, 0, -1, item);
+        text.setFormat(Paths.modsFont('roboto'), 42);
+        text.cameras = [game.camOther2];
+        text.alpha = 0;
+
+        var back = new InteractableSprite();
+        back.makeGraphic(text.width + 4, text.height + 4, 0xFF000000);
+        back.cameras = [game.camOther2];
+        back.alpha = 0;
+
+        FlxTimer.wait(1, ()->
+        {
+            if (closed)
+                return;
+
+            add(back);
+            add(text);
+
+            FlxTween.tween(back, {alpha: 0.5}, 0.5);
+            FlxTween.tween(text, {alpha: 1}, 0.5);
+        });
+
+        back.onClick = ()-> 
+        {
+            game.closeSubState();
+
+            if (['Restart', 'Exit'].contains(item))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            switch(item)
+            {
+                case 'Restart':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'Exit':
+                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+            }
+
+            selectedOption = item;
+        }
+
+        text.screenCenter();
+        text.x -= FlxG.width * i;
+
+        back.setPosition(text.x - 2, text.y - 2);
+
+        buttons.push({text: text, back: back});
+
+        i -= 1 / 3;
+    }
+
+    if (Conductor.songPosition < 0)
+        return;
+
+    barBack = new FlxSprite(15, FlxG.height * 0.95);
+    barBack.makeGraphic(FlxG.width - 30, 3);
+    barBack.alpha = 0.5;
+    barBack.cameras = [game.camOther2];
+    add(barBack);
+
+    bar = new FlxSprite(barBack.x, barBack.y);
+    bar.makeGraphic(barBack.width * (Conductor.songPosition / game.songLength), barBack.height, 0xFFFF0000);
+    bar.cameras = [game.camOther2];
+    add(bar);
+
+    b_Play = new FlxSprite().load(Paths.modsImage('pause/buttons_play'));
+    b_Play.setPosition(bar.x, FlxG.height - b_Play.height * 1.25);
+    b_Play.cameras = [game.camOther2];
+    add(b_Play);
+
+    b_Skip = new FlxSprite().load(Paths.modsImage('pause/buttons_skip'));
+    b_Skip.setPosition(b_Play.x + b_Play.width * 2.2, FlxG.height - b_Skip.height * 1.25);
+    b_Skip.cameras = [game.camOther2];
+    add(b_Skip);
+
+    b_Vol = new FlxSprite().load(Paths.modsImage('pause/buttons_vol'));
+    b_Vol.setPosition(b_Skip.x + b_Skip.width * 1.8, FlxG.height - b_Vol.height * 1.2);
+    b_Vol.cameras = [game.camOther2];
+    add(b_Vol);
+
+    var curTime = FlxStringUtil.formatTime(Math.floor((Conductor.songPosition - ClientPrefs.data.noteOffset) / 1000), false);
+    var totalTime = FlxStringUtil.formatTime(Math.floor(game.songLength / 1000), false);
+
+    var data = new FlxText(b_Vol.x + b_Vol.width * 1.5, FlxG.height - 24, -1, curTime + ' / ' + totalTime);
+    data.setFormat(Paths.modsFont('roboto'), 12);
+    data.cameras = [game.camOther2];
+    data.drawFrame(true);
+
+    timeText = new InteractableSprite(data.x, data.y).loadGraphic(FlxGraphic.fromBitmapData(data.framePixels));
+    timeText.cameras = [game.camOther2];
+    timeText.cursor = cursorIBEAM;
+    add(timeText);
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    closed = true;
+
+    fade.destroy();
+    bottom.destroy();
+
+    if (bar != null)
+    {
+        barBack.destroy();
+        bar.destroy();
+
+        b_Play.destroy();
+        b_Skip.destroy();
+        b_Vol.destroy();
+
+        timeText.destroy();
+    }
+
+    titleText.destroy();
+
+    for (button in buttons)
+    {
+        button.text.destroy();
+        button.back.destroy();
+    }
+
+    if (selectedOption != 'Resume')
+        return;
+
+    var play = new FlxSprite().load(Paths.modsImage('pause/play'));
+    play.screenCenter();
+    play.cameras = [game.camOther2];
+    game.add(play);
+
+    FlxTween.tween(play, {alpha: 0}, 1);
+    FlxTween.tween(play.scale, {x: 1.5, y: 1.5}, 1, {onComplete: (tween)->
+    {
+        play.destroy();
+    }});
+}

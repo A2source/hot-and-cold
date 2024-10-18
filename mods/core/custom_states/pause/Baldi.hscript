@@ -1,0 +1,100 @@
+var screen;
+var bg;
+var pauseText;
+
+var underline;
+
+var options = ['Resume', 'Restart', 'Quit'];
+var buttons = [];
+
+function create()
+{
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.cameras = [game.camOther2];
+    add(screen);
+
+    bg = new FlxSprite().load(Paths.modsImage('pause/baldi'));
+    bg.cameras = [game.camOther2];
+    bg.setGraphicSize(FlxG.width, FlxG.height);
+    bg.antialiasing = false;
+    bg.screenCenter();
+    add(bg);
+
+    pauseText = new FlxText(0, 0, -1, 'PAUSE');
+    pauseText.setFormat(Paths.modsFont('comic'), 40, 0xFFFFFFFF);
+    pauseText.antialiasing = false;
+    pauseText.cameras = [game.camOther2];
+    pauseText.screenCenter();
+    pauseText.y -= 120;
+    add(pauseText);
+
+    underline = new FlxSprite().makeGraphic(1, 1, 0xFF000000);
+    underline.cameras = [game.camOther2];
+
+    var i = 1;
+    for (item in options)
+    {
+        var tempText = new FlxText(0, 0, -1, item);
+        tempText.setFormat(Paths.modsFont('comic'), 40, 0xFFFFFFFF);
+        tempText.antialiasing = false;
+        tempText.drawFrame(true);
+
+        var sprite = new InteractableSprite().loadGraphic(FlxGraphic.fromBitmapData(tempText.framePixels));
+        sprite.onHover = ()-> 
+        { 
+            underline.makeGraphic(sprite.width, 3);
+
+            underline.x = sprite.x;
+            underline.y = sprite.y + sprite.height / 1.25;
+        }
+        sprite.onClick = ()-> 
+        {
+            game.closeSubState();
+
+            if (['Restart', 'Quit'].contains(item))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            switch(item)
+            {
+                case 'Restart':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'Quit':
+                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+            }
+        }
+
+        sprite.cameras = [game.camOther2];
+
+        sprite.screenCenter();
+        sprite.y -= sprite.height * 1.5 * i - 50;
+
+        add(sprite);
+        buttons.push(sprite);
+
+        i--;
+    }
+
+    add(underline);
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    screen.destroy();
+    bg.destroy();
+
+    for (button in buttons)
+        button.destroy();
+}

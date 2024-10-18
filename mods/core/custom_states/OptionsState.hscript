@@ -7,8 +7,6 @@ var object = {
 
 function create()
 {
-    FlxG.mouse.visible = true;
-
     box = new HBox();
     push = new VBox();
 

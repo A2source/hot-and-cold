@@ -182,8 +182,6 @@ class CharacterEditorState extends MusicBeatState
 
 		outlines.alpha = 0.25;
 
-		FlxG.mouse.visible = true;
-
 		char = new Character(0, 0, daAnim, isPlayer, NORMAL, true);
 
 		add(char.trailChar);
@@ -319,8 +317,6 @@ class CharacterEditorState extends MusicBeatState
 		updateCharacterPositions();
 
 		updatePointerPos();
-
-		FlxG.mouse.visible = true;
 
 		uiLayer.cameras = [camMenu];
 
@@ -1712,8 +1708,7 @@ class CharacterEditorState extends MusicBeatState
 				MusicBeatState.switchState(new PlayState());
 			else 
 				LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
-			
-			FlxG.mouse.visible = false;
+
 			return;
 		}
 

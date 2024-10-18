@@ -14,5 +14,6 @@ function start(song)
     cover.screenCenter();
 
     game.camManager.zoom.amounts.game = 0;
+    game.camManager.zoom.amounts.hud = 0;
     game.camManager.snapToPos(0, 0);
 }
