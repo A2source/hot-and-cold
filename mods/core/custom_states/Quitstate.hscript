@@ -1,0 +1,4 @@
+function create()
+{
+    Sys.exit(0);
+}

@@ -3098,6 +3098,19 @@ class PlayState extends MusicBeatState
 		if (rtxFile == null)
 		{
 			rtxResetButton.disabled = true;
+
+			for (name in charNames)
+			{
+				var ref = char(name).rimLightShader;
+
+				ref.setFloatArray('overlayColor', [0, 0, 0, 0]);
+				ref.setFloatArray('satinColor', [0, 0, 0, 0]);
+				ref.setFloatArray('innerShadowColor', [0, 0, 0, 0]);
+
+				ref.setFloat('innerShadowAngle', 0);
+				ref.setFloat('innerShadowDistance', 0);
+			}
+
 			return;
 		}
 

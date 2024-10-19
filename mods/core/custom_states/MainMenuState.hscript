@@ -1,0 +1,330 @@
+var bg;
+
+var options = ['play', 'options', 'credits', 'exit'];
+var menuItems = [];
+
+var SELEC_OFFSET = 11;
+var Y_OFFSET = 200;
+
+var offsets = [
+    'play' => {x: 0, y: 0},
+    'options' => {x: 0, y: 0},
+    'credits' => {x: 0, y: 0},
+    'exit' => {x: 0, y: 0}
+];
+
+var states = [
+    'play' => 'SongSelectState',
+    'options' => 'OptionsState',
+    'credits' => 'CreditsState',
+    'exit' => 'QuitState'
+];
+
+var selec = 0;
+
+var lHand = {
+    sprite: null,
+    pos: {x: FlxG.width / 2 - 50, y: -70},
+    offset: {x: -95, y: 0},
+    shakeSpeed: 10,
+    shakeIntensity: 1,
+    shakeState: 0,
+    shakeVal: {x: 0, y: 0},
+    scale: 0
+}
+
+var rHand = {
+    sprite: null,
+    pos: {x: FlxG.width / 2 + 50, y: -70},
+    offset: {x: -95, y: 0},
+    shakeSpeed: 10,
+    shakeIntensity: 1,
+    shakeState: 0,
+    shakeVal: {x: 0, y: 0},
+    scale: 0
+}
+
+var col = [
+    lHand => 'red',
+    rHand => 'blue',
+];
+
+var angles = [
+    lHand => -90,
+    rHand => 90
+];
+
+var finalPosition = [
+    lHand => {x: FlxG.width / 2 - 200, y: -200},
+    rHand => {x: FlxG.width / 2 + 100, y: -200}
+];
+
+var logo;
+var logoShadow;
+
+var skipped;
+var transitioning;
+
+function create()
+{
+    bg = new FlxSprite().loadSparrow('custom_states/main', 'main');
+    bg.animation.addByPrefix('intro', 'intro', 5, false);
+    bg.animation.addByPrefix('loop', 'loop', 5, true);
+
+    bg.scale.set(2.3, 2.3);
+    bg.updateHitbox();
+
+    bg.offset.x = -465;
+
+    bg.alpha = 0;
+    FlxTween.tween(bg, {alpha: 1}, 2, {startDelay: 1});
+
+    add(bg);
+
+    bg.animation.finishCallback = (name)->
+    {
+        bg.animation.play('loop');
+
+        spawnMenuItems();
+
+        for (hand in [lHand, rHand])
+        {
+            hand.sprite.alpha = 1;
+            hand.sprite.load(Paths.stateImage('main', col[hand]));
+
+            hand.sprite.angle = angles[hand];
+
+            FlxTween.tween(hand.sprite.scale, {x: 0.3, y: 0.3}, 1, {ease: FlxEase.expoOut});
+
+            hand.pos.x = finalPosition[hand].x;
+            hand.pos.y = finalPosition[hand].y;
+
+            hand.shakeSpeed = 25;
+            hand.shakeIntensity = 0.5;
+        }
+
+        spawnLogo();
+
+        FlxG.camera.flash(0xFFFFFFFF, 2);
+
+        skipped = true;
+
+        FlxTween.cancelTweensOf(bg);
+        bg.alpha = 1;
+    }
+    
+    bg.animation.play('intro');
+    bg.screenCenter();
+
+    lHand.sprite = new FlxSprite().load(Paths.stateImage('main', 'red fist'));
+    lHand.sprite.antialiasing = false;
+    lHand.sprite.alpha = 0;
+    lHand.sprite.scale.set(0.3, 0.3);
+    add(lHand.sprite);
+
+    rHand.sprite = new FlxSprite().load(Paths.stateImage('main', 'blue fist'));
+    rHand.sprite.antialiasing = false;
+    rHand.sprite.alpha = 0;
+    rHand.sprite.scale.set(0.3, 0.3);
+    add(rHand.sprite);
+
+    FlxTimer.wait(6, ()->
+    {
+        if (skipped)
+            return;
+
+        var i = 0;
+        for (hand in [lHand, rHand])
+        {
+            FlxTween.tween(hand.sprite.scale, {x: 0.4, y: 0.4}, 0.35, {ease: FlxEase.expoOut});
+            FlxTween.tween(hand.sprite, {alpha: 1}, 0.35, {ease: FlxEase.expoOut});
+            FlxTween.tween(hand.pos, {x: hand.pos.x + (i == 0 ? -25 : 25)}, 0.35, {ease: FlxEase.expoOut});
+            FlxTween.tween(hand, {shakeIntensity: 20}, 0.35, {ease: FlxEase.expoIn, onUpdate: ()->
+            {
+                if (hand.shakeSpeed >= 0)
+                    hand.shakeSpeed -= 1;
+            }});
+
+            i++;
+        }
+    });
+}
+
+function update(dt)
+{
+    if (FlxG.keys.justPressed.SEVEN) LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+    if (controls.ACCEPT && !skipped) bg.animation.finish();
+
+    updateHands(dt);
+}
+
+function updateHands(dt)
+{
+    var val = 1 - Math.exp(dt * -150);
+    for (hand in [lHand, rHand])
+    {
+        if (hand.sprite == null)
+            continue;
+
+        hand.sprite.origin.set(hand.sprite.width / 2, hand.sprite.height / 2);
+        hand.sprite.updateHitbox();
+
+        hand.sprite.x = FlxMath.lerp(hand.pos.x, hand.sprite.x, val);
+        hand.sprite.y = FlxMath.lerp(hand.pos.y, hand.sprite.y, val);
+
+        hand.sprite.x += hand.offset.x;
+        hand.sprite.y += hand.offset.y;
+
+        hand.sprite.offset.x = hand.shakeVal.x;
+        hand.sprite.offset.y = hand.shakeVal.y;
+
+        if (hand.shakeState >= hand.shakeSpeed)
+        {
+            hand.shakeVal = {x: FlxG.random.float(-hand.shakeIntensity, hand.shakeIntensity), y: FlxG.random.float(-hand.shakeIntensity, hand.shakeIntensity)}
+            hand.shakeState = 0;
+        }
+
+        hand.shakeState++;
+    }
+}
+
+function spawnMenuItems()
+{
+    var i = -1 / 4;
+    var x = 0;
+    for (item in options)
+    {
+        var sprite = new InteractableSprite().loadSparrow('custom_states/main', 'buttons');
+        sprite.animation.addByPrefix('idle', item + '0', 12, true);
+        sprite.animation.addByPrefix('selec', item + '-selec0', 12, true);
+        sprite.animation.play('idle');
+        sprite.scale.set(0.6, 0.6);
+        sprite.updateHitbox();
+        add(sprite);
+
+        sprite.alpha = 0;
+        FlxTween.tween(sprite, {alpha: 1}, 1, {startDelay: 0.1 * x});
+
+        var me = {sprite: sprite, id: x};
+
+        sprite.onHover = ()-> 
+        { 
+            if (transitioning)
+                return;
+
+            sprite.x -= SELEC_OFFSET;
+            sprite.y -= SELEC_OFFSET;
+
+            sprite.animation.play('selec');
+
+            sprite.updateHitbox();
+        }
+
+        sprite.onExit = ()-> 
+        { 
+            if (transitioning)
+                return;
+
+            sprite.x += SELEC_OFFSET;
+            sprite.y += SELEC_OFFSET;
+
+            sprite.animation.play('idle'); 
+
+            sprite.updateHitbox();
+        }
+
+        sprite.onClick = ()->
+        {
+            if (transitioning)
+                return;
+
+            transitioning = true;
+            
+            selec = me.id;
+
+            for (thing in menuItems)
+            {
+                if (thing.id == selec)
+                {
+                    thing.sprite.scale.set(0.8, 0.8);
+                    FlxTween.tween(thing.sprite.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut, startDelay: 0.1 * thing.id, onComplete: (t)->
+                    {
+                        FlxTimer.wait(0.5, ()->
+                        {
+                            FlxTween.tween(lHand.sprite, {alpha: 0}, 0.6);
+                            FlxTween.tween(rHand.sprite, {alpha: 0}, 0.6);
+
+                            FlxTween.tween(logoShadow, {alpha: 0}, 0.6);
+                            FlxTween.tween(logo, {alpha: 0}, 0.6);
+
+                            FlxTween.tween(thing.sprite, {alpha: 0}, 0.6, {onComplete: (t)->
+                            {
+                                thing.sprite.destroy();
+
+                                lHand.sprite.destroy();
+                                rHand.sprite.destroy();
+
+                                lHand.sprite = null;
+                                rHand.sprite = null;
+
+                                FlxTween.cancelTweensOf(logoShadow);
+                                FlxTween.cancelTweensOf(logo);
+
+                                logoShadow.destroy();
+                                logo.destroy();
+
+                                bg.animation.play('intro', true, true);
+                                bg.animation.finishCallback = null;
+                                bg.animation.timeScale = 2;
+                                FlxTween.tween(bg, {alpha: 0}, 1, {startDelay: 1.5, onComplete: (t)->
+                                {
+                                    LoadingState.loadAndSwitchCustomState(states[item]);
+                                }});
+                            }});
+                        });
+                    }});
+
+                    continue;
+                }
+
+                FlxTween.tween(thing.sprite.scale, {x: 1.4, y: 0}, 0.3, {ease: FlxEase.backIn, startDelay: 0.1 * thing.id, onComplete: (t)->
+                {
+                    thing.sprite.destroy();
+                }});
+            }
+        }
+
+        sprite.screenCenter();
+
+        sprite.y += FlxG.height * i + Y_OFFSET;
+        
+        menuItems.push(me);
+
+        i += 1 / 8;
+        x++;
+    }
+}
+
+function spawnLogo()
+{
+    logo = new FlxSprite().load(Paths.stateImage('main', 'logo'));
+    logo.scale.set(0, 0);
+    logo.updateHitbox();
+
+    logo.screenCenter();
+    logo.x += 10;
+    logo.y -= 220;
+
+    logoShadow = new FlxSprite().load(Paths.stateImage('main', 'logo'));
+    logoShadow.color = 0xFF000000;
+    logoShadow.scale.set(0, 0);
+    logoShadow.updateHitbox();
+    logoShadow.setPosition(logo.x + 5, logo.y + 5);
+
+    for (sprite in [logoShadow, logo])
+    {
+        add(sprite);
+        FlxTween.tween(sprite.scale, {x: 0.25, y: 0.25}, 1, {ease: FlxEase.expoOut});
+        FlxTween.tween(sprite, {y: sprite.y + 20}, 2, {ease: FlxEase.quadInOut, type: FlxTween.PINGPONG});
+    }
+}

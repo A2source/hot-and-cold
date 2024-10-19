@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="portraits.png" width="2361" height="2481" spritePadding="4" borderPadding="1">
+	<SubTexture name="alice0001" x="1" y="1" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="alice0002" x="1" y="1" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="alice0003" x="1" y="1" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="alice0004" x="1" y="662" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="alice0005" x="1" y="662" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="alice0006" x="1" y="662" width="691" height="657" frameX="0" frameY="0" frameWidth="691" frameHeight="657"/>
+	<SubTexture name="badcop0001" x="1245" y="1126" width="479" height="571" frameX="0" frameY="0" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="badcop0002" x="1245" y="1126" width="479" height="571" frameX="0" frameY="0" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="badcop0003" x="1245" y="1126" width="479" height="571" frameX="0" frameY="0" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="badcop0004" x="1364" y="1" width="479" height="570" frameX="0" frameY="-1" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="badcop0005" x="1364" y="1" width="479" height="570" frameX="0" frameY="-1" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="badcop0006" x="1364" y="1" width="479" height="570" frameX="0" frameY="-1" frameWidth="479" frameHeight="571"/>
+	<SubTexture name="bobby rhino0001" x="696" y="1126" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="bobby rhino0002" x="696" y="1126" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="bobby rhino0003" x="696" y="1126" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="bobby rhino0004" x="1" y="1323" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="bobby rhino0005" x="1" y="1323" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="bobby rhino0006" x="1" y="1323" width="545" height="524" frameX="0" frameY="0" frameWidth="545" frameHeight="524"/>
+	<SubTexture name="cr00l0001" x="1728" y="1080" width="588" height="431" frameX="0" frameY="0" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="cr00l0002" x="1728" y="1080" width="588" height="431" frameX="0" frameY="0" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="cr00l0003" x="1728" y="1080" width="588" height="431" frameX="0" frameY="0" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="cr00l0004" x="550" y="1654" width="588" height="430" frameX="0" frameY="-1" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="cr00l0005" x="550" y="1654" width="588" height="430" frameX="0" frameY="-1" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="cr00l0006" x="550" y="1654" width="588" height="430" frameX="0" frameY="-1" frameWidth="588" frameHeight="431"/>
+	<SubTexture name="error0001" x="1881" y="506" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="error0002" x="1881" y="506" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="error0003" x="1881" y="506" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="error0004" x="1728" y="1515" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="error0005" x="1728" y="1515" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="error0006" x="1728" y="1515" width="479" height="523" frameX="0" frameY="0" frameWidth="479" frameHeight="523"/>
+	<SubTexture name="gacha0001" x="1142" y="1701" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="gacha0002" x="1142" y="1701" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="gacha0003" x="1142" y="1701" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="gacha0004" x="646" y="2088" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="gacha0005" x="646" y="2088" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="gacha0006" x="646" y="2088" width="427" height="327" frameX="0" frameY="0" frameWidth="427" frameHeight="327"/>
+	<SubTexture name="herobrine0001" x="1077" y="2384" width="593" height="96" frameX="0" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="herobrine0002" x="1077" y="2384" width="593" height="96" frameX="0" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="herobrine0003" x="1077" y="2384" width="593" height="96" frameX="0" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="herobrine0004" x="1674" y="2384" width="593" height="96" frameX="-1" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="herobrine0005" x="1674" y="2384" width="593" height="96" frameX="-1" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="herobrine0006" x="1674" y="2384" width="593" height="96" frameX="-1" frameY="0" frameWidth="594" frameHeight="96"/>
+	<SubTexture name="mouth moods0001" x="1142" y="2042" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="mouth moods0002" x="1142" y="2042" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="mouth moods0003" x="1142" y="2042" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="mouth moods0004" x="1" y="2088" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="mouth moods0005" x="1" y="2088" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="mouth moods0006" x="1" y="2088" width="641" height="338" frameX="0" frameY="0" frameWidth="641" frameHeight="338"/>
+	<SubTexture name="substitute0001" x="696" y="1" width="664" height="559" frameX="0" frameY="0" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="substitute0002" x="696" y="1" width="664" height="559" frameX="0" frameY="0" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="substitute0003" x="696" y="1" width="664" height="559" frameX="0" frameY="0" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="substitute0004" x="696" y="564" width="664" height="558" frameX="0" frameY="-1" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="substitute0005" x="696" y="564" width="664" height="558" frameX="0" frameY="-1" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="substitute0006" x="696" y="564" width="664" height="558" frameX="0" frameY="-1" frameWidth="664" frameHeight="559"/>
+	<SubTexture name="x.nes0001" x="1364" y="575" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+	<SubTexture name="x.nes0002" x="1364" y="575" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+	<SubTexture name="x.nes0003" x="1364" y="575" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+	<SubTexture name="x.nes0004" x="1847" y="1" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+	<SubTexture name="x.nes0005" x="1847" y="1" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+	<SubTexture name="x.nes0006" x="1847" y="1" width="513" height="501" frameX="0" frameY="0" frameWidth="513" frameHeight="501"/>
+</TextureAtlas>

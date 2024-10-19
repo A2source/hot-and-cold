@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="backing.png" width="3810" height="966" spritePadding="0" borderPadding="1">
+	<SubTexture name="backing0001" x="951" y="1" width="974" height="954" frameX="0" frameY="-6" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0002" x="951" y="1" width="974" height="954" frameX="0" frameY="-6" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0003" x="951" y="1" width="974" height="954" frameX="0" frameY="-6" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0004" x="951" y="1" width="974" height="954" frameX="0" frameY="-6" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0005" x="1925" y="1" width="941" height="963" frameX="-16" frameY="-3" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0006" x="1925" y="1" width="941" height="963" frameX="-16" frameY="-3" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0007" x="1925" y="1" width="941" height="963" frameX="-16" frameY="-3" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0008" x="1925" y="1" width="941" height="963" frameX="-16" frameY="-3" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0009" x="1" y="1" width="950" height="927" frameX="-13" frameY="-22" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0010" x="1" y="1" width="950" height="927" frameX="-13" frameY="-22" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0011" x="1" y="1" width="950" height="927" frameX="-13" frameY="-22" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0012" x="1" y="1" width="950" height="927" frameX="-13" frameY="-22" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0013" x="2866" y="1" width="943" height="964" frameX="-15" frameY="0" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0014" x="2866" y="1" width="943" height="964" frameX="-15" frameY="0" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0015" x="2866" y="1" width="943" height="964" frameX="-15" frameY="0" frameWidth="977" frameHeight="970"/>
+	<SubTexture name="backing0016" x="2866" y="1" width="943" height="964" frameX="-15" frameY="0" frameWidth="977" frameHeight="970"/>
+</TextureAtlas>

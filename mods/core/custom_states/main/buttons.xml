@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="buttons.png" width="841" height="714" spritePadding="0" borderPadding="1">
+	<SubTexture name="credits-selec0001" x="349" y="331" width="348" height="92" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits-selec0002" x="349" y="331" width="348" height="92" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits-selec0003" x="349" y="331" width="348" height="92" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits-selec0004" x="1" y="331" width="348" height="93" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits-selec0005" x="1" y="331" width="348" height="93" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits-selec0006" x="1" y="331" width="348" height="93" frameX="-7" frameY="-6" frameWidth="366" frameHeight="106"/>
+	<SubTexture name="credits0001" x="486" y="525" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="credits0002" x="486" y="525" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="credits0003" x="486" y="525" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="credits0004" x="1" y="631" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="credits0005" x="1" y="631" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="credits0006" x="1" y="631" width="326" height="66" frameX="0" frameY="0" frameWidth="326" frameHeight="66"/>
+	<SubTexture name="exit-selec0001" x="1" y="525" width="243" height="106" frameX="-7" frameY="-6" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit-selec0002" x="1" y="525" width="243" height="106" frameX="-7" frameY="-6" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit-selec0003" x="1" y="525" width="243" height="106" frameX="-7" frameY="-6" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit-selec0004" x="244" y="525" width="242" height="105" frameX="-7" frameY="-7" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit-selec0005" x="244" y="525" width="242" height="105" frameX="-7" frameY="-7" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit-selec0006" x="244" y="525" width="242" height="105" frameX="-7" frameY="-7" frameWidth="260" frameHeight="122"/>
+	<SubTexture name="exit0001" x="327" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="exit0002" x="327" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="exit0003" x="327" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="exit0004" x="548" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="exit0005" x="548" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="exit0006" x="548" y="631" width="221" height="82" frameX="0" frameY="0" frameWidth="221" frameHeight="82"/>
+	<SubTexture name="options-selec0001" x="530" y="1" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options-selec0002" x="530" y="1" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options-selec0003" x="530" y="1" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options-selec0004" x="1" y="179" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options-selec0005" x="1" y="179" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options-selec0006" x="1" y="179" width="310" height="126" frameX="-7" frameY="-4" frameWidth="328" frameHeight="141"/>
+	<SubTexture name="options0001" x="1" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="options0002" x="1" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="options0003" x="1" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="options0004" x="290" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="options0005" x="290" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="options0006" x="290" y="424" width="289" height="101" frameX="0" frameY="0" frameWidth="289" frameHeight="101"/>
+	<SubTexture name="play-selec0001" x="1" y="1" width="265" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play-selec0002" x="1" y="1" width="265" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play-selec0003" x="1" y="1" width="265" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play-selec0004" x="266" y="1" width="264" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play-selec0005" x="266" y="1" width="264" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play-selec0006" x="266" y="1" width="264" height="178" frameX="-7" frameY="-5" frameWidth="282" frameHeight="192"/>
+	<SubTexture name="play0001" x="311" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+	<SubTexture name="play0002" x="311" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+	<SubTexture name="play0003" x="311" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+	<SubTexture name="play0004" x="554" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+	<SubTexture name="play0005" x="554" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+	<SubTexture name="play0006" x="554" y="179" width="243" height="152" frameX="0" frameY="0" frameWidth="243" frameHeight="152"/>
+</TextureAtlas>

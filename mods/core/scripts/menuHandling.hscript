@@ -1,4 +1,0 @@
-function onEndSong()
-{
-    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
-}

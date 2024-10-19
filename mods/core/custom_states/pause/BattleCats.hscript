@@ -1,0 +1,76 @@
+var window;
+
+var options = ['resume', 'restart', 'exit'];
+var buttons = [];
+
+var sizes = [
+    'resume' => {w: 95, h: 95},
+    'restart' => {w: 200, h: 62},
+    'exit' => {w: 315, h: 61}
+];
+
+var positions = [
+    'resume' => {x: FlxG.width - 200, y: FlxG.height / 2 - 135},
+    'restart' => {x: FlxG.width / 2 - 115, y: FlxG.height / 2 - 21},
+    'exit' => {x: FlxG.width / 2 - 176, y: FlxG.height / 2 + 58}
+];
+
+function create()
+{
+    window = new FlxSprite().load(Paths.modsImage('pause/bc'));
+    window.cameras = [game.camOther2];
+    window.screenCenter();
+    window.antialiasing = ClientPrefs.data.antialiasing;
+    add(window);
+
+    var i = 1;
+    for (item in options)
+    {
+        var button = new InteractableSprite(positions[item].x, positions[item].y);
+        button.makeGraphic(sizes[item].w, sizes[item].h);
+        button.alpha = 0;
+        button.onClick = ()-> 
+        {
+            game.closeSubState();
+
+            if (['restart', 'exit'].contains(item))
+            {
+                if (FlxG.sound.music != null)
+                    FlxG.sound.music.volume = 0;
+
+                if (game.vocals != null)
+                    game.vocals.volume = 0;
+            }
+
+            switch(item)
+            {
+                case 'restart':
+                    game.paused = true;
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'exit':
+                    LoadingState.loadAndSwitchCustomState('SongSelectState');
+            }
+        }
+
+        button.cameras = [game.camOther2];
+
+        add(button);
+        buttons.push(button);
+
+        i--;
+    }
+}
+
+function update(dt)
+{
+    if (controls.BACK) game.closeSubState();
+}
+
+function onClose()
+{
+    window.destroy();
+
+    for (button in buttons)
+        button.destroy();
+}

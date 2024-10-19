@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="completed.png" width="370" height="409" spritePadding="0" borderPadding="1">
+	<SubTexture name="completed0001" x="1" y="197" width="176" height="205" frameX="-6" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0002" x="1" y="197" width="176" height="205" frameX="-6" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0003" x="1" y="197" width="176" height="205" frameX="-6" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0004" x="187" y="1" width="182" height="214" frameX="-5" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0005" x="187" y="1" width="182" height="214" frameX="-5" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0006" x="187" y="1" width="182" height="214" frameX="-5" frameY="0" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0007" x="177" y="215" width="183" height="193" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0008" x="177" y="215" width="183" height="193" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0009" x="177" y="215" width="183" height="193" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0010" x="1" y="1" width="186" height="196" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0011" x="1" y="1" width="186" height="196" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+	<SubTexture name="completed0012" x="1" y="1" width="186" height="196" frameX="0" frameY="-8" frameWidth="187" frameHeight="214"/>
+</TextureAtlas>

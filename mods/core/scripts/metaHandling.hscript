@@ -1,0 +1,12 @@
+function onEndSong()
+{
+    LoadingState.loadAndSwitchCustomState('SongSelectState');
+
+    if (FlxG.save.data.hcData[curSong])
+        return;
+
+    FlxG.save.data.hcData[curSong] = true;
+    trace('Cleared song "' + curSong + '"!');
+
+    FlxG.save.flush();
+}

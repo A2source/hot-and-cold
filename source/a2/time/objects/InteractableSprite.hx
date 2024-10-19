@@ -20,6 +20,8 @@ class InteractableSprite extends DynamicSprite
 
     override public function update(dt:Float)
     {
+        super.update(dt);
+
         if (!FlxG.mouse.overlaps(this, cameras[camIndex]))
         {
             if (justHovered)

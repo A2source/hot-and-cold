@@ -6,6 +6,9 @@ function onPause(bf)
 
     switch(SONG.song)
     {
+        case 'Gacha':
+            toLoad = 'BattleCats';
+            
         case 'White Eyes':
             toLoad = 'Minecraft';
 

@@ -123,6 +123,7 @@ class CustomState extends MusicBeatState
 		interp.variables.set("makeTransition", a2.time.states.IntroState.makeTransition);
 		interp.variables.set("Path", haxe.io.Path);
 		interp.variables.set("Std", Std);
+		interp.variables.set("Sys", Sys);
 		interp.variables.set("FileSystem", sys.FileSystem);
 		interp.variables.set("File", sys.io.File);
 		interp.variables.set("Controls", a2.time.util.Controls);

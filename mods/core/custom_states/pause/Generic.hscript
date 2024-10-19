@@ -43,7 +43,10 @@ var textOptions = [
     'Heaty',
     'How can I be homophobic?\nMy bitch is gay',
     'Also play: VS Rephrase',
+    'Also play: Friday Night Incident',
     'Also play: Sunday Night Suicide',
+    'Also play: Welcome Back',
+    'Also play: Half-Life 17: Bucks',
     '!letters',
     '!numbers',
     'That one coworker thats just gotta go.\nGod hes ready. God take him please god',
@@ -145,7 +148,7 @@ function create()
                     LoadingState.loadAndSwitchState(new PlayState());
 
                 case 'Exit':
-                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+                    LoadingState.loadAndSwitchCustomState('SongSelectState');
             }
         }
         

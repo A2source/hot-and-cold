@@ -2,5 +2,23 @@ function create()
 {
     if (!IntroState.initialized) makeTransition();
 
-    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+    FlxTimer.wait(1, ()-> { LoadingState.loadAndSwitchCustomState('MainMenuState'); });
+
+    if (FlxG.save.data.hcData != null)
+        return;
+
+    FlxG.save.data.hcData = [
+        'Gacha' => false,
+        'White Eyes' => false,
+        'Substitute' => false,
+        'Calamity' => false,
+        'Error' => false,
+        'Entropy' => false,
+        'Jumpman' => false,
+        'The Show' => false,
+        'Ebullient' => false,
+        'Wow Wow' => false
+    ];
+
+    FlxG.save.flush();
 }

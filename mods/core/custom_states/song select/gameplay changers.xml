@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="gameplay changers.png" width="264" height="353" spritePadding="0" borderPadding="1">
+	<SubTexture name="gameplay changers0001" x="1" y="1" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0002" x="1" y="1" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0003" x="1" y="1" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0004" x="127" y="180" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0005" x="127" y="180" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0006" x="127" y="180" width="136" height="172" frameX="0" frameY="-4" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0007" x="137" y="1" width="124" height="179" frameX="-5" frameY="0" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0008" x="137" y="1" width="124" height="179" frameX="-5" frameY="0" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0009" x="137" y="1" width="124" height="179" frameX="-5" frameY="0" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0010" x="1" y="173" width="126" height="178" frameX="-4" frameY="-1" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0011" x="1" y="173" width="126" height="178" frameX="-4" frameY="-1" frameWidth="136" frameHeight="179"/>
+	<SubTexture name="gameplay changers0012" x="1" y="173" width="126" height="178" frameX="-4" frameY="-1" frameWidth="136" frameHeight="179"/>
+</TextureAtlas>

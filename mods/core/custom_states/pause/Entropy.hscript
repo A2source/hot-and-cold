@@ -74,7 +74,7 @@ function create()
                     LoadingState.loadAndSwitchState(new PlayState());
 
                 case 'QUIT':
-                    LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+                    LoadingState.loadAndSwitchCustomState('SongSelectState');
             }
         }
 
