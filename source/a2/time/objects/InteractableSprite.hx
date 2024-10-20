@@ -17,10 +17,14 @@ class InteractableSprite extends DynamicSprite
     public var camIndex:Int = 0;
 
     public var cursor:MouseCursor = BUTTON;
+    public var setCursor:Bool = true;
 
     override public function update(dt:Float)
     {
         super.update(dt);
+
+        if (!isOnScreen(cameras[camIndex]))
+            return;
 
         if (!FlxG.mouse.overlaps(this, cameras[camIndex]))
         {
@@ -28,7 +32,8 @@ class InteractableSprite extends DynamicSprite
             {
                 justHovered = false;
 
-                Mouse.cursor = ARROW;
+                if (setCursor)
+                    Mouse.cursor = ARROW;
 
                 if (onExit != null)
                     onExit();
@@ -41,11 +46,12 @@ class InteractableSprite extends DynamicSprite
         {
             justHovered = true;
 
-            Mouse.cursor = cursor;
-
             if (onHover != null)
                 onHover();
         }
+
+        if (setCursor)
+            Mouse.cursor = cursor;
 
         if (whileHovered != null)
             whileHovered();
@@ -61,7 +67,8 @@ class InteractableSprite extends DynamicSprite
 
     override public function destroy()
     {
-        Mouse.cursor = ARROW;
+        if (setCursor)
+            Mouse.cursor = ARROW;
 
         super.destroy();
     }

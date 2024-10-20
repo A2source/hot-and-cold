@@ -6,7 +6,7 @@ var acc;
 
 function start(song)
 {
-    var healthBar = new FlxBar(0, FlxG.height * 0.89, FlxBarFillDirection.LEFT_TO_RIGHT, 515, 40, game,
+    var healthBar = new FlxBar(0, ClientPrefs.data.downScroll ? FlxG.height * 0.075 : FlxG.height * 0.8, FlxBarFillDirection.LEFT_TO_RIGHT, 515, 40, game,
         'health', 0, 2);
     healthBar.scrollFactor.set();
     healthBar.visible = !ClientPrefs.data.hideHud;
@@ -17,10 +17,9 @@ function start(song)
     barCover.scale.set(0.6, 0.6);
     barCover.updateHitbox();
     barCover.screenCenter();
-    barCover.y = FlxG.height * (ClientPrefs.data.downScroll ? 0.025 : 0.89);
+    barCover.y = FlxG.height * (ClientPrefs.data.downScroll ? 0.025 : 0.75);
 
     healthBar.x = FlxG.width / 2 - healthBar.width / 2;
-    if (ClientPrefs.data.downScroll) healthBar.y = FlxG.height * 0.075;
 
     miss = new FlxSprite().loadSparrow('images', 'miss');
     miss.animation.addByPrefix('idle', 'miss', 12, true);

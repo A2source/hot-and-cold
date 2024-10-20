@@ -3978,6 +3978,8 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 		vocals.pause();
 
+		FlxG.sound.music.onComplete = null;
+
 		endingSong = true;
 
 		if (videoToPlay != '')

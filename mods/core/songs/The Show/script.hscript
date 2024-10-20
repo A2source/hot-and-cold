@@ -19,13 +19,13 @@ function stepHit(step)
         case 272, 416, 544:
             game.camManager.zoom.interval = 4;
 
+            if (step == 416)
+                game.hscriptManager.callAll('onProduct', [true]);
+
         case 816:
             game.camManager.zoom.interval = 999;
 
-        case 416:
-            game.triggerEventNote('Show Product', 'yes', '', '');
-
         case 548:
-            game.triggerEventNote('Show Product', 'no', '', '');
+            game.hscriptManager.callAll('onProduct', [false]);
     }
 }

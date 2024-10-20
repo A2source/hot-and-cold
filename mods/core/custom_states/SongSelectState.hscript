@@ -56,8 +56,20 @@ var songToTag = [
 var selec = 0;
 var skipped = false;
 
+var vertSelec = 0;
+
+var transitioning = false;
+
 function create()
 {
+    DiscordClient.changePresence('Song Select');
+
+    if (FlxG.save.data.hcSongIndex == null)
+        FlxG.save.data.hcSongIndex = selec;
+
+    selec = FlxG.save.data.hcSongIndex;
+    FlxG.save.flush();
+
     // unlock neil if you've completed every song
     var allDone = true;
     for (song in songs)
@@ -87,26 +99,48 @@ function create()
         bg.animation.finishCallback = null;
 
         addUI();
+
+        FlxG.camera.flash(0xFF000000);
+        skipped = true;
     }
 
     bg.animation.play('intro');
     bg.screenCenter();
 }
 
+var tweening = false;
+var mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
+var keyboard = false;
+
 function update(dt)
 {
-    if (controls.BACK) LoadingState.loadAndSwitchCustomState('MainMenuState');
-    if (controls.ACCEPT && !skipped)
-    {
-        skipped = true;
-        bg.animation.finish();
+    if (controls.BACK && skipped) goBack();
 
-        FlxG.camera.flash(0xFF000000);
-    }
+    if (controls.ACCEPT && skipped && !transitioning) vertSelec == 0 ? portrait.onClick() : gameplayChangers.onClick();
+    if (controls.ACCEPT && !skipped) bg.animation.finish();
+
+    if (controls.UI_LEFT_P)
+    {
+        keyboard = true;
+        lArrow.onClick();
+    } 
+    if (controls.UI_RIGHT_P)
+    {
+        keyboard = true;
+        rArrow.onClick();
+    } 
+
+    if (controls.UI_UP_P) changeVerticalSelection(-1);
+    if (controls.UI_DOWN_P) changeVerticalSelection(1);
+
+    if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
 }
 
 function changeSelection(amt)
 {
+    if (transitioning)
+        return;
+        
     selec += amt;
 
     if (selec == songs.length)
@@ -127,7 +161,60 @@ function changeSelection(amt)
 
     FlxTween.tween(curSongText.scale, {x: 5, y: 5}, 1.3, {ease: FlxEase.expoOut});
 
-    completed.visible = FlxG.save.data.hcData[songs[selec]];
+    FlxG.save.data.hcSongIndex = selec;
+    FlxG.save.flush();
+
+    if (keyboard)
+        changeVerticalSelection(0);
+
+    keyboard = false;
+
+    var prevVis = completed.alpha == 1;
+    var vis = FlxG.save.data.hcData[songs[selec]];
+
+    if (prevVis == vis)
+        return;
+    
+    FlxTween.cancelTweensOf(completed.scale);
+
+    switch(vis)
+    {
+        case true:
+            completed.alpha = 1;
+
+            completed.scale.set(0.7, 0.7);
+            FlxTween.tween(completed.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut});
+
+        case false:
+            completed.alpha = 0.999;
+            FlxTween.tween(completed.scale, {x: 0, y: 0}, 0.35, {ease: FlxEase.backIn});
+    }
+}
+
+function changeVerticalSelection(amt)
+{
+    if (transitioning)
+        return;
+
+    vertSelec += amt;
+
+    if (vertSelec > 1)
+        vertSelec = 0;
+    if (vertSelec < 0)
+        vertSelec = 1;
+
+    var sprite = vertSelec == 0 ? portrait : gameplayChangers;
+
+    tweening = true;
+
+    FlxTween.cancelTweensOf(mPos);
+    FlxTween.tween(mPos, {x: sprite.x + sprite.width - 30, y: sprite.y + sprite.height - 25}, 0.5, {ease: FlxEase.expoOut, onUpdate: (_)->
+    {
+        Lib.application.window.warpMouse(mPos.x, mPos.y);
+    }, onComplete: (t)->
+    {
+        tweening = false;
+    }});
 }
 
 var ARROW_X_OFFSET = 3;
@@ -156,7 +243,7 @@ function addUI()
     backing.screenCenter();
 
     lArrow = new InteractableSprite();
-    lArrow.frames = Paths.modsSparrow('custom_states/song select', 'left-arrow');
+    lArrow.frames = Paths.modsSparrow('custom_states/general', 'left-arrow');
     lArrow.animation.addByPrefix('idle', 'left-arrow', 8, true);
     lArrow.animation.addByPrefix('use', 'use', 18, false);
     lArrow.animation.play('idle');
@@ -191,7 +278,7 @@ function addUI()
     }
 
     rArrow = new InteractableSprite();
-    rArrow.frames = Paths.modsSparrow('custom_states/song select', 'right-arrow');
+    rArrow.frames = Paths.modsSparrow('custom_states/general', 'right-arrow');
     rArrow.animation.addByPrefix('idle', 'right-arrow', 8, true);
     rArrow.animation.addByPrefix('use', 'use', 18, false);
     rArrow.animation.play('idle');
@@ -237,6 +324,9 @@ function addUI()
 
     portrait.onClick = ()->
     {
+        if (transitioning)
+            return;
+
         PlayState.SONG = Song.loadFromJson(songs[selec], true);
 
         PlayState.difficulty = '';
@@ -259,12 +349,14 @@ function addUI()
 
     curSongText.scale.set(5, 5);
 
+    var completedCurSong = FlxG.save.data.hcData[songs[selec]];
+
     completed = new FlxSprite().loadSparrow('custom_states/song select', 'completed');
     completed.animation.addByPrefix('idle', 'completed', 8, true);
     completed.animation.play('idle');
-    completed.visible = FlxG.save.data.hcData[songs[selec]];
+    completed.alpha = completedCurSong ? 1 : 0.999;
 
-    completed.scale.set(0.6, 0.6);
+    completed.scale.set(completedCurSong ? 0.6 : 0, completedCurSong ? 0.6 : 0);
     completed.updateHitbox();
 
     completed.screenCenter();
@@ -282,6 +374,8 @@ function addUI()
     gameplayChangers.x -= 235;
     gameplayChangers.y += 235;
 
+    gameplayChangers.onClick = ()-> { trace(':)'); }
+
     add(backing);
     add(songSelectText);
     add(portrait);
@@ -293,4 +387,23 @@ function addUI()
 
     add(completed);
     add(gameplayChangers);
+}
+
+function goBack()
+{
+    transitioning = true;
+
+    for (item in [backing, portrait, songSelectText, curSongText, lArrow, rArrow, gameplayChangers, completed])
+        FlxTween.tween(item, {alpha: 0}, 1, {ease: FlxEase.expoOut, onComplete: (t)->
+        {
+            item.destroy();
+        }});
+
+    bg.animation.play('intro', true, true);
+    bg.animation.finishCallback = null;
+    bg.animation.timeScale = 2;
+    FlxTween.tween(bg, {alpha: 0}, 1, {startDelay: 2, onComplete: (t)->
+    {
+        LoadingState.loadAndSwitchCustomState('MainMenuState');
+    }});
 }

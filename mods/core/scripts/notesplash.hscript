@@ -13,6 +13,7 @@ function start(song)
     FlxG.cameras.add(splashCam, false);
 
     trailArea = new FlxTrailArea(0, 0, FlxG.width, FlxG.height);
+    trailArea.delay = 1;
     trailArea.cameras = [splashCam];
 
     for (i in 0...4)

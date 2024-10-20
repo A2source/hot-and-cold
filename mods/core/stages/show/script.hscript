@@ -53,15 +53,14 @@ function beatHit(beat)
         animIndex = 0;
 }
 
-function onEvent(name, v1, v2, v3)
+function onProduct(active)
 {
-    if (name != 'Show Product')
-        return;
+    product = active;
 
-    product = v1 == 'yes';
+    trace('hello? ' + product);
 
     if (product)
-        show.animation.play('product')
+        show.animation.play('product', true)
     else
-        show.animation.play('i');
+        show.animation.play('i', true);
 }

@@ -1,145 +1,1245 @@
-var object = {
-    setting: false,
-    id: 0,
-    key: '',
-    array: []
+var lArrow;
+var rArrow;
+
+var ARROW_X_OFFSET = 2.5;
+var ARROW_Y_OFFSET = 2;
+
+var finishedAnim = {
+    left: true,
+    right: true
 }
+
+var spritesToRemove = [];
+
+var curPage = 0;
+var bindSelec = 0;
+var selec = 0;
+
+var pages = [
+    'controls',
+    'gameplay',
+    'visuals & ui',
+    'graphics',
+    'hot & cold'
+];
+
+var pageCols = [
+    'gameplay' => 0xFF3D9AD8
+    'visuals & ui' => 0xFFF05757,
+    'graphics' => 0xFFA4EB47
+];
+
+var box;
+var optionsText;
+
+var titleSprites = [];
+var optionSprites = [];
+
+var skipped = false;
+
+var camOptions;
+var camFront;
+
+var maxCamScroll = 1;
 
 function create()
 {
-    box = new HBox();
-    push = new VBox();
+    DiscordClient.changePresence('Options Menu');
 
-    view = new ScrollView();
-    view.height = FlxG.height - 50;
-
-    UiS.addSpacer(25, 0, box);
-    UiS.addSpacer(0, 50, push);
-
-    box.addComponent(push);
-    push.addComponent(view);
-
-    for (field in Reflect.fields(ClientPrefs.data))
+    if (FlxG.save.data.hcOptionsIndex == null)
     {
-        var value = Reflect.field(ClientPrefs.data, field);
-
-        trace(field, value, Type.typeof(value));
-
-        var curBox = new HBox();
-        curBox.backgroundColor = 0xFF420000;
-
-        UiS.addLabel(field, curBox);
-        UiS.addSpacer(10, 0, curBox);
-
-        switch(Type.typeof(value))
-        {
-            case ValueType.TBool:
-                check = new CheckBox();
-                check.selected = value;
-                check.onClick = (e) ->
-                {
-                    var newVal = !Reflect.field(ClientPrefs.data, field);
-                    Reflect.setField(ClientPrefs.data, field, newVal);
-                    check.selected = newVal;
-                }
-                curBox.addComponent(check);
-
-            case ValueType.TInt:
-                switch(field)
-                {
-
-                }
-
-            case ValueType.TClass(Array):
-                for (thing in value)
-                    trace(thing);
-        }
-
-        view.addComponent(curBox);
+        FlxG.save.data.hcOptionsIndex = 0;
+        FlxG.save.flush();
     }
 
-    UiS.addSpacer(50, 0, box);
+    curPage = FlxG.save.data.hcOptionsIndex;
 
-    controlBox = new ScrollView();
+    bg = new FlxSprite().loadSparrow('custom_states/options', 'option');
+    bg.animation.addByPrefix('intro', 'intro', 5, false);
+    bg.animation.addByPrefix('loop', 'loop', 5, true);
 
-    box.addComponent(controlBox);
+    bg.scale.set(2.2, 2.2);
+    bg.updateHitbox();
 
-    for (control in ['note_left', 'note_down', 'note_up', 'note_right'])
-    {   
-        var curBind = ClientPrefs.keyBinds.get(control);
+    bg.offset.x = -600;
 
-        if (curBind == null || curBind == [] || curBind.length == 0)
-        {
-            ClientPrefs.keyBinds.set(control, [87, 87]);
-            curBind = ClientPrefs.keyBinds.get(control);
-        }
+    bg.alpha = 0;
+    FlxTween.tween(bg, {alpha: 1}, 2, {startDelay: 1});
 
-        if (curBind.length > 2)
-        {
-            ClientPrefs.keyBinds.set(control, [curBind[0], curBind[1]]);
-            curBind = ClientPrefs.keyBinds.get(control);
-        }
+    add(bg);
 
-        trace(control, curBind);
+    bg.animation.finishCallback = (name)->
+    {
+        bg.animation.play('loop');
+        bg.animation.finishCallback = null;
 
-        var keyBox = new HBox();
-        keyBox.backgroundColor = 0xFF420000;
+        addUI();
 
-        UiS.addLabel(control, keyBox);
-        UiS.addSpacer(10, 0, keyBox);
-
-        for (i in 0...2)
-        {
-            var cur = curBind;
-
-            var button = new Button();
-            button.text = InputFormatter.getKeyName(curBind[i]);
-            button.onClick = (e) ->
-            {
-                object.id = i;
-                object.key = control;
-                object.setting = true;
-                object.array = curBind;
-            }
-
-            keyBox.addComponent(button);
-        }
-
-        controlBox.addComponent(keyBox);
+        FlxG.camera.flash(0xFF000000);
+        skipped = true;
     }
 
-    Screen.addComponent(box);
+    bg.animation.play('intro');
+    bg.screenCenter();
 }
 
+var bindEndPos = FlxG.width / 1.175;
+var bindingInfo = {
+    binding: false,
+    sprites: [],
+    bind: '',
+    index: 0,
+    spriteToChange: null
+}
+
+var mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
+
+var tweening = false;
 function update(dt)
 {
-    if (controls.BACK && !object.setting) 
+    if (bindingInfo.binding)
     {
-        ClientPrefs.saveSettings();
-        LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+        updateBinding(dt);
+        return;
     }
 
-    if (!object.setting)
-        return;
+    if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
 
+    if (controls.UI_UP_P) genericVerticalSelect(-1);
+    if (controls.UI_DOWN_P) genericVerticalSelect(1);
+
+    if (controls.UI_LEFT_P) genericHorizontalSelect(-1);
+    if (controls.UI_RIGHT_P) genericHorizontalSelect(1);
+
+    if (controls.ACCEPT && !skipped) bg.animation.finish();
+
+    if (controls.BACK && skipped) goBack();
+
+    if (FlxG.mouse.wheel != 0 && camOptions != null)
+    {
+        FlxTween.cancelTweensOf(camOptions.scroll);
+        FlxTween.tween(camOptions.scroll, {y: camOptions.scroll.y - FlxG.mouse.wheel * 150}, 1, {ease: FlxEase.expoOut, onUpdate: (_)->
+        {
+            if (camOptions.scroll.y < 0)
+            {
+                FlxTween.cancelTweensOf(camOptions.scroll);
+                camOptions.scroll.y = 0;
+            }
+            if (camOptions.scroll.y > maxCamScroll)
+            {
+                FlxTween.cancelTweensOf(camOptions.scroll);
+                camOptions.scroll.y = maxCamScroll;
+            }
+        }});
+    }
+}
+
+function genericVerticalSelect(amt)
+{
+    selec += amt;
+
+    if (selec == 0)
+    {
+        tweenMouse(rArrow.x + 30, rArrow.y + 50, false);
+        return;
+    }
+
+    switch(pages[curPage])
+    {
+        // fml
+        case 'controls':
+            if (bindSelec > 1)
+                bindSelec = 0;
+            if (bindSelec < 0)
+                bindSelec = 1;
+
+            tweenMouse(0, 0);
+
+        case 'gameplay', 'visuals & ui', 'graphics':
+            if (selec > optionSprites.length)
+            {
+                selec = 1;
+
+                FlxTween.cancelTweensOf(camOptions.scroll);
+                FlxTween.tween(camOptions.scroll, {y: 0}, 0.5, {ease: FlxEase.expoOut});
+            }
+            if (selec < 1)
+                selec = optionSprites.length;
+                
+            var cur = optionSprites[selec - 1];
+            var sprite = cur.sprites[0];
+
+            if (selec > 1)
+            {
+                FlxTween.cancelTweensOf(camOptions.scroll);
+                FlxTween.tween(camOptions.scroll, {y: sprite.y - 100}, 1, {ease: FlxEase.expoOut});
+            }
+
+            tweenMouse(sprite.x + sprite.width + 30, sprite.y + sprite.height - 25, true);
+    }
+}
+
+function genericHorizontalSelect(amt)
+{
+    // always control the top bar on selec = 0
+    if (selec == 0)
+    {
+        if (amt < 0)
+            lArrow.onClick();
+        else if (amt > 0)
+            rArrow.onClick();
+
+        return;
+    }
+
+    switch(pages[curPage])
+    {
+        case 'controls':
+
+        case 'gameplay', 'visuals & ui', 'graphics':
+            var cur = optionSprites[selec - 1];
+
+            switch(cur.type)
+            {
+                case 'bool':
+                    cur.sprites[0].onClick();
+
+                case 'float', 'int':
+                    var left = cur.sprites[0];
+                    var right = cur.sprites[1];
+
+                    var sprite = amt < 0 ? left : right;
+
+                    sprite.onClick();
+                    tweenMouse(sprite.x + sprite.width + 30, sprite.y + sprite.height - 25, true);
+            }
+    }
+}
+
+var formattedBinds = [
+    'note_up'		=> 'Note Up',
+    'note_left'		=> 'Note Left',
+    'note_down'		=> 'Note Down',
+    'note_right'	=> 'Note Right',
+    
+    'ui_up'			=> 'UI Up',
+    'ui_left'		=> 'UI Left',
+    'ui_down'		=> 'UI Down',
+    'ui_right'		=> 'UI Right',
+    
+    'accept'		=> 'Accept',
+    'back'			=> 'Back',
+    'pause'			=> 'Pause',
+    'reset'			=> 'Reset',
+    
+    'volume_mute'	=> 'Mute Volume',
+    'volume_up'		=> 'Volume Up',
+    'volume_down'	=> 'Volume Down',
+    
+    'debug_1'		=> 'Debug 1',
+    'debug_2'		=> 'Debug 2'
+];
+
+var bindsOrder = [
+    'note_up',
+    'note_left',
+    'note_down',
+    'note_right',
+    
+    'ui_up',
+    'ui_left',
+    'ui_down',
+    'ui_right',
+    
+    'accept',
+    'back'	,
+    'pause'	,
+    'reset'	,
+    
+    'volume_mute',
+    'volume_up',
+    'volume_down',
+    
+    'debug_1',
+    'debug_2'
+];
+
+function updateBinding(dt)
+{
     if (!FlxG.keys.justPressed.ANY)
         return;
 
     var array = [];
 
-    switch(object.id)
+    switch(bindingInfo.index)
     {
         case 0:
-            array = [FlxG.keys.firstJustPressed(), object.array[1]];
+            array = [FlxG.keys.firstJustPressed(), bindingInfo.array[1]];
 
         case 1:
-            array = [object.array[0], FlxG.keys.firstJustPressed()];
+            array = [bindingInfo.array[0], FlxG.keys.firstJustPressed()];
     }
 
-    ClientPrefs.keyBinds.set(object.key, array); 
-    object.setting = false;
+    ClientPrefs.keyBinds.set(bindingInfo.bind, array); 
+    bindingInfo.binding = false;
 
     ClientPrefs.saveSettings();
 
-    LoadingState.loadAndSwitchCustomState('OptionsState');
+    for (sprite in bindingInfo.sprites)
+        sprite.destroy();
+
+    var bind = new FlxText(0, bindingInfo.spriteToChange.y, -1, InputFormatter.getKeyName(FlxG.keys.firstJustPressed()));
+    bind.setFormat(Paths.modsFont('roboto'), 36);
+        
+    bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+    bind.borderSize = 4;
+    bind.borderColor = 0xFF000000;
+    bind.drawFrame(true);
+
+    if (bindingInfo.index == 0)
+        bind.x = FlxG.width / 2 - bind.width / 2;
+    else
+        bind.x = bindEndPos - bind.width;
+
+    bindingInfo.spriteToChange.loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+    bindingInfo.spriteToChange.setPosition(bind.x, bind.y);
+
+    var sprite = bindingInfo.spriteToChange;
+
+    bindingInfo.spriteToChange.onHover = ()-> 
+    {
+        bind.color = 0xFF000000;
+        bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+        bind.borderSize = 4;
+        bind.borderColor = 0xFFFFFFFF;
+        bind.drawFrame(true);
+
+        sprite.loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+    }
+
+    bindingInfo.spriteToChange.onExit = ()->
+    {
+        bind.color = 0xFFFFFFFF;
+        bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+        bind.borderSize = 4;
+        bind.borderColor = 0xFF000000;
+        bind.drawFrame(true);
+
+        sprite.loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+    }
+
+    var index = bindingInfo.index;
+
+    bindingInfo.spriteToChange.onClick = ()->
+    {
+        bindingInfo.binding = true;
+        bindingInfo.bind = bindingInfo.bind;
+        bindingInfo.index = index;
+
+        var screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+        screen.alpha = 0.5;
+        add(screen);
+
+        var bottomText = new FlxText(0, 0, -1, 'Rebinding Key:');
+        bottomText.setFormat(Paths.modsFont('roboto'), 50);
+
+        var midText = new FlxText(0, 0, -1, formattedBinds[bindingInfo.bind]);
+        midText.setFormat(Paths.modsFont('roboto'), 80);
+
+        var topText = new FlxText(0, 0, -1, '- Press any key to Bind -');
+        topText.setFormat(Paths.modsFont('roboto'), 50);
+
+        var i = -150;
+        for (text in [topText, midText, bottomText])
+        {
+            text.borderStyle = FlxTextBorderStyle.OUTLINE;
+            text.borderSize = 4;
+            text.borderColor = 0xFF000000;
+
+            text.screenCenter();
+            text.y -= i;
+
+            add(text);
+
+            i += 150;
+        }
+
+        bindingInfo.sprites = [screen, topText, midText, bottomText];
+        bindingInfo.array = array;
+
+        bindingInfo.spriteToChange = sprite;
+
+        camOptions.visible = false;
+    }
+
+    camOptions.visible = true;
+}
+
+var bindSprites = [];
+
+var endingBinds = ['note_right', 'ui_right', 'reset', 'volume_down'];
+
+function createControls()
+{
+    var totalHeight = 0;
+    for (control in bindsOrder)
+    {   
+        var curBind = ClientPrefs.keyBinds.get(control);
+
+        var label = new FlxText(25, 25 + totalHeight, -1, formattedBinds[control]);
+        label.setFormat(Paths.modsFont('roboto'), 36);
+        label.cameras = [camOptions];
+        
+        label.borderStyle = FlxTextBorderStyle.OUTLINE;
+        label.borderSize = 4;
+        label.borderColor = 0xFF000000;
+
+        spritesToRemove.push(label);
+
+        totalHeight += label.height + (endingBinds.contains(control) ? label.height / 2: 0) + 15;
+
+        var binds = [];
+        bindSprites[control] = [];
+
+        var mid = false;
+        for (key in [curBind[1], curBind[0]])
+        {
+            var bind = new FlxText(0, label.y, -1, InputFormatter.getKeyName(key));
+            bind.setFormat(Paths.modsFont('roboto'), 36);
+            bind.cameras = [camOptions];
+            
+            bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+            bind.borderSize = 4;
+            bind.borderColor = 0xFF000000;
+            bind.drawFrame(true);
+            
+            bind.ID = mid ? 0 : 1;
+
+            if (mid)
+                bind.x = FlxG.width / 2 - bind.width / 2;
+            else
+                bind.x = bindEndPos - bind.width;
+
+            var sprite = new InteractableSprite(bind.x, bind.y).loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+            sprite.cameras = [camOptions];
+
+            sprite.onHover = ()->
+            {
+                bind.color = 0xFF000000;
+                bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+                bind.borderSize = 4;
+                bind.borderColor = 0xFFFFFFFF;
+                bind.drawFrame(true);
+
+                sprite.loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+            }
+
+            sprite.onExit = ()->
+            {
+                bind.color = 0xFFFFFFFF;
+                bind.borderStyle = FlxTextBorderStyle.OUTLINE;
+                bind.borderSize = 4;
+                bind.borderColor = 0xFF000000;
+                bind.drawFrame(true);
+
+                sprite.loadGraphic(FlxGraphic.fromBitmapData(bind.framePixels));
+            }
+
+            sprite.onClick = ()->
+            {
+                bindingInfo.binding = true;
+                bindingInfo.bind = control;
+                bindingInfo.index = bind.ID;
+
+                var screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+                screen.alpha = 0.5;
+                add(screen);
+
+                var topText = new FlxText(0, label.y, -1, 'Rebinding Key:');
+                topText.setFormat(Paths.modsFont('roboto'), 50);
+
+                var midText = new FlxText(0, label.y, -1, formattedBinds[control]);
+                midText.setFormat(Paths.modsFont('roboto'), 80);
+
+                var bottomText = new FlxText(0, label.y, -1, '- Press any key to Bind -');
+                bottomText.setFormat(Paths.modsFont('roboto'), 50);
+
+                var i = -150;
+                for (text in [bottomText, midText, topText])
+                {
+                    text.borderStyle = FlxTextBorderStyle.OUTLINE;
+                    text.borderSize = 4;
+                    text.borderColor = 0xFF000000;
+
+                    text.screenCenter();
+                    text.y -= i;
+
+                    add(text);
+
+                    i += 150;
+                }
+
+                bindingInfo.sprites = [screen, topText, midText, bottomText];
+                bindingInfo.array = curBind;
+
+                bindingInfo.spriteToChange = sprite;
+
+                camOptions.visible = false;
+            }
+
+            binds.push(sprite);
+            spritesToRemove.push(sprite);
+
+            mid = true;
+        }
+
+        var backingSprite = new FlxSprite(label.x - 2, label.y - 2).makeGraphic(bindEndPos - 22, label.height + 4, 0xFF000000);
+        backingSprite.alpha = 0.5;
+        backingSprite.cameras = [camOptions];
+        spritesToRemove.push(backingSprite);
+
+        add(backingSprite);
+
+        add(label);
+        for (bind in binds)
+            add(bind);
+    }
+
+    maxCamScroll = 775;
+}
+
+var optionsDatabase = [
+    {
+        name: 'downScroll',
+        type: 'bool'
+    },
+    {
+        name: 'middleScroll',
+        type: 'bool'
+    },
+    {
+        name: 'ghostTapping',
+        type: 'bool'
+    },
+    {
+        name: 'noReset',
+        type: 'bool'
+    },
+    {
+        name: 'hitsoundVolume',
+        type: 'float',
+        min: 0,
+        max: 1,
+        step: 0.1
+    },
+    {
+        name: 'noteOffset',
+        type: 'int',
+        min: -500,
+        max: 500,
+        step: 1
+    },
+    {
+        name: 'ratingOffset',
+        type: 'int',
+        min: -30,
+        max: 30,
+        step: 1
+    },
+    {
+        name: 'sickWindow',
+        type: 'int',
+        min: 15,
+        max: 45,
+        step: 1
+    },
+    {
+        name: 'goodWindow',
+        type: 'int',
+        min: 15,
+        max: 90,
+        step: 1
+    },
+    {
+        name: 'badWindow',
+        type: 'int',
+        min: 15,
+        max: 135,
+        step: 1
+    },
+    {
+        name: 'safeFrames',
+        type: 'float',
+        min: 2,
+        max: 10,
+        step: 0.1
+    },
+    {
+        name: 'showFPS',
+        type: 'bool'
+    },
+    {
+        name: 'flashing',
+        type: 'bool'
+    },
+    {
+        name: 'autoPause',
+        type: 'bool'
+    },
+    {
+        name: 'camZooms',
+        type: 'bool'
+    },
+    {
+        name: 'hideHud',
+        type: 'bool'
+    },
+    {
+        name: 'discordRPC',
+        type: 'bool'
+    },
+    {
+        name: 'healthBarAlpha',
+        type: 'float',
+        min: 0,
+        max: 1,
+        step: 0.1
+    },
+    {
+        name: 'antialiasing',
+        type: 'bool'
+    },
+    {
+        name: 'lowQuality',
+        type: 'bool'
+    },
+    {
+        name: 'shaders',
+        type: 'bool'
+    },
+    {
+        name: 'framerate',
+        type: 'int',
+        min: 30,
+        max: 240,
+        step: 1
+    }
+];
+
+var gameplayOptions = [
+    'downScroll',
+    'middleScroll',
+    'ghostTapping',
+    'noReset',
+    'hitsoundVolume',
+    'noteOffset',
+    'ratingOffset',
+    'sickWindow',
+    'goodWindow',
+    'badWindow',
+    'safeFrames'
+];
+
+var visualOptions = [
+    'showFPS',
+    'flashing',
+    'autoPause',
+    'camZooms',
+    'hideHud',
+    'discordRPC',
+    'healthBarAlpha'
+];
+
+var graphicOptions = [
+    'antialiasing',
+    'lowQuality',
+    'shaders',
+    'framerate'
+];
+
+var formattedOptions = [
+    'downScroll' => 'Downscroll',
+    'middleScroll' => 'Middlescroll',
+    'ghostTapping' => 'Ghost Tapping',
+    'noReset' => 'No Reset',
+    'hitsoundVolume' => 'Hitsound Volume',
+    'noteOffset' => 'Note Offset',
+    'ratingOffset' => 'Rating Offset',
+    'sickWindow' => 'Sick Window',
+    'goodWindow' => 'Good Window',
+    'badWindow' => 'Bad Window',
+    'safeFrames' => 'Safe Frames',
+    'showFPS' => 'Show FPS',
+    'flashing' => 'Flashing',
+    'autoPause' => 'Auto Pause',
+    'camZooms' => 'Cam Zooms',
+    'hideHud' => 'Hide HUD',
+    'discordRPC' => 'Discord RPC',
+    'healthBarAlpha' => 'Healthbar Alpha'
+    'antialiasing' => 'Antialiasing',
+    'lowQuality' => 'Low Quality',
+    'shaders' => 'Shaders',
+    'framerate' => 'Framerate'
+];
+
+
+var descriptions = [
+    'downScroll' => 'Notes travel downwards',
+    'middleScroll' => 'Note strums are centered',
+    'ghostTapping' => 'Tapping is allowed during downtime',
+    'noReset' => 'Reset button is disabled',
+    'hitsoundVolume' => 'Volume of note hitsounds',
+    'noteOffset' => 'Global MS Offset',
+    'ratingOffset' => 'MS Offset for note ratings',
+    'sickWindow' => 'MS Window for Sick hits',
+    'goodWindow' => 'MS Window for Good hits',
+    'badWindow' => 'MS Window for Bad hits',
+    'safeFrames' => '# of frames safe from hitting early / late',
+    'showFPS' => 'FPS & MEM Counter is visible',
+    'flashing' => 'Flashing lights enabled',
+    'autoPause' => 'Game pauses when unfocused',
+    'camZooms' => 'Camera zooms in gameplay',
+    'hideHud' => 'Hide HUD in game',
+    'discordRPC' => 'Use Discord Rich Presence',
+    'healthBarAlpha' => 'Opacity of the healthbar'
+    'antialiasing' => 'Antialiasing is applied to sprites,\nmore mem usage',
+    'lowQuality' => 'Remove extra details',
+    'shaders' => 'Shaders are enabled where used',
+    'framerate' => 'The program\'s refresh rate'
+];
+
+function boolTextFormat(bool)
+{
+    if (bool)
+        return 'YES';
+
+    return 'NO';
+}
+
+var descBox;
+var descText;
+
+function setupOptions(page)
+{
+    optionSprites = [];
+
+    var arrayToUse = [];
+    switch(page)
+    {
+        case 'gameplay':
+            arrayToUse = gameplayOptions;
+
+        case 'visuals & ui':
+            arrayToUse = visualOptions;
+
+        case 'graphics':
+            arrayToUse = graphicOptions;
+    }
+
+    descBox = new FlxSprite();
+    descBox.alpha = 0;
+    descText = getFormattedText('', 38);
+    descText.alignment = 'center';
+
+    var totalHeight = 0;
+    for (option in arrayToUse)
+    {
+        var data = getOptionDataByName(option);
+
+        var me = {type: data.type, sprites: []}
+
+        var label = getFormattedText(formattedOptions[option].toUpperCase(), 36);
+        label.color = pageCols[page];
+        label.setPosition(25, 25 + totalHeight);
+
+        var backing = new InteractableSprite(0, label.y - 4).makeGraphic(camOptions.width, label.height + 8);
+        backing.alpha = 0;
+        backing.setCursor = false;
+
+        backing.onHover = ()->
+        {
+            descText.text = descriptions[option];
+            descText.x = FlxG.width / 2 - descText.width / 2;
+            descText.y = FlxG.height * 0.9 - descText.height / 2;
+
+            descBox.setPosition(descText.x - 2, descText.y - 2);
+            descBox.makeGraphic(descText.width + 4, descText.height + 4, 0xFF000000);
+
+            for (item in [descText, descBox])
+            {
+                FlxTween.cancelTweensOf(item);
+                FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.expoOut});
+            }
+        }
+
+        backing.onExit = ()->
+        {
+            for (item in [descText, descBox])
+            {
+                FlxTween.cancelTweensOf(item);
+                FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.expoOut});
+            }
+        }
+
+        spritesToRemove.push(backing);
+        spritesToRemove.push(label);
+
+        totalHeight += label.height + 25;
+
+        var curPref = Reflect.field(ClientPrefs.data, option);
+
+        switch(data.type)
+        {
+            case 'bool':
+                var display = new InteractableSprite(label.x + label.width + 100, label.y).loadGraphic(generateTextBitmapData(boolTextFormat(Reflect.field(ClientPrefs.data, option)), 36));
+
+                display.onClick = ()->
+                {
+                    Reflect.setProperty(ClientPrefs.data, option, !Reflect.field(ClientPrefs.data, option));
+
+                    display.loadGraphic(generateTextBitmapData(boolTextFormat(Reflect.field(ClientPrefs.data, option)), 36));
+
+                    switch(option)
+                    {
+                        case 'showFPS':
+                            Main.fpsVar.visible = Reflect.field(ClientPrefs.data, option);
+                    }
+                }
+
+                display.onHover = ()-> { display.color = 0xFFA2A2A2; }
+                display.onExit = ()-> { display.color = 0xFFFFFFFF; }
+
+                spritesToRemove.push(display);
+
+                endPos = display.x + display.width + 10;
+
+                me.sprites.push(display);
+
+            case 'int', 'float':
+                var leftArrow = new InteractableSprite(label.x + label.width + 80, label.y).loadGraphic(generateTextBitmapData('<', 36));
+
+                var displayText = getFormattedText(curPref, 36);
+                displayText.setPosition(leftArrow.x + leftArrow.width + 10, leftArrow.y);
+
+                var rightArrow = new InteractableSprite(displayText.x + displayText.width + 10, label.y).loadGraphic(generateTextBitmapData('>', 36));
+
+                leftArrow.onHover = ()-> { leftArrow.color = 0xFFA2A2A2; }
+                rightArrow.onHover = ()-> { rightArrow.color = 0xFFA2A2A2; }
+                leftArrow.onExit = ()-> { leftArrow.color = 0xFFFFFFFF; }
+                rightArrow.onExit = ()-> { rightArrow.color = 0xFFFFFFFF; }
+
+                leftArrow.onClick = ()->
+                {
+                    var value = Reflect.field(ClientPrefs.data, option);
+
+                    value -= data.step;
+                    if (value <= data.min)
+                        value = data.min;
+
+                    Reflect.setProperty(ClientPrefs.data, option, value);
+                    displayText.text = value;
+
+                    rightArrow.x = displayText.x + displayText.width + 10;
+
+                    switch(option)
+                    {
+                        case 'framerate':
+                            updateFPS();
+                    }
+                }
+
+                rightArrow.onClick = ()->
+                {
+                    var value = Reflect.field(ClientPrefs.data, option);
+
+                    value += data.step;
+                    if (value >= data.max)
+                        value = data.max;
+
+                    Reflect.setProperty(ClientPrefs.data, option, value);
+                    displayText.text = value;
+
+                    rightArrow.x = displayText.x + displayText.width + 10;
+
+                    switch(option)
+                    {
+                        case 'framerate':
+                            updateFPS();
+                    }
+                }
+
+                spritesToRemove.push(leftArrow);
+                spritesToRemove.push(displayText);
+                spritesToRemove.push(rightArrow);
+
+                me.sprites.push(leftArrow);
+                me.sprites.push(rightArrow);
+        }
+
+        optionSprites.push(me);
+    }
+
+    for (sprite in spritesToRemove)
+    {
+        sprite.cameras = [camOptions];
+        add(sprite);
+    }
+
+    spritesToRemove.push(descBox);
+    spritesToRemove.push(descText);
+
+    descBox.cameras = [camFront];
+    descText.cameras = [camFront];
+
+    add(descBox);
+    add(descText);
+
+    maxCamScroll = totalHeight - 160;
+}
+
+function updateFPS()
+{
+    FlxG.updateFramerate = ClientPrefs.data.framerate;
+	FlxG.drawFramerate = ClientPrefs.data.framerate;
+}
+
+function getOptionDataByName(name)
+{
+    for (option in optionsDatabase)
+        if (option.name == name)
+            return option;
+
+    return null;
+}
+
+function createFuncs()
+{
+    maxCamScroll = 0;
+
+    descBox = new FlxSprite();
+    descBox.alpha = 0;
+    descText = getFormattedText('WARNING! Clicking this will reset\nall song completion data.', 38);
+    descText.alignment = 'center';
+    descText.x = FlxG.width / 2 - descText.width / 2;
+    descText.y = FlxG.height * 0.9 - descText.height / 2;
+    descText.alpha = 0;
+
+    descBox.setPosition(descText.x - 2, descText.y - 2);
+    descBox.makeGraphic(descText.width + 4, descText.height + 4, 0xFF000000);
+
+    var resetData = new InteractableSprite(0, 25).loadGraphic(generateTextBitmapData('RESET SAVE DATA', 38));
+    resetData.cameras = [camOptions];
+    resetData.color = 0xFFFF0000;
+    resetData.x = camOptions.width / 2 - resetData.width / 2;
+
+    resetData.onClick = ()->
+    {
+        FlxG.save.data.hcData = [
+            'Gacha' => false,
+            'White Eyes' => false,
+            'Substitute' => false,
+            'Calamity' => false,
+            'Error' => false,
+            'Entropy' => false,
+            'Jumpman' => false,
+            'The Show' => false,
+            'Ebullient' => false,
+            'Wow Wow' => false
+        ];
+
+        FlxG.save.flush();
+
+        alert('Save data has been reset.', ALERT_TITLE);
+    }
+
+    var warning = new InteractableSprite(0, 25).makeGraphic(camOptions.width, resetData.height);
+    warning.alpha = 0;
+    warning.setCursor = false;
+    warning.cameras = [camOptions];
+
+    warning.onHover = ()->
+    {
+        for (item in [descText, descBox])
+        {
+            FlxTween.cancelTweensOf(item);
+            FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.expoOut});
+        }
+    }
+
+    warning.onExit = ()->
+    {
+        for (item in [descText, descBox])
+        {
+            FlxTween.cancelTweensOf(item);
+            FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.expoOut});
+        }
+    }
+
+    add(warning);
+    spritesToRemove.push(warning);
+
+    add(resetData);
+    spritesToRemove.push(resetData);
+
+    spritesToRemove.push(descBox);
+    spritesToRemove.push(descText);
+
+    descBox.cameras = [camFront];
+    descText.cameras = [camFront];
+
+    add(descBox);
+    add(descText);
+}
+
+var pageData = [
+    {func: createControls, param: null},
+    {func: setupOptions, param: 'gameplay'},
+    {func: setupOptions, param: 'visuals & ui'},
+    {func: setupOptions, param: 'graphics'},
+    {func: createFuncs, param: null}
+];
+
+function changeMenu(amt)
+{
+    curPage += amt;
+
+    if (curPage >= pages.length)
+        curPage = 0;
+    if (curPage < 0)
+        curPage = pages.length - 1;
+
+    var i = -1;
+    for (page in pages)
+    {
+        i++;
+
+        var selected = i == curPage;
+        
+        var sprite = titleSprites[i];
+        sprite.visible = selected;
+
+        if (!selected)
+            continue;
+
+        FlxTween.cancelTweensOf(sprite.scale);
+
+        sprite.scale.set(0.7, 0.7);
+        FlxTween.tween(sprite.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut});
+    }
+
+    for (item in spritesToRemove)
+        item.destroy();
+
+    FlxTween.cancelTweensOf(camOptions.scroll);
+    FlxTween.tween(camOptions.scroll, {y: 0}, 1, {ease: FlxEase.expoOut});
+
+    var data = pageData[curPage];
+    data.func(data.param);
+
+    FlxG.save.data.hcOptionsIndex = curPage;
+    FlxG.save.flush();
+}
+
+function addUI()
+{
+    for (page in pages)
+    {
+        var sprite = new FlxSprite().loadSparrow('custom_states/options', page);
+        sprite.animation.addByPrefix('idle', 'idle', 8, true);
+        sprite.animation.play('idle');
+
+        sprite.scale.set(0.6, 0.6);
+        sprite.updateHitbox();
+
+        sprite.screenCenter();
+        sprite.y -= 200;
+
+        sprite.visible = pages[curPage] == page;
+
+        titleSprites.push(sprite);
+    }
+
+    lArrow = new InteractableSprite();
+    lArrow.frames = Paths.modsSparrow('custom_states/general', 'left-arrow');
+    lArrow.animation.addByPrefix('idle', 'left-arrow', 8, true);
+    lArrow.animation.addByPrefix('use', 'use', 18, false);
+    lArrow.animation.play('idle');
+
+    lArrow.scale.set(0.6, 0.6);
+    lArrow.updateHitbox();
+
+    lArrow.screenCenter();
+    lArrow.y -= 200;
+    lArrow.x -= 150;
+
+    lArrow.onClick = ()->
+    {
+        lArrow.animation.play('use', true);
+
+        if (finishedAnim.left)
+        {
+            lArrow.x -= ARROW_X_OFFSET;
+            lArrow.y -= ARROW_Y_OFFSET;
+        }
+
+        finishedAnim.left = false;
+
+        lArrow.animation.finishCallback = ()->
+        {
+            lArrow.animation.play('idle');
+            lArrow.animation.finishCallback = null;
+
+            lArrow.x += ARROW_X_OFFSET;
+            lArrow.y += ARROW_Y_OFFSET;
+
+            finishedAnim.left = true;
+        }
+
+        changeMenu(-1);
+    }
+
+    rArrow = new InteractableSprite();
+    rArrow.frames = Paths.modsSparrow('custom_states/general', 'right-arrow');
+    rArrow.animation.addByPrefix('idle', 'right-arrow', 8, true);
+    rArrow.animation.addByPrefix('use', 'use', 18, false);
+    rArrow.animation.play('idle');
+
+    rArrow.scale.set(0.6, 0.6);
+    rArrow.updateHitbox();
+
+    rArrow.screenCenter();
+    rArrow.y -= 200;
+    rArrow.x += 150;
+
+    rArrow.onClick = ()->
+    {
+        rArrow.animation.play('use', true);
+
+        if (finishedAnim.right)
+        {
+            rArrow.x -= ARROW_X_OFFSET;
+            rArrow.y -= ARROW_Y_OFFSET;
+        }
+
+        finishedAnim.right = false;
+
+        rArrow.animation.finishCallback = ()->
+        {
+            rArrow.x += ARROW_X_OFFSET;
+            rArrow.y += ARROW_Y_OFFSET;
+
+            rArrow.animation.play('idle');
+            rArrow.animation.finishCallback = null;
+
+            finishedAnim.right = true;
+        }
+
+        changeMenu(1);
+    }
+
+    box = new FlxSprite().load(Paths.stateImage('options', 'box'));
+    box.scale.set(0.7, 0.7);
+    box.updateHitbox();
+    box.screenCenter();
+
+    box.y += 50;
+
+    optionsText = new FlxSprite().loadSparrow('custom_states/options', 'options');
+    optionsText.animation.addByPrefix('idle', 'options', 8, true);
+    optionsText.animation.play('idle');
+
+    optionsText.scale.set(0.6, 0.6);
+    optionsText.updateHitbox();
+
+    optionsText.screenCenter();
+    optionsText.y -= 300;
+
+    add(box);
+
+    add(lArrow);
+    add(rArrow);
+
+    for (sprite in titleSprites)
+        add(sprite);
+
+    add(optionsText);
+
+    camOptions = new FlxCamera();
+    camOptions.bgColor = 0x00000000;
+    camOptions.setPosition(box.x, box.y + 135);
+
+    camOptions.width = box.width;
+    camOptions.height = box.height - 165;
+
+    camFront = new FlxCamera();
+    camFront.bgColor = 0x00000000;
+
+    FlxG.cameras.add(camOptions, false);
+    FlxG.cameras.add(camFront, false);
+
+    changeMenu(0);
+}
+
+function generateTextBitmapData(string, fontSize)
+{
+    var text = getFormattedText(string, fontSize);
+    text.drawFrame(true);
+
+    return FlxGraphic.fromBitmapData(text.framePixels);
+}
+
+function getFormattedText(string, fontSize)
+{
+    var text = new FlxText(0, 0, -1, string);
+    text.setFormat(Paths.modsFont('roboto'), fontSize);
+    text.cameras = [camOptions];
+    
+    text.borderStyle = FlxTextBorderStyle.OUTLINE;
+    text.borderSize = 4;
+    text.borderColor = 0xFF000000;
+
+    return text;
+}
+
+function tweenMouse(x, y, camCheck)
+{
+    tweening = true;
+
+    FlxTween.cancelTweensOf(mPos);
+    FlxTween.tween(mPos, {x: x, y: y}, 0.5, {ease: FlxEase.expoOut, onUpdate: (_)->
+    {
+        Lib.application.window.warpMouse(mPos.x, mPos.y - (camCheck ? camOptions.scroll.y - camOptions.y : 0));
+    }, onComplete: (t)->
+    {
+        tweening = false;
+    }});
+}
+
+function goBack()
+{
+    spritesToRemove.push(lArrow);
+    spritesToRemove.push(rArrow);
+    spritesToRemove.push(box);
+    spritesToRemove.push(optionsText);
+
+    for (sprite in titleSprites)
+        spritesToRemove.push(sprite);
+
+    for (sprite in spritesToRemove)
+    {
+        FlxTween.tween(sprite, {alpha: 0}, 1, {ease: FlxEase.expoOut, onComplete: (t)->
+        {
+            sprite.destroy();
+        }});
+    }
+
+    bg.animation.play('intro', true, true);
+    bg.animation.finishCallback = null;
+    bg.animation.timeScale = 2;
+    FlxTween.tween(bg, {alpha: 0}, 1, {startDelay: 2, onComplete: (t)->
+    {
+        LoadingState.loadAndSwitchCustomState('MainMenuState');
+    }});
+
+    ClientPrefs.saveSettings();
 }

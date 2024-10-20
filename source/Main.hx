@@ -46,7 +46,7 @@ class Main extends Sprite
 	public static var curMusicName:String = "";
 
 	public static inline final MOD_NAME:String = 'core';
-	public static inline final ALERT_TITLE:String = 'FNF: TIME';
+	public static inline final ALERT_TITLE:String = 'HOT & COLD';
 
 	var gameWidth:Int = 720; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
@@ -109,7 +109,7 @@ class Main extends Sprite
 		a2.time.util.Controls.instance = new a2.time.util.Controls();
 
 		#if !mobile
-		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		fpsVar = new FPS(3, 3, 0xFFFFFF);
 		addChild(fpsVar);
 
 		Lib.current.stage.align = "tl";

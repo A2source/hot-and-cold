@@ -11,23 +11,38 @@ import a2.time.states.IntroState;
 // Add a variable here and it will get automatically saved
 @:structInit class SaveVariables 
 {
+	// gameplay
 	public var downScroll:Bool = false;
 	public var middleScroll:Bool = false;
+	public var ghostTapping:Bool = true;
+	public var noReset:Bool = false;
+	public var hitsoundVolume:Float = 0;
+
+	public var noteOffset:Int = 0;
+	public var ratingOffset:Int = 0;
+	public var sickWindow:Int = 45;
+	public var goodWindow:Int = 90;
+	public var badWindow:Int = 135;
+	public var safeFrames:Float = 10;
+	//
+
+	// visuals & ui
 	public var showFPS:Bool = true;
 	public var flashing:Bool = true;
 	public var autoPause:Bool = true;
+	public var camZooms:Bool = true;
+	public var hideHud:Bool = false;
+	public var discordRPC:Bool = true;
+	public var healthBarAlpha:Float = 1;
+	//
+
+	// graphics
 	public var antialiasing:Bool = true;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;
 	public var framerate:Int = 60;
-	public var camZooms:Bool = true;
-	public var hideHud:Bool = false;
-	public var noteOffset:Int = 0;
+	//
 
-	public var ghostTapping:Bool = true;
-	public var noReset:Bool = false;
-	public var healthBarAlpha:Float = 1;
-	public var hitsoundVolume:Float = 0;
 	public var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -49,14 +64,6 @@ import a2.time.states.IntroState;
 		'botplay' => false,
 		'opponentplay' => false
 	];
-
-	public var comboOffset:Array<Int> = [0, 0, 0, 0];
-	public var ratingOffset:Int = 0;
-	public var sickWindow:Int = 45;
-	public var goodWindow:Int = 90;
-	public var badWindow:Int = 135;
-	public var safeFrames:Float = 10;
-	public var discordRPC:Bool = true;
 }
 
 class ClientPrefs

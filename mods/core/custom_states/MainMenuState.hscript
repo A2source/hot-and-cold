@@ -25,7 +25,7 @@ var selec = 0;
 var lHand = {
     sprite: null,
     pos: {x: FlxG.width / 2 - 50, y: -70},
-    offset: {x: -95, y: 0},
+    offset: {x: -270, y: 0},
     shakeSpeed: 10,
     shakeIntensity: 1,
     shakeState: 0,
@@ -36,7 +36,7 @@ var lHand = {
 var rHand = {
     sprite: null,
     pos: {x: FlxG.width / 2 + 50, y: -70},
-    offset: {x: -95, y: 0},
+    offset: {x: -270, y: 0},
     shakeSpeed: 10,
     shakeIntensity: 1,
     shakeState: 0,
@@ -62,11 +62,15 @@ var finalPosition = [
 var logo;
 var logoShadow;
 
-var skipped;
+var skipped = false;
 var transitioning;
+
+var mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
 
 function create()
 {
+    DiscordClient.changePresence('Main Menu');
+
     bg = new FlxSprite().loadSparrow('custom_states/main', 'main');
     bg.animation.addByPrefix('intro', 'intro', 5, false);
     bg.animation.addByPrefix('loop', 'loop', 5, true);
@@ -94,18 +98,27 @@ function create()
 
             hand.sprite.angle = angles[hand];
 
+            FlxTween.cancelTweensOf(hand);
+            FlxTween.cancelTweensOf(hand.sprite);
+            FlxTween.cancelTweensOf(hand.sprite.scale);
+            FlxTween.cancelTweensOf(hand.pos);
+
             FlxTween.tween(hand.sprite.scale, {x: 0.3, y: 0.3}, 1, {ease: FlxEase.expoOut});
 
             hand.pos.x = finalPosition[hand].x;
             hand.pos.y = finalPosition[hand].y;
 
+            hand.sprite.x = finalPosition[hand].x;
+            hand.sprite.y = finalPosition[hand].y;
+
             hand.shakeSpeed = 25;
             hand.shakeIntensity = 0.5;
+            hand.shakeState = 0;
         }
 
         spawnLogo();
 
-        FlxG.camera.flash(0xFFFFFFFF, 2);
+        FlxG.camera.flash(0xFFFFFFFF, 3);
 
         skipped = true;
 
@@ -150,17 +163,50 @@ function create()
     });
 }
 
+var tweening;
 function update(dt)
 {
     if (FlxG.keys.justPressed.SEVEN) LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
+
+    if (controls.ACCEPT && skipped && !transitioning) menuItems[selec].sprite.onClick();
     if (controls.ACCEPT && !skipped) bg.animation.finish();
 
     updateHands(dt);
+
+    if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
+    
+    if (controls.UI_UP_P) select(-1);
+    if (controls.UI_DOWN_P) select(1);
+}
+
+function select(amt)
+{
+    if (!skipped || transitioning)
+        return;
+
+    selec += amt;
+
+    if (selec >= menuItems.length)
+        selec = 0;
+    if (selec < 0)
+        selec = menuItems.length - 1;
+
+    var item = menuItems[selec];
+    tweening = true;
+
+    FlxTween.cancelTweensOf(mPos);
+    FlxTween.tween(mPos, {x: item.sprite.x + item.sprite.width - 30, y: item.sprite.y + item.sprite.height - 25}, 0.5, {ease: FlxEase.expoOut, onUpdate: (_)->
+    {
+        Lib.application.window.warpMouse(mPos.x, mPos.y);
+    }, onComplete: (t)->
+    {
+        tweening = false;
+    }});
 }
 
 function updateHands(dt)
 {
-    var val = 1 - Math.exp(dt * -150);
+    var val = 1 - Math.exp(dt);
     for (hand in [lHand, rHand])
     {
         if (hand.sprite == null)
@@ -246,7 +292,7 @@ function spawnMenuItems()
             {
                 if (thing.id == selec)
                 {
-                    thing.sprite.scale.set(0.8, 0.8);
+                    FlxTimer.wait(0.09 * thing.id, ()-> { thing.sprite.scale.set(0.8, 0.8); });
                     FlxTween.tween(thing.sprite.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut, startDelay: 0.1 * thing.id, onComplete: (t)->
                     {
                         FlxTimer.wait(0.5, ()->
@@ -297,7 +343,7 @@ function spawnMenuItems()
         sprite.screenCenter();
 
         sprite.y += FlxG.height * i + Y_OFFSET;
-        
+
         menuItems.push(me);
 
         i += 1 / 8;
