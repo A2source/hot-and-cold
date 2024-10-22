@@ -74,7 +74,7 @@ function onEvent(name, v1, v2, v3)
 
             smoke.flipX = !right;
             smoke.alpha = 0;
-            FlxTween.tween(smoke, {alpha: 0.6}, 3, {ease: FlxEase.expoOut});
+            game.modchartTweens['smoke in ' + i] = FlxTween.tween(smoke, {alpha: 0.6}, 3 / game.playbackRate, {ease: FlxEase.expoOut});
             smoke.velocity.x = right ? -10 : 10;
             smokes.push(smoke);
         }
@@ -88,13 +88,16 @@ function onEvent(name, v1, v2, v3)
 
     if (!on)
     {
+        var i = 0;
         for (smoke in smokes)
         {
-            FlxTween.tween(smoke, {alpha: 0}, 1, {ease: FlxEase.expoIn, onComplete: (twn)->
+            game.modchartTweens['smoke out ' + i] = FlxTween.tween(smoke, {alpha: 0}, 1 / game.playbackRate, {ease: FlxEase.expoIn, onComplete: (twn)->
             {
                 remove(smoke);
                 smoke.destroy();
             }});
+
+            i++;
         }
 
         smokes = [];
@@ -104,7 +107,7 @@ function onEvent(name, v1, v2, v3)
 
     spotlight.visible = false;
     
-    FlxTimer.wait(0.3, ()->
+    game.modchartTimers['load rim light spotlight'] = FlxTimer.wait(0.3 / game.playbackRate, ()->
     {
         spotlight.visible = on;
 

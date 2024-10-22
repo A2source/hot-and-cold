@@ -67,6 +67,24 @@ var cooldown = [
     'pigge' => false
 ];
 
+var positions = [
+    550,
+    575,
+    600,
+    625,
+    650,
+    675
+];
+
+var groups = [
+    '550' => new FlxSpriteGroup(),
+    '575' => new FlxSpriteGroup(),
+    '600' => new FlxSpriteGroup(),
+    '625' => new FlxSpriteGroup(),
+    '650' => new FlxSpriteGroup(),
+    '675' => new FlxSpriteGroup()
+];
+
 function start(song)
 {
     var doChoice = FlxG.random.bool(33);
@@ -78,6 +96,16 @@ function start(song)
     var bg = new FlxBackdrop(Paths.timeImage(Paths.stageImage('battlecats/bg/' + (doChoice ? (rare ? 'rare' : '') : ''), '' + (doChoice ? choice : 0))), 0x01);
     bg.scale.set(3, 3);
     addSprite(bg, BEHIND_ALL);
+
+    for (y in [550, 575, 600])
+        addSprite(groups['' + y], BEHIND_ALL);
+
+    for (y in [625, 650, 675])
+        game.insert(game.length, groups['' + y]);
+
+    for (array in [cats, enemies])
+        for (name in array)
+            var sprite = new FlxSprite().loadSparrow('stages/battlecats/walkers', name);
 }
 
 function beatHit(beat)
@@ -86,6 +114,7 @@ function beatHit(beat)
         spawnWalker();
 }
 
+var i = 0;
 function spawnWalker()
 {
     var isEnemy = FlxG.random.bool(50);
@@ -104,7 +133,7 @@ function spawnWalker()
 
     var spawnPosition = {
         x: isEnemy ? -1000 : 1200,
-        y: FlxG.random.int(550, 675)
+        y: positions[FlxG.random.int(0, positions.length - 1)]
     }
 
     var sprite = new FlxSprite(spawnPosition.x + offsets[walker].x, spawnPosition.y + offsets[walker].y).loadSparrow('stages/battlecats/walkers', walker);
@@ -117,20 +146,17 @@ function spawnWalker()
 
     trace('spawning walker "' + walker + '" ' + isEnemy + ' ' + spawnPosition.y);
 
-    var above = spawnPosition.y >= 625;
-
-    if (above)
-        insert(game.length, sprite);
-    else
-        addSprite(sprite, BEHIND_ALL);
+    groups['' + spawnPosition.y].add(sprite);
 
     sprite.velocity.x = speeds[walker];
 
     cooldown[walker] = true;
 
-    FlxTimer.wait(30, ()->
+    game.modchartTimers['kill walker ' + i] = FlxTimer.wait(30, ()->
     {
         remove(sprite);
         sprite.destroy();
     });
+
+    i++;
 }

@@ -25,7 +25,7 @@ function runGhost(note, isDad)
     }
     char.prevDir = note.noteData;
 
-    FlxTimer.wait(0.03, ()->
+    game.modchartTimers['set prevdir ' + isDad] = FlxTimer.wait(0.03, ()->
     {
         char.prevDir = -1;
     });

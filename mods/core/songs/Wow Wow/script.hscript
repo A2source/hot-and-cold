@@ -1,0 +1,10 @@
+function start(song)
+{
+    game.camHUD.visible = false;
+}
+
+function stepHit(step)
+{
+    if (step == 1)
+        game.camHUD.visible = true;
+}

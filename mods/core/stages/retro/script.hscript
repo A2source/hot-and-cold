@@ -135,5 +135,5 @@ function summon(name)
 {
     var target = name == 'koopa' ? koopa : lakitu;
     
-    FlxTween.tween(target, {y: target.y - 600}, 3, {ease: FlxEase.expoOut});
+    game.modchartTweens['move ' + name + ' in'] = FlxTween.tween(target, {y: target.y - 600}, 3 / game.playbackRate, {ease: FlxEase.expoOut});
 }

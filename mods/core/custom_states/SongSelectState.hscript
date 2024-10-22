@@ -14,6 +14,7 @@ var curSongText;
 
 var completed;
 var gameplayChangers;
+var gameplayChangersOpen = false;
 
 var songs = [
     'Gacha',
@@ -67,9 +68,6 @@ function create()
     if (FlxG.save.data.hcSongIndex == null)
         FlxG.save.data.hcSongIndex = selec;
 
-    selec = FlxG.save.data.hcSongIndex;
-    FlxG.save.flush();
-
     // unlock neil if you've completed every song
     var allDone = true;
     for (song in songs)
@@ -77,7 +75,13 @@ function create()
             allDone = false;
 
     if (allDone)
-        songs += 'Wow Wow';
+        songs.push('Wow Wow');
+
+    if (FlxG.save.data.hcSongIndex >= songs.length)
+        FlxG.save.data.hcSongIndex = songs.length - 1;
+
+    selec = FlxG.save.data.hcSongIndex;
+    FlxG.save.flush();
 
     bg = new FlxSprite().loadSparrow('custom_states/song select', 'song');
     bg.animation.addByPrefix('intro', 'intro', 5, false);
@@ -108,23 +112,28 @@ function create()
     bg.screenCenter();
 }
 
-var tweening = false;
-var mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
 var keyboard = false;
 
 function update(dt)
 {
+    if (gameplayChangersOpen)
+        return;
+
     if (controls.BACK && skipped) goBack();
 
-    if (controls.ACCEPT && skipped && !transitioning) vertSelec == 0 ? portrait.onClick() : gameplayChangers.onClick();
+    if (controls.ACCEPT && skipped && !transitioning) 
+    {
+        vertSelec == 0 ? portrait.onClick() : gameplayChangers.onClick();
+        tweenMouseOff();
+    }
     if (controls.ACCEPT && !skipped) bg.animation.finish();
 
-    if (controls.UI_LEFT_P)
+    if (controls.UI_LEFT_P && lArrow != null)
     {
         keyboard = true;
         lArrow.onClick();
     } 
-    if (controls.UI_RIGHT_P)
+    if (controls.UI_RIGHT_P && rArrow != null)
     {
         keyboard = true;
         rArrow.onClick();
@@ -132,8 +141,6 @@ function update(dt)
 
     if (controls.UI_UP_P) changeVerticalSelection(-1);
     if (controls.UI_DOWN_P) changeVerticalSelection(1);
-
-    if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
 }
 
 function changeSelection(amt)
@@ -205,16 +212,7 @@ function changeVerticalSelection(amt)
 
     var sprite = vertSelec == 0 ? portrait : gameplayChangers;
 
-    tweening = true;
-
-    FlxTween.cancelTweensOf(mPos);
-    FlxTween.tween(mPos, {x: sprite.x + sprite.width - 30, y: sprite.y + sprite.height - 25}, 0.5, {ease: FlxEase.expoOut, onUpdate: (_)->
-    {
-        Lib.application.window.warpMouse(mPos.x, mPos.y);
-    }, onComplete: (t)->
-    {
-        tweening = false;
-    }});
+    tweenMouse(sprite.x + sprite.width - 30, sprite.y + sprite.height - 25);
 }
 
 var ARROW_X_OFFSET = 3;
@@ -253,6 +251,9 @@ function addUI()
 
     lArrow.onClick = ()->
     {
+        if (transitioning || !skipped)
+            return;
+
         lArrow.animation.play('use', true);
 
         if (finishedAnim.left)
@@ -288,6 +289,9 @@ function addUI()
 
     rArrow.onClick = ()->
     {
+        if (transitioning || !skipped)
+            return;
+
         rArrow.animation.play('use', true);
 
         if (finishedAnim.right)
@@ -374,7 +378,19 @@ function addUI()
     gameplayChangers.x -= 235;
     gameplayChangers.y += 235;
 
-    gameplayChangers.onClick = ()-> { trace(':)'); }
+    gameplayChangers.onClick = ()-> 
+    { 
+        if (transitioning && !skipped)
+            return;
+            
+        gameplayChangersOpen = true;
+
+        var sub = new CustomSubState('GameplayChangersSubState', null);
+        sub.hscriptManager.setAll('menu', this);
+        this.openSubState(sub);
+
+        persistentUpdate = false;
+    }
 
     add(backing);
     add(songSelectText);
@@ -389,8 +405,17 @@ function addUI()
     add(gameplayChangers);
 }
 
+function onCloseSubState()
+{
+    gameplayChangersOpen = false;
+    persistentUpdate = true;
+}
+
 function goBack()
 {
+    if (transitioning || !skipped)
+        return;
+
     transitioning = true;
 
     for (item in [backing, portrait, songSelectText, curSongText, lArrow, rArrow, gameplayChangers, completed])

@@ -51,7 +51,7 @@ function goodNoteHit(note)
 
     var focus = charFocus;
 
-    timers[charFocus].start(0.6, ()->
+    timers[charFocus].start(0.6 / game.playbackRate, ()->
     {
         if (focus != charFocus)
             return;
@@ -79,7 +79,7 @@ function opponentNoteHit(note)
 
     var focus = charFocus;
 
-    timers[charFocus].start(0.6, ()->
+    timers[charFocus].start(0.6 / game.playbackRate, ()->
     {
         if (focus != charFocus)
             return;

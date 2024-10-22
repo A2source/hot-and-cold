@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="reru-text.png" width="948" height="178" spritePadding="4" borderPadding="1">
+	<SubTexture name="reru-text0001" x="1" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+	<SubTexture name="reru-text0002" x="1" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+	<SubTexture name="reru-text0003" x="1" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+	<SubTexture name="reru-text0004" x="476" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+	<SubTexture name="reru-text0005" x="476" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+	<SubTexture name="reru-text0006" x="476" y="1" width="471" height="176" frameX="0" frameY="0" frameWidth="471" frameHeight="176"/>
+</TextureAtlas>

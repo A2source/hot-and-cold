@@ -98,6 +98,9 @@ class CustomState extends MusicBeatState
 
 	private var hscriptManager:HscriptManager;
 
+	public static var mPos:{x:Float, y:Float} = {x: FlxG.width / 2, y: FlxG.height / 2}
+	public static var tweening:Bool = false;
+
 	// returns an interp with lots of the basic classes set
 	public static function getBasicInterp(name:String = 'hscript'):Interp
 	{
@@ -250,6 +253,11 @@ class CustomState extends MusicBeatState
 		interp.variables.set('UIShortcuts', a2.time.util.UIShortcuts);
 		interp.variables.set('UiS', a2.time.util.UIShortcuts);
 
+		interp.variables.set('tweening', CustomState.tweening);
+		interp.variables.set('mPos', CustomState.mPos);
+		interp.variables.set('tweenMouse', CustomState.tweenMouse);
+		interp.variables.set('tweenMouseOff', CustomState.tweenMouseOff);
+
 		interp.variables.set('Button', haxe.ui.components.Button);
 		interp.variables.set('TextField', haxe.ui.components.TextField);
 		interp.variables.set('TextArea', haxe.ui.components.TextArea);
@@ -302,6 +310,9 @@ class CustomState extends MusicBeatState
 		trace('Creating new custom state "$stateName" from mod "$modDirectory"');
 		trace(Paths.mods('custom_states', modDirectory));
 
+		mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
+		tweening = false;
+
 		hscriptManager = new HscriptManager(injectInterp);
 		hscriptManager.addScriptFromPath(Paths.customState(stateName, modDirectory));
 		hscriptManager.callAll('create', []);
@@ -310,10 +321,36 @@ class CustomState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
+
 		hscriptManager.callAll('update', [elapsed]);
 
 		// reset the state
 		if (FlxG.keys.justPressed.ONE) LoadingState.loadAndSwitchCustomState(stateName, modDirectory);
+	}
+
+	public static function tweenMouse(x:Float, y:Float, ?camera:FlxCamera = null, ?time:Float = 0.5)
+	{
+		tweening = true;
+
+		FlxTween.cancelTweensOf(mPos);
+		FlxTween.tween(mPos, {x: x, y: y}, time, {ease: FlxEase.expoOut, onUpdate: (_)->
+		{
+			var desiredY:Float = mPos.y;
+
+			if (camera != null)
+				desiredY -= (camera.scroll.y - camera.y);
+			
+			Lib.application.window.warpMouse(Std.int(mPos.x), Std.int(desiredY));
+		}, onComplete: (t)->
+		{
+			tweening = false;
+		}});
+	}
+
+	public static function tweenMouseOff()
+	{
+		tweenMouse(FlxG.width + 25, FlxG.height / 2);
 	}
 
 	override function beatHit()

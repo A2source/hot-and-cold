@@ -1,4 +1,10 @@
 function create()
 {
-    Sys.exit(0);
+    FlxTween.tween(Lib.application.window, {width: 120, height: 0}, 1, {ease: FlxEase.expoOut, onUpdate: (_)->
+    {
+        CoolUtil.centerWindow();
+    }, onComplete: (t)->
+    {
+        Sys.exit(0);
+    }});
 }

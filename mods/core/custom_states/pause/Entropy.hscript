@@ -57,6 +57,7 @@ function create()
         hitbox.onClick = ()-> 
         {
             game.closeSubState();
+            game.pauseStuff();
 
             if (['NEW GAME', 'QUIT'].contains(option))
             {
@@ -126,7 +127,33 @@ function create()
 
 function update(dt)
 {
-    if (controls.BACK) game.closeSubState();
+    if (controls.BACK)
+    {
+        tweenMouseOff();
+        game.closeSubState();
+    }
+
+    if (controls.UI_UP_P) select(-1);
+    if (controls.UI_DOWN_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        menuItems[selec].hitbox.onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 2)
+        selec = 0;
+    if (selec < 0)
+        selec = 2;
+
+    var button = menuItems[selec].hitbox;
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
 }
 
 function onClose()

@@ -53,7 +53,15 @@ var textOptions = [
     'Gyatt',
     'A2 please unblock me, i am sorry\nHELLO\n@[A2] PLEASE ANSWER',
     'After rain, there\'s thunder!',
-    'oh jes oh jes'
+    'oh jes oh jes',
+    'Why so feinious',
+    'Fein fein fein fein',
+    'I like my cheese drippy bruh',
+    'I like my cheese moldy bruh',
+    'I like my cheese frownkler bruh',
+    'Go into any Roblox game and say "fat"',
+    'I\'m in the thick of it',
+    'I\'m in my lunchly'
 ];
 
 var screen;
@@ -67,6 +75,7 @@ var letters = 'qwertyuiopasdfghjklzxcvbnm';
 var numbers = '0123456789';
 
 var menuItems = [];
+var selec = 0;
 
 function create()
 {
@@ -131,6 +140,7 @@ function create()
         hitbox.onClick = ()->
         {
             game.closeSubState();
+            game.pauseStuff();
 
             if (['Restart', 'Exit'].contains(item))
             {
@@ -210,7 +220,33 @@ function create()
 
 function update(dt)
 {
-    if (controls.BACK) game.closeSubState();
+    if (controls.BACK)
+    {
+        tweenMouseOff();
+        game.closeSubState();
+    }
+
+    if (controls.UI_LEFT_P) select(-1);
+    if (controls.UI_RIGHT_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        menuItems[selec].hitbox.onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 2)
+        selec = 0;
+    if (selec < 0)
+        selec = 2;
+
+    var button = menuItems[selec].hitbox;
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
 }
 
 function onClose()

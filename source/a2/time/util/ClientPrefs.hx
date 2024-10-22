@@ -61,8 +61,7 @@ import a2.time.states.IntroState;
 		'healthloss' => 1.0,
 		'instakill' => false,
 		'practice' => false,
-		'botplay' => false,
-		'opponentplay' => false
+		'botplay' => false
 	];
 }
 

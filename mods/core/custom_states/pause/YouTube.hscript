@@ -14,6 +14,8 @@ var timeText;
 var options = ['Resume', 'Restart', 'Exit'];
 var buttons = [];
 
+var selec = 0;
+
 var closed = false;
 
 var selectedOption = 'Resume';
@@ -89,6 +91,7 @@ function create()
         back.onClick = ()-> 
         {
             game.closeSubState();
+            game.pauseStuff();
 
             if (['Restart', 'Exit'].contains(item))
             {
@@ -167,7 +170,33 @@ function create()
 
 function update(dt)
 {
-    if (controls.BACK) game.closeSubState();
+    if (controls.BACK)
+    {
+        tweenMouseOff();
+        game.closeSubState();
+    }
+
+    if (controls.UI_LEFT_P) select(-1);
+    if (controls.UI_RIGHT_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        buttons[selec].back.onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 2)
+        selec = 0;
+    if (selec < 0)
+        selec = 2;
+
+    var button = buttons[selec].back;
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
 }
 
 function onClose()

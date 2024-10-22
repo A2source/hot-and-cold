@@ -15,6 +15,8 @@ var positions = [
     'exit' => {x: FlxG.width / 2 - 176, y: FlxG.height / 2 + 58}
 ];
 
+var selec = 0;
+
 function create()
 {
     window = new FlxSprite().load(Paths.modsImage('pause/bc'));
@@ -32,6 +34,7 @@ function create()
         button.onClick = ()-> 
         {
             game.closeSubState();
+            game.pauseStuff();
 
             if (['restart', 'exit'].contains(item))
             {
@@ -64,7 +67,33 @@ function create()
 
 function update(dt)
 {
-    if (controls.BACK) game.closeSubState();
+    if (controls.BACK)
+    {
+        tweenMouseOff();
+        game.closeSubState();
+    }
+
+    if (controls.UI_UP_P) select(-1);
+    if (controls.UI_DOWN_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        buttons[selec].onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 2)
+        selec = 0;
+    if (selec < 0)
+        selec = 2;
+
+    var button = buttons[selec];
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
 }
 
 function onClose()

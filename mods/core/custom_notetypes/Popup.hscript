@@ -18,14 +18,14 @@ function goodNoteHit(note)
     insert(game.length, popup);
 
     popup.scale.set(0.5, 0.5);
-    FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2, {ease: FlxEase.backOut});
+    game.modchartTweens['popup fade in ' + i] = FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2 / game.playbackRate, {ease: FlxEase.backOut});
 
     var type = types[FlxG.random.int(0, types.length)];
-    var data = {sprite: popup, type: type, id: i};
+    var data = {sprite: popup, type: type, id: i, left: false, up: false, x: popup.x, y: popup.y};
 
-    FlxTimer.wait(FlxG.random.int(3, 4), ()->
+    game.modchartTimers['popup wait fade ' + i] = FlxTimer.wait(FlxG.random.int(3, 4), ()->
     {
-        FlxTween.tween(popup, {alpha: 0}, 2, {onComplete: (tween)->
+        game.modchartTweens['popup fade out ' + i] = FlxTween.tween(popup, {alpha: 0}, 2 / game.playbackRate, {onComplete: (tween)->
         {
             popup.active = false;
             popup.destroy();
@@ -41,10 +41,6 @@ function goodNoteHit(note)
         case 'bounce':
             popup.velocity.x = FlxG.random.bool(50) ? WINDOW_VELOCITY : -WINDOW_VELOCITY;
             popup.velocity.y = FlxG.random.bool(50) ? WINDOW_VELOCITY : -WINDOW_VELOCITY;
-
-        case 'dance':
-            FlxTween.tween(popup, {x: popup.x + 20}, 0.8, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
-            FlxTween.tween(popup, {y: popup.y + 20}, 0.8 / 3, {ease: FlxEase.expoOut, type: FlxTween.PINGPONG});
     }
 
     if (spin && FlxG.random.bool(25))
@@ -73,7 +69,6 @@ function update(dt)
                     flipped.x = true;
                     popup.sprite.x = FlxG.width - popup.sprite.width - 1;
                 }
-                    
                 
                 if (popup.sprite.x < 0)
                 {
@@ -99,6 +94,24 @@ function update(dt)
                 if (flipped.y)
                     popup.sprite.velocity.y = -popup.sprite.velocity.y;
         }
+    }
+}
+
+function beatHit(beat)
+{
+    for (popup in popups)
+    {
+        if (popup.type != 'dance' || !popup.sprite.active)
+            continue;
+
+        if (beat % 2 == 0)
+        {
+            game.modchartTweens['popup vertical ' + popup.id] = FlxTween.tween(popup.sprite, {x: popup.x + (popup.left ? -10 : 10)}, 0.8 / game.playbackRate, {ease: FlxEase.expoOut});
+            popup.left = !popup.left;
+        }
+
+        game.modchartTweens['popup horizontal ' + popup.id] = FlxTween.tween(popup.sprite, {y: popup.y + (popup.up ? -10 : 10)}, 0.8 / 3 / game.playbackRate, {ease: FlxEase.expoOut});
+        popup.up = !popup.up;
     }
 }
 

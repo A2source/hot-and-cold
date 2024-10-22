@@ -1,0 +1,194 @@
+var names = [
+    'asssoda',
+    'awesome',
+    'elusive',
+    'flip',
+    'fries',
+    'gay',
+    'happy',
+    'meh',
+    'ourp',
+    'plush',
+    'sad'
+];
+
+var screen;
+var sprite;
+
+var options = ['Restart', 'Exit'];
+
+var menuItems = [];
+var selec = 0;
+
+function create()
+{
+    FlxTimer.wait(1, addStuff);
+}
+
+function addStuff()
+{
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.cameras = [game.camOther2];
+
+    add(screen);
+
+    if (FlxG.sound.music != null)
+        FlxG.sound.music.volume = 0;
+
+    if (game.vocals != null)
+        game.vocals.volume = 0;
+
+    var random = names[FlxG.random.int(0, names.length - 1)];
+
+    sprite = new FlxSprite().load(Paths.modsImage('dead/' + random));
+    sprite.cameras = [game.camOther2];
+
+    while (sprite.width > 175)
+    {
+        sprite.scale.set(sprite.scale.x - 0.1, sprite.scale.y - 0.1);
+        sprite.updateHitbox();
+    }
+
+    var scaleToSet = {x: sprite.scale.x, y: sprite.scale.y}
+
+    sprite.screenCenter();
+    sprite.x += 15;
+    sprite.scale.set(0, 0);
+
+    FlxTween.tween(sprite.scale, {x: scaleToSet.x, y: scaleToSet.y}, 0.5, {ease: FlxEase.backOut});
+
+    var i = -0.25;
+    for (item in options)
+    {
+        var letters = [];
+        var width = 0;
+
+        for (character in item.split(''))
+        {
+            var letter = new FlxText(0, 0, -1, character);
+            letter.size = 26;
+            letter.antialiasing = false;
+            letters.push(letter);
+
+            width += letter.width;
+        }
+
+        var hitbox = new InteractableSprite();
+        hitbox.makeGraphic(width - (4 * (item.split('').length - 1)), 20 * 1.5, 0xFFFF0000);
+        hitbox.alpha = 0;
+        hitbox.cameras = [game.camOther2];
+
+        hitbox.onClick = ()->
+        {
+            game.closeSubState();
+            game.pauseStuff();
+
+            switch(item)
+            {
+                case 'Restart':
+                    LoadingState.loadAndSwitchState(new PlayState());
+
+                case 'Exit':
+                    LoadingState.loadAndSwitchCustomState('SongSelectState');
+            }
+        }
+        
+        hitbox.onHover = ()->
+        {
+            var i = 0;
+            for (letter in letters)
+            {
+                FlxTween.tween(letter, {y: letter.y - 10}, 1, {ease: FlxEase.sineOut, startDelay: i * 0.1, onComplete: (tween)->
+                {
+                    FlxTween.tween(letter, {y: letter.y + 10}, 1, {ease: FlxEase.sineInOut, type: FlxTween.PINGPONG});
+                }});
+
+                letter.color = colorFromRGB(FlxG.random.int(0, 255), FlxG.random.int(0, 255), FlxG.random.int(0, 255));
+                
+                i++;
+            }
+        }
+
+        hitbox.onExit = ()->
+        {
+            for (letter in letters)
+            {
+                FlxTween.cancelTweensOf(letter);
+                FlxTween.tween(letter, {y: FlxG.height / 2 - letter.height / 4}, 1, {ease: FlxEase.expoOut});
+
+                letter.color = 0xFFFFFFFF;
+            }
+        }
+
+        add(hitbox);
+
+        hitbox.screenCenter();
+        hitbox.x += FlxG.width * i;
+
+        var total = 0;
+        for (letter in letters)
+        {
+            letter.x = hitbox.x + total;
+            letter.y = FlxG.height / 2 - letter.height / 4;
+
+            letter.borderStyle = FlxTextBorderStyle.SHADOW;
+            letter.borderSize = 4;
+            letter.borderColor = 0xFF000000;
+
+            letter.cameras = [game.camOther2];
+            add(letter);
+
+            total += letter.width - 2;
+        }
+
+        i = Math.abs(i);
+
+        menuItems.push({hitbox: hitbox, letters: letters});
+    }
+
+    add(sprite);
+}
+
+function update(dt)
+{
+    if (controls.UI_LEFT_P) select(-1);
+    if (controls.UI_RIGHT_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        menuItems[selec].hitbox.onClick();
+    }
+
+    game.camGame.visible = false;
+    game.camHUD.visible = false;
+    game.camSustains.visible = false;
+    game.camNotes.visible = false;
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 1)
+        selec = 0;
+    if (selec < 0)
+        selec = 1;
+
+    var button = menuItems[selec].hitbox;
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
+}
+
+function onClose()
+{
+    screen.destroy();
+    sprite.destroy();
+
+    for (item in menuItems)
+    {
+        item.hitbox.destroy();
+
+        for (letter in item.letters)
+            letter.destroy();
+    }
+}

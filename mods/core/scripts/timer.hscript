@@ -20,7 +20,7 @@ function stepHit(step)
 
     songLength = FlxG.sound.music.length;
 
-    FlxTween.tween(timer, {alpha: 1}, 1, {ease: FlxEase.expoOut});
+    game.modchartTweens['timer in'] = FlxTween.tween(timer, {alpha: 1 / game.playbackRate}, 1, {ease: FlxEase.expoOut});
 }
 
 var done = false;

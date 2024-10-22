@@ -1,0 +1,43 @@
+var text;
+
+function start(song)
+{
+    text = new FlxText(0, 0, -1, 'BOTPLAY');
+    text.setFormat(Paths.modsFont('vcr'), 20, 0xFFFFFFFF, 'center', FlxTextBorderStyle.OUTLINE, 0xFF000000);
+    text.borderSize = 3;
+    text.cameras = [game.camHUD];
+
+    if (!game.cpuControlled)
+        text.text = '';
+
+    if (game.instakillOnMiss)
+        text.text = 'INSTAKILL';
+
+    if (game.practiceMode)
+        text.text = 'PRACTICE';
+
+    var x = FlxG.width / 2 - text.width / 2;
+    if (!ClientPrefs.data.middleScroll)
+        x = FlxG.width * 0.2 - text.width / 2;
+
+    text.setPosition(x, game.strumLine.y + 35);
+    add(text);
+}
+
+function update(dt)
+{
+    if (text == null)
+        return;
+
+    switch(text.text)
+    {
+        case 'BOTPLAY':
+            text.visible = game.cpuControlled;
+
+        case 'PRACTICE':
+            text.visible = game.practiceMode;
+
+        case 'INSTAKILL':
+            text.visible = game.instakillOnMiss;
+    }
+}

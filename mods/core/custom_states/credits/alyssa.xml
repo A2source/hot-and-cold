@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="alyssa.png" width="368" height="1421" spritePadding="4" borderPadding="1">
+	<SubTexture name="alyssa0001" x="1" y="713" width="366" height="707" frameX="0" frameY="-1" frameWidth="366" frameHeight="708"/>
+	<SubTexture name="alyssa0002" x="1" y="713" width="366" height="707" frameX="0" frameY="-1" frameWidth="366" frameHeight="708"/>
+	<SubTexture name="alyssa0003" x="1" y="713" width="366" height="707" frameX="0" frameY="-1" frameWidth="366" frameHeight="708"/>
+	<SubTexture name="alyssa0004" x="1" y="1" width="365" height="708" frameX="-1" frameY="0" frameWidth="366" frameHeight="708"/>
+	<SubTexture name="alyssa0005" x="1" y="1" width="365" height="708" frameX="-1" frameY="0" frameWidth="366" frameHeight="708"/>
+	<SubTexture name="alyssa0006" x="1" y="1" width="365" height="708" frameX="-1" frameY="0" frameWidth="366" frameHeight="708"/>
+</TextureAtlas>

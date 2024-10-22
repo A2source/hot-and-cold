@@ -136,6 +136,8 @@ class Note extends FlxSprite
 
 	public var ignoreNote:Bool = false;
 
+	public var isHoldEnd:Bool = false;
+
 	private function set_multSpeed(value:Float):Float 
 	{
 		resizeByRatio(value / multSpeed);
@@ -146,11 +148,11 @@ class Note extends FlxSprite
 
 	public function resizeByRatio(ratio:Float) //haha funny twitter shit
 	{
-		if(isSustainNote && !animation.curAnim.name.endsWith('end'))
-		{
-			scale.y *= ratio;
-			updateHitbox();
-		}
+		if(!isSustainNote)
+			return;
+
+		scale.y *= ratio;
+		updateHitbox();
 	}
 
 	private function set_texture(value:String):String 
@@ -212,46 +214,17 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			offsetY = -74;
-
-			if (dir == 'up')
-				offsetY -= 10;
-
 			hitsoundDisabled = true;
-			if(!ClientPrefs.data.downScroll) 
-				flipY = true;
 
-			offsetX += width / 2;
-			copyAngle = false;
+			offsetX = 66;
+			offsetY = -50;
 
-			animation.play(dir + 'end');
+			isHoldEnd = false;
 
-			updateHitbox();
+			if (!prevNote.isSustainNote)
+				isHoldEnd = true;
 
-			offsetX -= width / 2;
-
-			if (PlayState.isPixelStage)
-				offsetX += 30;
-
-			if (prevNote.isSustainNote)
-			{
-				prevNote.animation.play(dirArray[prevNote.noteData % 4] + 'hold');
-
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
-				if(PlayState.instance != null)
-				{
-					prevNote.scale.y *= PlayState.instance.songSpeed;
-				}
-
-				if(PlayState.isPixelStage) {
-					prevNote.scale.y *= 1.19;
-					prevNote.scale.y *= (6 / height); //Auto adjust note size
-				}
-				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
-			}
-			else
-				offsetY += 23;
+			loadGraphic(Paths.image('sustain'));
 
 			if(PlayState.isPixelStage) {
 				scale.y *= PlayState.daPixelZoom;
@@ -262,7 +235,10 @@ class Note extends FlxSprite
 			earlyHitMult = 1;
 
 			if (dir == 'left' || dir == 'right')
+			{
 				offsetX += 20;
+				offsetY -= 30;
+			}
 		}
 
 		x += offsetX;

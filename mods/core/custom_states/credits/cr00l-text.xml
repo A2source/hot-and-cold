@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="cr00l-text.png" width="824" height="219" spritePadding="4" borderPadding="1">
+	<SubTexture name="cr00l-text0001" x="1" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+	<SubTexture name="cr00l-text0002" x="1" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+	<SubTexture name="cr00l-text0003" x="1" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+	<SubTexture name="cr00l-text0004" x="414" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+	<SubTexture name="cr00l-text0005" x="414" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+	<SubTexture name="cr00l-text0006" x="414" y="1" width="409" height="217" frameX="0" frameY="0" frameWidth="409" frameHeight="217"/>
+</TextureAtlas>

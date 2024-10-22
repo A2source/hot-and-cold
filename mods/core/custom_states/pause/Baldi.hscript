@@ -7,6 +7,8 @@ var underline;
 var options = ['Resume', 'Restart', 'Quit'];
 var buttons = [];
 
+var selec = 0;
+
 function create()
 {
     screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
@@ -50,6 +52,7 @@ function create()
         sprite.onClick = ()-> 
         {
             game.closeSubState();
+            game.pauseStuff();
 
             if (['Restart', 'Quit'].contains(item))
             {
@@ -87,7 +90,33 @@ function create()
 
 function update(dt)
 {
-    if (controls.BACK) game.closeSubState();
+    if (controls.BACK)
+    {
+        tweenMouseOff();
+        game.closeSubState();
+    }
+
+    if (controls.UI_UP_P) select(-1);
+    if (controls.UI_DOWN_P) select(1);
+
+    if (controls.ACCEPT)
+    {
+        tweenMouseOff();
+        buttons[selec].onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 2)
+        selec = 0;
+    if (selec < 0)
+        selec = 2;
+
+    var button = buttons[selec];
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
 }
 
 function onClose()

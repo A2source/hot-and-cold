@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="pootis.png" width="431" height="1240" spritePadding="4" borderPadding="1">
+	<SubTexture name="pootis0001" x="1" y="1" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+	<SubTexture name="pootis0002" x="1" y="1" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+	<SubTexture name="pootis0003" x="1" y="1" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+	<SubTexture name="pootis0004" x="1" y="622" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+	<SubTexture name="pootis0005" x="1" y="622" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+	<SubTexture name="pootis0006" x="1" y="622" width="429" height="617" frameX="0" frameY="0" frameWidth="429" frameHeight="617"/>
+</TextureAtlas>

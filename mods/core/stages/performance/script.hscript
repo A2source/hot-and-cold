@@ -114,7 +114,7 @@ function getText(name, x)
 
 function postStart(song)
 {
-    FlxTimer.wait(1, ()->
+    game.modchartTimers['add spotlight'] = FlxTimer.wait(1 / game.playbackRate, ()->
     {
         screen = new FlxSprite(-500, -500).makeGraphic(2000, 2000, 0xFF000000);
         screen.visible = false;
@@ -150,19 +150,19 @@ function onSpotlight(focus, enable)
 
     if (!enable)
     {
-        FlxTween.tween(screen, {alpha: 0}, 1);
-        FlxTween.tween(light, {alpha: 0}, 1);
+        game.modchartTweens['spotlight screen out'] = FlxTween.tween(screen, {alpha: 0}, 1 / game.playbackRate);
+        game.modchartTweens['spotlight out'] = FlxTween.tween(light, {alpha: 0}, 1 / game.playbackRate);
 
         return;
     }
     else    
-        FlxTween.tween(screen, {alpha: 0.6}, 2, {ease: FlxEase.expoOut});
+        game.modchartTweens['spotlight screen in'] = FlxTween.tween(screen, {alpha: 0.6}, 2 / game.playbackRate, {ease: FlxEase.expoOut});
 
     screen.visible = true;
     light.visible = true;
 
     var target = char(focus);
 
-    FlxTween.tween(light, {x: target.x}, 3, {ease: FlxEase.expoOut});
-    FlxTween.tween(light, {angle: 0}, 3, {ease: FlxEase.backOut});
+    game.modchartTweens['move spotlight x'] = FlxTween.tween(light, {x: target.x}, 3 / game.playbackRate, {ease: FlxEase.expoOut});
+    game.modchartTweens['spotlight angle'] = FlxTween.tween(light, {angle: 0}, 3 / game.playbackRate, {ease: FlxEase.backOut});
 }

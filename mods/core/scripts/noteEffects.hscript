@@ -1,0 +1,121 @@
+var splashCam;
+
+var splashTrailArea;
+var holdTrailArea;
+
+var splashEmitters = [];
+var coverEmitters = [];
+
+var SPLASH_PARTICLE_AMOUNT = 25;
+var COVER_PARTICLE_AMOUNT = 35;
+
+function start(song)
+{
+    splashCam = new FlxCamera();
+    splashCam.bgColor = 0x00000000;
+    FlxG.cameras.add(splashCam, false);
+
+    splashTrailArea = new FlxTrailArea(0, 0, FlxG.width, FlxG.height);
+    splashTrailArea.delay = 1;
+    splashTrailArea.cameras = [splashCam];
+
+    holdTrailArea = new FlxTrailArea(0, 0, FlxG.width, FlxG.height);
+    holdTrailArea.delay = 1;
+    holdTrailArea.cameras = [game.camNotes];
+
+    for (i in 0...4)
+    {
+        emitter = new FlxEmitter(0, 0, SPLASH_PARTICLE_AMOUNT);
+        emitter.color.set(0xff0000, 0x00ff00);
+        emitter.speed.set(500, 520);
+        emitter.lifespan.set(0.2);
+
+        var particle;
+        for (i in 0...SPLASH_PARTICLE_AMOUNT)
+        {
+            var scale = FlxG.random.int(1, 8);
+            particle = new FlxParticle();
+            particle.makeGraphic(scale, scale);
+
+            emitter.add(particle);
+            splashTrailArea.add(particle);
+        }
+
+        emitter.cameras = [splashCam];
+
+        splashEmitters.push(emitter);
+    }
+
+    for (i in 0...4)
+    {
+        emitter = new FlxEmitter(0, 0, COVER_PARTICLE_AMOUNT);
+        emitter.color.set(0xff0000, 0x00ff00);
+        emitter.speed.set(0, 0);
+        emitter.lifespan.set(((60 / (Conductor.stepCrochet * 4)) * game.playbackRate));
+
+        emitter.width = 45;
+        emitter.height = 5;
+
+        var particle;
+        for (i in 0...COVER_PARTICLE_AMOUNT)
+        {
+            var scale = FlxG.random.int(3, 10);
+            particle = new FlxParticle();
+            particle.makeGraphic(scale, scale);
+
+            emitter.add(particle);
+            holdTrailArea.add(particle);
+        }
+
+        emitter.cameras = [game.camNotes];
+
+        coverEmitters.push(emitter);
+    }
+
+    add(holdTrailArea);
+    for (emitter in coverEmitters)
+        add(emitter);
+
+    add(splashTrailArea);
+    for (emitter in splashEmitters)
+        add(emitter);
+}
+
+function goodNoteHit(note)
+{
+    if (note == null)
+        return;
+    
+    if (!note.isSustainNote)
+        return;
+
+    spawnHoldCover(note);
+}
+
+function postScoreCalc(note, data)
+{
+    if (note == null)
+        return;
+
+    if (data.rating != 'sick')
+        return;
+
+    var recep = game.playerStrums.members[note.noteData];
+    var emitter = splashEmitters[note.noteData];
+
+    emitter.x = recep.x + recep.width / 2;
+	emitter.y = recep.y + recep.height / 2;
+
+	emitter.start(true);
+}
+
+function spawnHoldCover(note)
+{
+    var recep = game.playerStrums.members[note.noteData];
+    var emitter = coverEmitters[note.noteData];
+
+    emitter.x = recep.x + recep.width / 2 - emitter.width / 2;
+	emitter.y = recep.y + recep.height / 2 - emitter.height / 2 - 3;
+
+    emitter.start(true);
+}

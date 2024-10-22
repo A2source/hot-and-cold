@@ -168,7 +168,11 @@ function update(dt)
 {
     if (FlxG.keys.justPressed.SEVEN) LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
 
-    if (controls.ACCEPT && skipped && !transitioning) menuItems[selec].sprite.onClick();
+    if (controls.ACCEPT && skipped && !transitioning) 
+    {
+        tweenMouseOff();
+        menuItems[selec].sprite.onClick();
+    }
     if (controls.ACCEPT && !skipped) bg.animation.finish();
 
     updateHands(dt);

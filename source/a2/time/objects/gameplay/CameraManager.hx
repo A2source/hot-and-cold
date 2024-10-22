@@ -1,5 +1,6 @@
 package a2.time.objects.gameplay;
 
+import a2.time.states.PlayState;
 import a2.time.util.ClientPrefs;
 
 import flixel.FlxObject;

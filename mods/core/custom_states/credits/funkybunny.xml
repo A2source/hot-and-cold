@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Funkin Packer v0.1.3 DEV https://neeeoo.github.io/funkin-packer/
+-->
+<TextureAtlas imagePath="funkybunny.png" width="420" height="1867" spritePadding="4" borderPadding="1">
+	<SubTexture name="funkybunny0001" x="1" y="1" width="417" height="931" frameX="0" frameY="0" frameWidth="418" frameHeight="931"/>
+	<SubTexture name="funkybunny0002" x="1" y="1" width="417" height="931" frameX="0" frameY="0" frameWidth="418" frameHeight="931"/>
+	<SubTexture name="funkybunny0003" x="1" y="1" width="417" height="931" frameX="0" frameY="0" frameWidth="418" frameHeight="931"/>
+	<SubTexture name="funkybunny0004" x="1" y="936" width="418" height="930" frameX="0" frameY="-1" frameWidth="418" frameHeight="931"/>
+	<SubTexture name="funkybunny0005" x="1" y="936" width="418" height="930" frameX="0" frameY="-1" frameWidth="418" frameHeight="931"/>
+	<SubTexture name="funkybunny0006" x="1" y="936" width="418" height="930" frameX="0" frameY="-1" frameWidth="418" frameHeight="931"/>
+</TextureAtlas>

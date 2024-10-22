@@ -107,6 +107,7 @@ class Character extends TimeSprite
 	public var trailChar:Character;
 	public var trailInitAlpha:Float = 0.8;
 	public var prevDir:Int = -1;
+	public var prevDirKeep:Int = -1;
 
 	// le shadows
 	public var simpleShadows:Bool = false;
@@ -136,6 +137,8 @@ class Character extends TimeSprite
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
 	public var modDirectory:String = '';
+
+	public var hitSustainNote:Bool = false;
 
 	public static var DEFAULT_CHARACTER:String = 'bf'; //In case a character is missing, it will use BF on its place
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false, ?type:CharacterType = NORMAL, ?debug:Bool = false)
@@ -444,6 +447,7 @@ class Character extends TimeSprite
 				playAnim(animation.curAnim.name + '-loop');
 			}
 		}
+		
 		super.update(elapsed);
 	}
 

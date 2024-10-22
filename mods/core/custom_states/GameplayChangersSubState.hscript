@@ -1,0 +1,417 @@
+var optionsDatabase = [
+    {
+        name: 'scrollspeed',
+        type: 'percent',
+        min: 0.5,
+        max: 1.5,
+        step: 0.01
+    },
+    {
+        name: 'scrolltype',
+        type: 'array',
+        values: ['multiplicative', 'constant']
+    },
+    {
+        name: 'songspeed',
+        type: 'percent',
+        min: 0.1,
+        max: 5,
+        step: 0.01
+    },
+    {
+        name: 'healthgain',
+        type: 'percent',
+        min: 0.5,
+        max: 1.5,
+        step: 0.01
+    },
+    {
+        name: 'healthloss',
+        type: 'percent',
+        min: 0.5,
+        max: 1.5,
+        step: 0.01
+    },
+    {
+        name: 'instakill',
+        type: 'bool'
+    },
+    {
+        name: 'practice',
+        type: 'bool'
+    },
+    {
+        name: 'botplay',
+        type: 'bool'
+    }
+];
+
+var options = [
+    'scrollspeed',
+    'scrolltype',
+    'songspeed',
+    'healthgain',
+    'healthloss',
+    'instakill',
+    'practice',
+    'botplay'
+];
+
+var names = [
+    'scrollspeed' => 'Scroll Speed',
+    'scrolltype' => 'Scroll Type',
+    'songspeed' => 'Song Speed',
+    'healthgain' => 'Health Gain',
+    'healthloss' => 'Health Loss',
+    'instakill' => 'Instakill',
+    'practice' => 'Practice',
+    'botplay' => 'Botplay'
+];
+
+var desc = [
+    'scrollspeed' => 'Alters scroll speed based on\nselected scroll type',
+    'scrolltype' => 'Use the above value in different ways\nMultiplicative: mult. scroll speed by value\nConstant: add value to scroll speed',
+    'songspeed' => 'Alters song playback rate',
+    'healthgain' => 'Alters how much health is gained\nupon successful note hit',
+    'healthloss' => 'Alters how much health is lost\nupon note miss',
+    'instakill' => 'Insantly kill you if you miss',
+    'practice' => 'Disable dying, miss without worries',
+    'botplay' => 'Enables botplay\nThe game plays for you'
+];
+
+var screen;
+
+var descBox;
+var descText;
+
+var spritesToRemove = [];
+var optionSprites = [];
+
+var camOptions;
+var curSprite = null;
+
+var selec = 0;
+var arrowSelec = true;
+
+function boolTextFormat(bool)
+{
+    if (bool)
+        return 'YES';
+
+    return 'NO';
+}
+
+function create()
+{
+    camOptions = new FlxCamera();
+    camOptions.bgColor = 0x00000000;
+    FlxG.cameras.add(camOptions, true);
+
+    Mouse.cursor = cursorARROW;
+
+    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+    screen.alpha = 0.7;
+    add(screen);
+
+    var i = 0;
+    var totalHeight = 0;
+    for (item in options)
+    {
+        var label = getFormattedText(names[item].toUpperCase(), 36);
+        label.setPosition(25, FlxG.height * 0.15 - label.height / 2 + totalHeight);
+        label.color = 0xFFD159A9;
+
+        var backing = new InteractableSprite(0, label.y - 4).makeGraphic(FlxG.width - 25, label.height + 8);
+        backing.alpha = 0;
+        backing.setCursor = false;
+
+        backing.onHover = ()->
+        {
+            descText.text = desc[item];
+            descText.x = FlxG.width / 2 - descText.width / 2;
+            descText.y = FlxG.height * 0.9 - descText.height / 2;
+
+            descBox.setPosition(descText.x - 2, descText.y - 2);
+            descBox.makeGraphic(descText.width + 4, descText.height + 4, 0xFF000000);
+
+            for (item in [descText, descBox])
+            {
+                FlxTween.cancelTweensOf(item);
+                FlxTween.tween(item, {alpha: 1}, 0.4, {ease: FlxEase.expoOut});
+            }
+        }
+
+        backing.onExit = ()->
+        {
+            for (item in [descText, descBox])
+            {
+                FlxTween.cancelTweensOf(item);
+                FlxTween.tween(item, {alpha: 0}, 0.4, {ease: FlxEase.expoOut});
+            }
+        }
+
+        spritesToRemove.push(label);
+        spritesToRemove.push(backing);
+        
+        var cur = getOptionDataByName(item);
+
+        var me = {label: label, sprites: [], type: cur.type}
+
+        switch(cur.type)
+        {
+            case 'bool':
+                var display = new InteractableSprite(label.x + label.width + 100, label.y);
+                display.loadGraphic(generateTextBitmapData(boolTextFormat(ClientPrefs.getGameplaySetting(item, false)), 36));
+
+                display.onHover = ()-> { curSprite = display; }
+
+                display.onClick = ()->
+                {
+                    ClientPrefs.data.gameplaySettings[item] = !ClientPrefs.getGameplaySetting(item, false);
+                    display.loadGraphic(generateTextBitmapData(boolTextFormat(ClientPrefs.getGameplaySetting(item, false)), 36));
+                }
+
+                display.onHover = ()-> { display.color = 0xFFA2A2A2; }
+                display.onExit = ()-> { display.color = 0xFFFFFFFF; }
+
+                spritesToRemove.push(display);
+
+                me.sprites.push(display);
+
+            case 'percent':
+                var leftArrow = new InteractableSprite().loadGraphic(generateTextBitmapData('<', 36));
+                spritesToRemove.push(leftArrow);
+
+                var display = getFormattedText(Std.int(ClientPrefs.getGameplaySetting(item, 1) * 100) + '%', 36);
+                spritesToRemove.push(display);
+
+                var rightArrow = new InteractableSprite().loadGraphic(generateTextBitmapData('>', 36));
+                spritesToRemove.push(rightArrow);
+
+                leftArrow.onHover = ()-> 
+                { 
+                    leftArrow.color = 0xFFA2A2A2; 
+                    curSprite = leftArrow;
+                }
+                rightArrow.onHover = ()-> 
+                { 
+                    rightArrow.color = 0xFFA2A2A2; 
+                    curSprite = rightArrow;
+                }
+                leftArrow.onExit = ()-> { leftArrow.color = 0xFFFFFFFF; }
+                rightArrow.onExit = ()-> { rightArrow.color = 0xFFFFFFFF; }
+
+                leftArrow.onClick = ()->
+                {
+                    var val = ClientPrefs.getGameplaySetting(item, 1);
+
+                    val -= cur.step;
+                    if (val < cur.min)
+                        val = cur.min;
+
+                    ClientPrefs.data.gameplaySettings[item] = val;
+
+                    display.text = '' + Std.int(val * 100) + '%';
+                    rightArrow.x = display.x + display.width + 10;
+                }
+
+                rightArrow.onClick = ()->
+                {
+                    var val = ClientPrefs.getGameplaySetting(item, 1);
+
+                    val += cur.step;
+                    if (val > cur.max)
+                        val = cur.max;
+
+                    ClientPrefs.data.gameplaySettings[item] = val;
+
+                    display.text = '' + Std.int(val * 100) + '%';
+                    rightArrow.x = display.x + display.width + 10;
+                }
+
+                leftArrow.setPosition(label.x + label.width + 80, label.y);
+                display.setPosition(leftArrow.x + leftArrow.width + 10, leftArrow.y);
+                rightArrow.setPosition(display.x + display.width + 10, label.y);
+
+                me.sprites.push(leftArrow);
+                me.sprites.push(rightArrow);
+
+            case 'array':
+                var leftArrow = new InteractableSprite().loadGraphic(generateTextBitmapData('<', 36));
+                spritesToRemove.push(leftArrow);
+
+                var display = getFormattedText(ClientPrefs.getGameplaySetting(item, 'multiplicative').toUpperCase(), 36);
+                spritesToRemove.push(display);
+
+                var rightArrow = new InteractableSprite().loadGraphic(generateTextBitmapData('>', 36));
+                spritesToRemove.push(rightArrow);
+
+                leftArrow.onHover = ()-> 
+                { 
+                    leftArrow.color = 0xFFA2A2A2; 
+                    curSprite = leftArrow;
+                }
+                rightArrow.onHover = ()-> 
+                { 
+                    rightArrow.color = 0xFFA2A2A2; 
+                    curSprite = rightArrow;
+                }
+                leftArrow.onExit = ()-> { leftArrow.color = 0xFFFFFFFF; }
+                rightArrow.onExit = ()-> { rightArrow.color = 0xFFFFFFFF; }
+
+                var click = ()->
+                {
+                    var val = ClientPrefs.getGameplaySetting(item, 'multiplicative');
+
+                    ClientPrefs.data.gameplaySettings[item] = val == 'multiplicative' ? 'constant' : 'multiplicative';
+
+                    display.text = ClientPrefs.data.gameplaySettings[item].toUpperCase();
+                    rightArrow.x = display.x + display.width + 10;
+                }
+
+                leftArrow.onClick = click;
+                rightArrow.onClick = click;
+
+                leftArrow.setPosition(label.x + label.width + 80, label.y);
+                display.setPosition(leftArrow.x + leftArrow.width + 10, leftArrow.y);
+                rightArrow.setPosition(display.x + display.width + 10, label.y);
+
+                me.sprites.push(leftArrow);
+                me.sprites.push(rightArrow);
+        }
+
+        totalHeight += label.height + 15;
+        i++;
+
+        optionSprites.push(me);
+    }
+
+    descBox = new FlxSprite();
+    descBox.alpha = 0;
+    descText = getFormattedText('', 38);
+    descText.alignment = 'center';
+
+    spritesToRemove.push(descBox);
+    spritesToRemove.push(descText);
+
+    for (sprite in spritesToRemove)
+        add(sprite);
+}
+
+var holdTimer = 0;
+var HOLD_THRESHOLD = 0.3;
+
+var turboCounter = 0;
+var TURBO_SPEED = 0.025;
+var doTurbo = false;
+
+function update(dt)
+{
+    if (controls.BACK) menu.closeSubState();
+
+    if (controls.UI_LEFT_P) horizontalSelect(-1);
+    
+    if (controls.UI_RIGHT_P) horizontalSelect(1);
+
+    if (controls.UI_UP_P) verticalSelect(-1);
+    if (controls.UI_DOWN_P) verticalSelect(1);
+
+    if (controls.UI_LEFT || controls.UI_RIGHT || FlxG.mouse.pressed) holdTimer++;
+    if (holdTimer * dt > HOLD_THRESHOLD)
+    {
+        if (turboCounter >= TURBO_SPEED)
+        {
+            if (curSprite != null)
+                curSprite.onClick();
+
+            turboCounter = 0;
+        }
+        turboCounter += dt;
+    }
+
+    if (controls.UI_LEFT_R || controls.UI_RIGHT_R || FlxG.mouse.justReleased)
+    {
+        holdTimer = 0;
+        turboCounter = 0;
+    }
+}
+
+function horizontalSelect(amt)
+{
+    arrowSelec = amt < 0;
+    var sprite = setMousePos();
+
+    if (sprite != null)
+        sprite.onClick();
+}
+
+function verticalSelect(amt)
+{
+    selec += amt;
+
+    if (selec > optionSprites.length - 1)
+        selec = 0;
+    if (selec < 0)
+        selec = optionSprites.length - 1;
+    
+    setMousePos();
+}
+
+function setMousePos()
+{
+    var cur = optionSprites[selec];
+
+    var sprite;
+    switch(cur.type)
+    {
+        case 'bool':
+            sprite = cur.sprites[0];
+
+        case 'percent', 'array':
+            sprite = cur.sprites[arrowSelec ? 0 : 1];
+    }
+
+    tweenMouse(sprite.x + sprite.width - 20, sprite.y + sprite.height / 2);
+
+    return sprite;
+}
+
+function onClose()
+{
+    ClientPrefs.saveSettings();
+
+    screen.destroy();
+
+    for (sprite in spritesToRemove)
+        sprite.destroy();
+}
+
+function getOptionDataByName(name)
+{
+    for (option in optionsDatabase)
+        if (option.name == name)
+            return option;
+
+    return null;
+}
+
+function generateTextBitmapData(string, fontSize)
+{
+    var text = getFormattedText(string, fontSize);
+    text.drawFrame(true);
+
+    return FlxGraphic.fromBitmapData(text.framePixels);
+}
+
+function getFormattedText(string, fontSize)
+{
+    var text = new FlxText(0, 0, -1, string);
+    text.setFormat(Paths.modsFont('roboto'), fontSize);
+    text.cameras = [camOptions];
+    
+    text.borderStyle = FlxTextBorderStyle.OUTLINE;
+    text.borderSize = 4;
+    text.borderColor = 0xFF000000;
+
+    return text;
+}

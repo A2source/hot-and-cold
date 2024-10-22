@@ -1,0 +1,339 @@
+var bg;
+
+var lArrow;
+var rArrow;
+
+var ARROW_X_OFFSET = 2.5;
+var ARROW_Y_OFFSET = 2;
+
+var finishedAnim = {
+    left: true,
+    right: true
+}
+
+var skipped = false;
+var transitioning = false;
+
+var tags = [
+    'alyssa',
+    'funkybunny',
+    'reru',
+    'pootis',
+    'cr00l',
+    'ponos',
+    'ez2',
+    'bobby',
+    'neil'
+];
+
+var creds = [
+    'alyssa' => 'Mod Creator\nMusician\nProgrammer\nArtist\nAnimator\nSFX',
+    'funkybunny' => 'Substitute Model',
+    'reru' => 'X.NES Character',
+    'pootis' => 'Playtester',
+    'cr00l' => 'Playtester',
+    'ponos' => 'Battle Cats Assets',
+    'ez2' => 'BadCop & Wilson Models\nElevator Map',
+    'bobby' => 'Creator of\nWELCOME TO THE SHOW',
+    'neil' => '"Wow Wow"'
+];
+
+var links = [
+    'alyssa' => 'https://a2source.github.io',
+    'funkybunny' => 'https://twitter.com/funkiestbunny',
+    'reru' => 'https://twitter.com/rerudrawww',
+    'pootis' => 'https://twitter.com/dapotisbird',
+    'cr00l' => 'https://twitter.com/Cr00L_Games',
+    'ponos' => 'https://twitter.com/PONOS_EN',
+    'ez2' => 'https://twitter.com/breadmans_maps',
+    'bobby' => 'https://www.youtube.com/@WELCOMETOTHESHOW1',
+    'neil' => 'http://neilcic.com/'
+];
+
+var offsets = [
+    'funkybunny' => {x: 0, y: 10},
+    'pootis' => {x: 0, y: 10},
+    'cr00l' => {x: 0, y: 7},
+    'ponos' => {x: 0, y: 10},
+    'bobby' => {x: 0, y: 25},
+    'neil' => {x: 0, y: 25}
+];
+
+var box;
+var title;
+
+var portrait;
+var browserLink;
+var text;
+
+var creditText;
+
+var selec = 0;
+
+var portraitPos = {x: FlxG.width * 0.25, y: FlxG.height / 2}
+var textPos = {x: FlxG.width * 0.7, y: FlxG.height * 0.225}
+var creditPos = {x: FlxG.width * 0.7, y: FlxG.height / 2}
+
+function create()
+{
+    bg = new FlxSprite().loadSparrow('custom_states/credits', 'credits');
+    bg.animation.addByPrefix('intro', 'intro', 5, false);
+    bg.animation.addByPrefix('loop', 'loop', 5, true);
+
+    bg.scale.set(2.2, 2.2);
+    bg.updateHitbox();
+
+    bg.offset.x = -450;
+
+    bg.alpha = 0;
+    FlxTween.tween(bg, {alpha: 1}, 2, {startDelay: 1});
+
+    add(bg);
+
+    bg.animation.finishCallback = (name)->
+    {
+        bg.animation.play('loop');
+        bg.animation.finishCallback = null;
+
+        FlxG.camera.flash(0xFF000000);
+        skipped = true;
+
+        addUI();
+    }
+
+    bg.animation.play('intro');
+    bg.screenCenter();
+}
+
+function update(dt)
+{
+    if (controls.ACCEPT && skipped && !transitioning) browserLink.onClick();
+    if (controls.ACCEPT && !skipped) bg.animation.finish();
+
+    if (controls.BACK && skipped && !transitioning) goBack();
+
+    if (controls.UI_LEFT_P && !transitioning && skipped)
+    {
+        lArrow.onClick();
+        tweenMouse(lArrow.x + lArrow.width / 2, lArrow.y + lArrow.height / 2);
+    }
+
+    if (controls.UI_RIGHT_P && !transitioning && skipped)
+    {
+        rArrow.onClick();
+        tweenMouse(rArrow.x + rArrow.width / 2, rArrow.y + rArrow.height / 2);
+    }
+}
+
+function addUI()
+{
+    box = new FlxSprite().load(Paths.stateImage('general', 'box'));
+    box.angle = -90;
+    box.scale.set(0.7, 0.7);
+    box.updateHitbox();
+    box.screenCenter();
+
+    box.y += 50;
+
+    add(box);
+
+    title = new FlxSprite().loadSparrow('custom_states/credits', 'credits-text');
+    title.animation.addByPrefix('idle', 'credits', 8, true);
+    title.animation.play('idle');
+
+    title.scale.set(0.6, 0.6);
+    title.updateHitbox();
+    title.screenCenter();
+
+    title.y -= 315;
+    add(title);
+
+    portrait = new FlxSprite();
+    portrait.scale.set(0.6, 0.6);
+    portrait.updateHitbox();
+    portrait.alpha = 0;
+
+    browserLink = new InteractableSprite().makeGraphic(200, 500, 0xFFFF0000);
+    browserLink.setPosition(portraitPos.x - 100, portraitPos.y - 250);
+    browserLink.alpha = 0;
+    browserLink.onClick = ()-> 
+    {
+        if (transitioning || !skipped)
+            return;
+
+        CoolUtil.browserLoad(links[tags[selec]]);
+    }
+
+    add(portrait);
+    add(browserLink);
+
+    text = new FlxSprite();
+    text.scale.set(0.6, 0.6);
+    text.updateHitbox();
+    text.alpha = 0;
+
+    add(text);
+
+    creditText = new FlxText(0, 0, -1, '');
+    creditText.setFormat(Paths.modsFont('roboto'), 50);
+    creditText.borderStyle = FlxTextBorderStyle.OUTLINE;
+    creditText.borderSize = 4;
+    creditText.borderColor = 0xFF000000;
+    creditText.alignment = 'center';
+    add(creditText);
+
+    lArrow = new InteractableSprite();
+    lArrow.frames = Paths.modsSparrow('custom_states/general', 'left-arrow');
+    lArrow.animation.addByPrefix('idle', 'left-arrow', 8, true);
+    lArrow.animation.addByPrefix('use', 'use', 18, false);
+    lArrow.animation.play('idle');
+
+    lArrow.scale.set(0.6, 0.6);
+    lArrow.updateHitbox();
+
+    lArrow.screenCenter();
+    lArrow.y -= 315;
+    lArrow.x -= 190;
+
+    lArrow.onClick = ()->
+    {
+        lArrow.animation.play('use', true);
+
+        if (finishedAnim.left)
+        {
+            lArrow.x -= ARROW_X_OFFSET;
+            lArrow.y -= ARROW_Y_OFFSET;
+        }
+
+        finishedAnim.left = false;
+
+        lArrow.animation.finishCallback = ()->
+        {
+            lArrow.animation.play('idle');
+            lArrow.animation.finishCallback = null;
+
+            lArrow.x += ARROW_X_OFFSET;
+            lArrow.y += ARROW_Y_OFFSET;
+
+            finishedAnim.left = true;
+        }
+
+        changePage(-1);
+    }
+
+    rArrow = new InteractableSprite();
+    rArrow.frames = Paths.modsSparrow('custom_states/general', 'right-arrow');
+    rArrow.animation.addByPrefix('idle', 'right-arrow', 8, true);
+    rArrow.animation.addByPrefix('use', 'use', 18, false);
+    rArrow.animation.play('idle');
+
+    rArrow.scale.set(0.6, 0.6);
+    rArrow.updateHitbox();
+
+    rArrow.screenCenter();
+    rArrow.y -= 315;
+    rArrow.x += 190;
+
+    rArrow.onClick = ()->
+    {
+        rArrow.animation.play('use', true);
+
+        if (finishedAnim.right)
+        {
+            rArrow.x -= ARROW_X_OFFSET;
+            rArrow.y -= ARROW_Y_OFFSET;
+        }
+
+        finishedAnim.right = false;
+
+        rArrow.animation.finishCallback = ()->
+        {
+            rArrow.x += ARROW_X_OFFSET;
+            rArrow.y += ARROW_Y_OFFSET;
+
+            rArrow.animation.play('idle');
+            rArrow.animation.finishCallback = null;
+
+            finishedAnim.right = true;
+        }
+
+        changePage(1);
+    }
+
+    add(lArrow);
+    add(rArrow);
+
+    changePage(0);
+}
+
+function changePage(amt)
+{
+    if (!skipped || transitioning)
+        return;
+
+    selec += amt;
+
+    if (selec >= tags.length)
+        selec = 0;
+    if (selec < 0)
+        selec = tags.length - 1;
+
+    portrait.alpha = 1;
+    text.alpha = 1;
+
+    var name = tags[selec];
+
+    portrait.loadSparrow('custom_states/credits', name);
+    portrait.animation.addByPrefix('idle', name, 8, true);
+    portrait.animation.play('idle');
+
+    portrait.setPosition(portraitPos.x - portrait.width / 2, portraitPos.y - portrait.height / 2);
+
+    text.loadSparrow('custom_states/credits', name + '-text');
+    text.animation.addByPrefix('idle', name, 8, true);
+    text.animation.play('idle');
+
+    text.setPosition(textPos.x - text.width / 2, textPos.y - text.height / 2);
+
+    creditText.text = creds[name];
+    creditText.setPosition(creditPos.x - creditText.width / 2, creditPos.y - creditText.height / 2);
+
+    if (offsets[name] != null)
+    {
+        text.x += offsets[name].x;
+        text.y += offsets[name].y;
+    }
+
+    for (sprite in [portrait, text, creditText])
+    {
+        FlxTween.cancelTweensOf(sprite.scale);
+        sprite.scale.set(0.7, 0.7);
+
+        FlxTween.tween(sprite.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut});
+    }
+}
+
+function goBack()
+{
+    if (transitioning || !skipped)
+        return;
+
+    for (sprite in [browserLink, lArrow, rArrow])
+        sprite.setCursor = false;
+
+    for (sprite in [box, title, portrait, text, creditText, lArrow, rArrow, browserLink])
+        FlxTween.tween(sprite, {alpha: 0}, 1, {ease: FlxEase.expoOut, onComplete: (t)->
+        {
+            sprite.destroy();
+        }});
+        
+    transitioning = true;
+
+    bg.animation.play('intro', true, true);
+    bg.animation.finishCallback = null;
+    bg.animation.timeScale = 2;
+    FlxTween.tween(bg, {alpha: 0}, 1, {startDelay: 2, onComplete: (t)->
+    {
+        LoadingState.loadAndSwitchCustomState('MainMenuState');
+    }});
+}

@@ -19,10 +19,10 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            FlxTween.tween(game.camManager.currentPos, {x: 550, y: 210}, 6.7, {ease: FlxEase.expoInOut});
-            FlxTween.tween(game.camManager, {defaultZoom: 1.7}, 5, {ease: FlxEase.sineOut});
+            game.modchartTweens['move cam in'] = FlxTween.tween(game.camManager.currentPos, {x: 550, y: 210}, 6.7 / game.playbackRate, {ease: FlxEase.expoInOut});
+            game.modchartTweens['zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 1.7}, 5 / game.playbackRate, {ease: FlxEase.sineOut});
 
-            FlxTween.tween(screen, {alpha: 0}, 2, {ease: FlxEase.sineOut, onComplete: (tween) ->
+            game.modchartTweens['fade screen'] = FlxTween.tween(screen, {alpha: 0}, 2 / game.playbackRate, {ease: FlxEase.sineOut, onComplete: (tween) ->
             {
                 screen.destroy();
             }});
@@ -33,13 +33,13 @@ function stepHit(step)
 
             game.camManager.defaultZoom = 2.2;
 
-            FlxTween.tween(char('herobrine'), {alpha: 1}, 1);
+            game.modchartTweens['herobrine scary'] = FlxTween.tween(char('herobrine'), {alpha: 1}, 1);
 
         case 64, 576:
             game.camManager.defaultZoom = 1.8;
             game.camManager.zoom.interval = 1;
 
-            FlxTween.tween(game.camHUD, {alpha: 1}, 1);
+            game.modchartTweens['hud in'] = FlxTween.tween(game.camHUD, {alpha: 1}, 1);
 
         case 320:
             game.camManager.defaultZoom = 2;
@@ -57,9 +57,9 @@ function stepHit(step)
 
             game.camManager.defaultZoom = 2;
 
-            FlxTween.tween(game.camHUD, {alpha: 0}, 0.5);
+            game.modchartTweens['hud out'] = FlxTween.tween(game.camHUD, {alpha: 0}, 0.5 / game.playbackRate);
 
         case 712:
-            FlxTween.tween(char('herobrine'), {alpha: 0}, 2);
+            game.modchartTweens['byebye!'] = FlxTween.tween(char('herobrine'), {alpha: 0}, 2 / game.playbackRate);
     }
 }
