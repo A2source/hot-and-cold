@@ -67,9 +67,18 @@ var transitioning;
 
 var mPos = {x: FlxG.width / 2, y: FlxG.height / 2}
 
+var sweepSound;
+
 function create()
 {
     DiscordClient.changePresence('Main Menu');
+
+    FlxG.sound.playMusic(Paths.getModsMusic('main'));
+
+    FlxG.sound.music.volume = 0;
+    FlxTween.tween(FlxG.sound.music, {volume: 0.4}, 2);
+
+    sweepSound = new FlxSound().loadEmbedded(Paths.getModsSound('hands'));
 
     bg = new FlxSprite().loadSparrow('custom_states/main', 'main');
     bg.animation.addByPrefix('intro', 'intro', 5, false);
@@ -124,6 +133,9 @@ function create()
 
         FlxTween.cancelTweensOf(bg);
         bg.alpha = 1;
+
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'impact'));
+        sweepSound.stop();
     }
     
     bg.animation.play('intro');
@@ -140,6 +152,15 @@ function create()
     rHand.sprite.alpha = 0;
     rHand.sprite.scale.set(0.3, 0.3);
     add(rHand.sprite);
+
+    FlxTimer.wait(5.6, ()->
+    {
+        if (skipped)
+            return;
+
+        sweepSound.volume = 0.8;
+        sweepSound.play();
+    });
 
     FlxTimer.wait(6, ()->
     {
@@ -163,7 +184,6 @@ function create()
     });
 }
 
-var tweening;
 function update(dt)
 {
     if (FlxG.keys.justPressed.SEVEN) LoadingState.loadAndSwitchCustomState('MasterEditorMenu');
@@ -177,8 +197,6 @@ function update(dt)
 
     updateHands(dt);
 
-    if (FlxG.mouse.justMoved && !tweening) FlxTween.cancelTweensOf(mPos);
-    
     if (controls.UI_UP_P) select(-1);
     if (controls.UI_DOWN_P) select(1);
 }
@@ -196,16 +214,8 @@ function select(amt)
         selec = menuItems.length - 1;
 
     var item = menuItems[selec];
-    tweening = true;
 
-    FlxTween.cancelTweensOf(mPos);
-    FlxTween.tween(mPos, {x: item.sprite.x + item.sprite.width - 30, y: item.sprite.y + item.sprite.height - 25}, 0.5, {ease: FlxEase.expoOut, onUpdate: (_)->
-    {
-        Lib.application.window.warpMouse(mPos.x, mPos.y);
-    }, onComplete: (t)->
-    {
-        tweening = false;
-    }});
+    tweenMouse(item.sprite.x + item.sprite.width - 30, item.sprite.y + item.sprite.height - 25, null, 0.25);
 }
 
 function updateHands(dt)
@@ -268,6 +278,8 @@ function spawnMenuItems()
             sprite.animation.play('selec');
 
             sprite.updateHitbox();
+
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
         }
 
         sprite.onExit = ()-> 
@@ -296,7 +308,11 @@ function spawnMenuItems()
             {
                 if (thing.id == selec)
                 {
-                    FlxTimer.wait(0.09 * thing.id, ()-> { thing.sprite.scale.set(0.8, 0.8); });
+                    FlxTimer.wait(0.09 * thing.id, ()-> 
+                    {
+                        FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'), 0.5); 
+                        thing.sprite.scale.set(0.8, 0.8); 
+                    });
                     FlxTween.tween(thing.sprite.scale, {x: 0.6, y: 0.6}, 1, {ease: FlxEase.expoOut, startDelay: 0.1 * thing.id, onComplete: (t)->
                     {
                         FlxTimer.wait(0.5, ()->
@@ -306,6 +322,8 @@ function spawnMenuItems()
 
                             FlxTween.tween(logoShadow, {alpha: 0}, 0.6);
                             FlxTween.tween(logo, {alpha: 0}, 0.6);
+
+                            FlxTween.tween(FlxG.sound.music, {volume: 0}, 3);
 
                             FlxTween.tween(thing.sprite, {alpha: 0}, 0.6, {onComplete: (t)->
                             {
@@ -337,6 +355,7 @@ function spawnMenuItems()
                     continue;
                 }
 
+                FlxTimer.wait(0.1 * thing.id, ()-> { FlxG.sound.play(Paths.returnModsSound('sounds', 'swoosh'), 1.6); });
                 FlxTween.tween(thing.sprite.scale, {x: 1.4, y: 0}, 0.3, {ease: FlxEase.backIn, startDelay: 0.1 * thing.id, onComplete: (t)->
                 {
                     thing.sprite.destroy();

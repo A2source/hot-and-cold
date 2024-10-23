@@ -16,14 +16,15 @@ var transitioning = false;
 
 var tags = [
     'alyssa',
-    'funkybunny',
-    'reru',
     'pootis',
     'cr00l',
-    'ponos',
+    'funkybunny',
+    'reru',
     'ez2',
     'bobby',
+    'joe',
     'neil'
+    'ponos',
 ];
 
 var creds = [
@@ -35,6 +36,7 @@ var creds = [
     'ponos' => 'Battle Cats Assets',
     'ez2' => 'BadCop & Wilson Models\nElevator Map',
     'bobby' => 'Creator of\nWELCOME TO THE SHOW',
+    'joe' => 'Kofuku & Alice\nPC PORT Characters',
     'neil' => '"Wow Wow"'
 ];
 
@@ -47,6 +49,7 @@ var links = [
     'ponos' => 'https://twitter.com/PONOS_EN',
     'ez2' => 'https://twitter.com/breadmans_maps',
     'bobby' => 'https://www.youtube.com/@WELCOMETOTHESHOW1',
+    'joe' => 'https://twitter.com/losermakesgames',
     'neil' => 'http://neilcic.com/'
 ];
 
@@ -56,6 +59,7 @@ var offsets = [
     'cr00l' => {x: 0, y: 7},
     'ponos' => {x: 0, y: 10},
     'bobby' => {x: 0, y: 25},
+    'joe' => {x: 0, y: 10}
     'neil' => {x: 0, y: 25}
 ];
 
@@ -76,6 +80,11 @@ var creditPos = {x: FlxG.width * 0.7, y: FlxG.height / 2}
 
 function create()
 {
+    FlxG.sound.playMusic(Paths.getModsMusic('credits'), 0.5);
+
+    FlxG.sound.music.volume = 0;
+    FlxTween.tween(FlxG.sound.music, {volume: 0.5}, 2);
+
     bg = new FlxSprite().loadSparrow('custom_states/credits', 'credits');
     bg.animation.addByPrefix('intro', 'intro', 5, false);
     bg.animation.addByPrefix('loop', 'loop', 5, true);
@@ -197,6 +206,8 @@ function addUI()
 
     lArrow.onClick = ()->
     {
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+        
         lArrow.animation.play('use', true);
 
         if (finishedAnim.left)
@@ -236,6 +247,8 @@ function addUI()
 
     rArrow.onClick = ()->
     {
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
         rArrow.animation.play('use', true);
 
         if (finishedAnim.right)
@@ -317,6 +330,8 @@ function goBack()
 {
     if (transitioning || !skipped)
         return;
+
+    FlxTween.tween(FlxG.sound.music, {volume: 0}, 3);
 
     for (sprite in [browserLink, lArrow, rArrow])
         sprite.setCursor = false;

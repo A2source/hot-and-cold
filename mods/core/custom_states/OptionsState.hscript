@@ -50,6 +50,11 @@ function create()
 {
     DiscordClient.changePresence('Options Menu');
 
+    FlxG.sound.playMusic(Paths.getModsMusic('options'), 0.5);
+
+    FlxG.sound.music.volume = 0;
+    FlxTween.tween(FlxG.sound.music, {volume: 0.5}, 2);
+
     if (FlxG.save.data.hcOptionsIndex == null)
     {
         FlxG.save.data.hcOptionsIndex = 0;
@@ -186,6 +191,8 @@ function genericVerticalSelect(amt)
 {
     if (!skipped || transitioning)
         return;
+
+    FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
         
     selec += amt;
 
@@ -260,7 +267,7 @@ function genericVerticalSelect(amt)
             {
                 curSprite = spritesToRemove[1];
 
-                tweenMouse(curSprite.x + curSprite.width - 10, curSprite.y + curSprite.height - 25, camOptions);
+                tweenMouse(curSprite.x + curSprite.width - 60, curSprite.y + curSprite.height - 25, camOptions);
             }
             else
                 tweenMouse(rArrow.x + 30, rArrow.y + 50);
@@ -294,6 +301,8 @@ function genericHorizontalSelect(amt)
                 bindSelec = 0;
             if (bindSelec < 0)
                 bindSelec = 1;
+
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
 
             var cur = controlSprites[selec - 1];
             var sprite = cur.sprites[Math.abs(bindSelec - 1)];
@@ -483,6 +492,8 @@ function createControls()
             {
                 if (bindingInfo.binding)
                     return;
+
+                FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'));
 
                 selec = thisID;
                 bindSelec = id;
@@ -828,6 +839,8 @@ function setupOptions(page)
 
                 display.onClick = ()->
                 {
+                    FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
                     Reflect.setProperty(ClientPrefs.data, option, !Reflect.field(ClientPrefs.data, option));
 
                     display.loadGraphic(generateTextBitmapData(boolTextFormat(Reflect.field(ClientPrefs.data, option)), 36));
@@ -880,6 +893,8 @@ function setupOptions(page)
                     value -= data.step;
                     if (value <= data.min)
                         value = data.min;
+                    else
+                        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
                     // had weird float precision errors making really small numbers close to 0
                     // so, clamp decimal to the lowest 10th
@@ -906,6 +921,8 @@ function setupOptions(page)
                     value += data.step;
                     if (value >= data.max)
                         value = data.max;
+                    else
+                        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
                     Reflect.setProperty(ClientPrefs.data, option, value);
                     displayText.text = value;
@@ -988,6 +1005,8 @@ function createFuncs()
 
     resetData.onClick = ()->
     {
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'));
+
         FlxG.save.data.hcData = [
             'Gacha' => false,
             'White Eyes' => false,
@@ -1128,6 +1147,8 @@ function addUI()
 
     lArrow.onClick = ()->
     {
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
         lArrow.animation.play('use', true);
 
         if (finishedAnim.left)
@@ -1167,6 +1188,8 @@ function addUI()
 
     rArrow.onClick = ()->
     {
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
         rArrow.animation.play('use', true);
 
         if (finishedAnim.right)
@@ -1279,6 +1302,8 @@ function goBack()
             sprite.destroy();
         }});
     }
+
+    FlxTween.tween(FlxG.sound.music, {volume: 0}, 3);
 
     bg.animation.play('intro', true, true);
     bg.animation.finishCallback = null;

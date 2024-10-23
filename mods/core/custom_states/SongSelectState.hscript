@@ -65,6 +65,11 @@ function create()
 {
     DiscordClient.changePresence('Song Select');
 
+    FlxG.sound.playMusic(Paths.getModsMusic('song'), 0.5);
+
+    FlxG.sound.music.volume = 0;
+    FlxTween.tween(FlxG.sound.music, {volume: 0.5}, 2);
+
     if (FlxG.save.data.hcSongIndex == null)
         FlxG.save.data.hcSongIndex = selec;
 
@@ -139,8 +144,8 @@ function update(dt)
         rArrow.onClick();
     } 
 
-    if (controls.UI_UP_P) changeVerticalSelection(-1);
-    if (controls.UI_DOWN_P) changeVerticalSelection(1);
+    if (controls.UI_UP_P) changeVerticalSelection(-1, true);
+    if (controls.UI_DOWN_P) changeVerticalSelection(1, true);
 }
 
 function changeSelection(amt)
@@ -172,7 +177,7 @@ function changeSelection(amt)
     FlxG.save.flush();
 
     if (keyboard)
-        changeVerticalSelection(0);
+        changeVerticalSelection(0, false);
 
     keyboard = false;
 
@@ -198,10 +203,13 @@ function changeSelection(amt)
     }
 }
 
-function changeVerticalSelection(amt)
+function changeVerticalSelection(amt, sound)
 {
-    if (transitioning)
+    if (transitioning || !skipped)
         return;
+
+    if (sound)
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
 
     vertSelec += amt;
 
@@ -254,6 +262,8 @@ function addUI()
         if (transitioning || !skipped)
             return;
 
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
         lArrow.animation.play('use', true);
 
         if (finishedAnim.left)
@@ -291,6 +301,8 @@ function addUI()
     {
         if (transitioning || !skipped)
             return;
+
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
         rArrow.animation.play('use', true);
 
@@ -331,13 +343,18 @@ function addUI()
         if (transitioning)
             return;
 
-        PlayState.SONG = Song.loadFromJson(songs[selec], true);
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'), 0.5);
 
-        PlayState.difficulty = '';
-        PlayState.storyDifficulty = 1;
-        PlayState.storyWeek = 1;
+        FlxTimer.wait(0.5, ()->
+        {
+            PlayState.SONG = Song.loadFromJson(songs[selec], true);
 
-        LoadingState.loadAndSwitchState(new PlayState());
+            PlayState.difficulty = '';
+            PlayState.storyDifficulty = 1;
+            PlayState.storyWeek = 1;
+
+            LoadingState.loadAndSwitchState(new PlayState());
+        });
     }
 
     curSongText = new FlxText(0, 0, -1, songs[selec]);
@@ -382,6 +399,8 @@ function addUI()
     { 
         if (transitioning && !skipped)
             return;
+
+        FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'), 0.5);
             
         gameplayChangersOpen = true;
 
@@ -423,6 +442,8 @@ function goBack()
         {
             item.destroy();
         }});
+
+    FlxTween.tween(FlxG.sound.music, {volume: 0}, 3);
 
     bg.animation.play('intro', true, true);
     bg.animation.finishCallback = null;

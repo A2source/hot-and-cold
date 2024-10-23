@@ -18,7 +18,7 @@ class DiscordClient
 		trace("Discord Client starting...");
 
 		DiscordRpc.start({
-			clientID: "1291613430167502879",
+			clientID: "1298424455630163968",
 			onReady: onReady,
 			onError: onError,
 			onDisconnected: onDisconnected
@@ -46,7 +46,7 @@ class DiscordClient
 			details: '',
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: 'FNF: TIME',
+			largeImageText: 'FNF: HOT & COLD',
 			startTimestamp: null,
             endTimestamp: null
 		});
@@ -80,7 +80,7 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: 'FNF: TIME',
+			largeImageText: 'FNF: HOT & COLD',
 			smallImageKey : null,
 			startTimestamp: null,
             endTimestamp: null

@@ -167,6 +167,8 @@ function create()
 
                 display.onClick = ()->
                 {
+                    FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
                     ClientPrefs.data.gameplaySettings[item] = !ClientPrefs.getGameplaySetting(item, false);
                     display.loadGraphic(generateTextBitmapData(boolTextFormat(ClientPrefs.getGameplaySetting(item, false)), 36));
                 }
@@ -208,6 +210,8 @@ function create()
                     val -= cur.step;
                     if (val < cur.min)
                         val = cur.min;
+                    else
+                        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
                     ClientPrefs.data.gameplaySettings[item] = val;
 
@@ -222,6 +226,8 @@ function create()
                     val += cur.step;
                     if (val > cur.max)
                         val = cur.max;
+                    else
+                        FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
                     ClientPrefs.data.gameplaySettings[item] = val;
 
@@ -261,6 +267,8 @@ function create()
 
                 var click = ()->
                 {
+                    FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
                     var val = ClientPrefs.getGameplaySetting(item, 'multiplicative');
 
                     ClientPrefs.data.gameplaySettings[item] = val == 'multiplicative' ? 'constant' : 'multiplicative';
@@ -353,6 +361,8 @@ function verticalSelect(amt)
         selec = 0;
     if (selec < 0)
         selec = optionSprites.length - 1;
+
+    FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
     
     setMousePos();
 }
@@ -384,6 +394,8 @@ function onClose()
 
     for (sprite in spritesToRemove)
         sprite.destroy();
+        
+    FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 }
 
 function getOptionDataByName(name)
