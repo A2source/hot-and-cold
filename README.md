@@ -1,4 +1,4 @@
-![hc logo](https://github.com/user-attachments/assets/47dbd17c-aca8-4d81-8ca7-86180d37530e | width=250)
+![hc logo](https://github.com/user-attachments/assets/47dbd17c-aca8-4d81-8ca7-86180d37530e =250x)
 
 # HOT & COLD
 
