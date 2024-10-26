@@ -30,4 +30,4 @@ Art project files are located in `art/projectFiles`
 [Neil Cicierega](http://neilcic.com) - "Wow Wow"
 
 
-[PONPOS](https://twitter.com/PONOS_EN) - Battle Cats Assets
+[PONOS](https://twitter.com/PONOS_EN) - Battle Cats Assets
