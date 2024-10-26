@@ -11,14 +11,23 @@ Art project files are located in `art/projectFiles`
 ## CREDITS
 
 [[A2]](https://a2source.github.io) - Mod Creator, Musician, Programmer, Artist, Animator, SFX
+
 [DaPootisBird](https://twitter.com/dapotisbird) - Playtester
+
 [Cr00L](https://twitter.com/Cr00L_Games) - Playtester
+
 [FunkyBunny](https://twitter.com/funkiestbunny) - Substitute Model
+
 [ReruDraw](https://twitter.com/rerudrawww) - X.NES Character
 
+
 [Entropy Zero: 2 Team](https://twitter.com/breadmans_maps) - BadCop & Wilson Models, Elevator Map
+
 [Bobby Rhino](https://www.youtube.com/@WELCOMETOTHESHOW1) - Creator of WELCOME TO THE SHOW
+
 [JoeDoughBoi](https://twitter.com/losermakesgames) - Kofuku & Alice PC PORT Characters
+
 [Neil Cicierega](http://neilcic.com) - "Wow Wow"
+
 
 [PONPOS](https://twitter.com/PONOS_EN) - Battle Cats Assets
