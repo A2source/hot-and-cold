@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/64a676a9-8bc1-4d84-8477-901aae1f038a" width="600">
+<img src="https://github.com/user-attachments/assets/64a676a9-8bc1-4d84-8477-901aae1f038a" width="475">
 
 # HOT & COLD
 
