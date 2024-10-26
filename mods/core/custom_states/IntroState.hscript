@@ -2,23 +2,32 @@ function create()
 {
     if (!IntroState.initialized) makeTransition();
 
-    FlxTimer.wait(1, ()-> { LoadingState.loadAndSwitchCustomState('MainMenuState'); });
+    FlxTimer.wait(1, ()-> 
+    { 
+        LoadingState.loadAndSwitchCustomState(FlxG.save.data.hcSeenFlashing ? 'MainMenuState' : 'FlashingState'); 
+    });
 
-    if (FlxG.save.data.hcData != null)
-        return;
+    setupSaveData();
+}
 
-    FlxG.save.data.hcData = [
-        'Gacha' => false,
-        'White Eyes' => false,
-        'Substitute' => false,
-        'Calamity' => false,
-        'Error' => false,
-        'Entropy' => false,
-        'Jumpman' => false,
-        'The Show' => false,
-        'Ebullient' => false,
-        'Wow Wow' => false
-    ];
+function setupSaveData()
+{
+    if (FlxG.save.data.hcData == null)
+        FlxG.save.data.hcData = [
+            'Gacha' => false,
+            'White Eyes' => false,
+            'Substitute' => false,
+            'Calamity' => false,
+            'Error' => false,
+            'Entropy' => false,
+            'Jumpman' => false,
+            'The Show' => false,
+            'Ebullient' => false,
+            'Wow Wow' => false
+        ];
+
+    if (FlxG.save.data.hcSeenFlashing == null)
+        FlxG.save.data.hcSeenFlashing = false;
 
     FlxG.save.flush();
 }

@@ -217,7 +217,7 @@ class Note extends FlxSprite
 			hitsoundDisabled = true;
 
 			offsetX = 66;
-			offsetY = -50;
+			offsetY = ClientPrefs.data.downScroll ? -155 : -195;
 
 			isHoldEnd = false;
 

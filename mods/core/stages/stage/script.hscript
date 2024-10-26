@@ -74,7 +74,7 @@ function onEvent(name, v1, v2, v3)
 
             smoke.flipX = !right;
             smoke.alpha = 0;
-            game.modchartTweens['smoke in ' + i] = FlxTween.tween(smoke, {alpha: 0.6}, 3 / game.playbackRate, {ease: FlxEase.expoOut});
+            FlxTween.tween(smoke, {alpha: 0.6}, 3 / game.playbackRate, {ease: FlxEase.expoOut}, 'smoke in ' + i);
             smoke.velocity.x = right ? -10 : 10;
             smokes.push(smoke);
         }
@@ -91,11 +91,11 @@ function onEvent(name, v1, v2, v3)
         var i = 0;
         for (smoke in smokes)
         {
-            game.modchartTweens['smoke out ' + i] = FlxTween.tween(smoke, {alpha: 0}, 1 / game.playbackRate, {ease: FlxEase.expoIn, onComplete: (twn)->
+            FlxTween.tween(smoke, {alpha: 0}, 1 / game.playbackRate, {ease: FlxEase.expoIn, onComplete: (twn)->
             {
                 remove(smoke);
                 smoke.destroy();
-            }});
+            }}, 'smoke out ' + i);
 
             i++;
         }

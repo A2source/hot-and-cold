@@ -1,0 +1,12 @@
+function onMiss(note)
+{
+    if (note == null)
+        return;
+
+    var me = char('bf-jumpman');
+
+    me.visible = false;
+
+    FlxFlicker.stopFlickering(me);
+    FlxFlicker.flicker(me, 0.6, 0.15);
+}

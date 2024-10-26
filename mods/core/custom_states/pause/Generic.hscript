@@ -61,7 +61,8 @@ var textOptions = [
     'I like my cheese frownkler bruh',
     'Go into any Roblox game and say "fat"',
     'I\'m in the thick of it',
-    'I\'m in my lunchly'
+    'I\'m in my lunchly',
+    'I sense thunder in the west'
 ];
 
 var screen;
@@ -164,6 +165,8 @@ function create()
         
         hitbox.onHover = ()->
         {
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+            
             var i = 0;
             for (letter in letters)
             {

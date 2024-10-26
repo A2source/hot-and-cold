@@ -7,3 +7,11 @@
 // {
 //     trace(note.attachedChar);
 // }
+
+// function update(dt)
+// {
+//     game.camHUD.zoom = 0.2;
+//     game.camNotes.zoom = 0.2;
+//     game.camSustains.zoom = 0.2;
+//     game.camManager.zoom.zooming = false;
+// }

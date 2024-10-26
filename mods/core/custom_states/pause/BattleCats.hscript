@@ -56,6 +56,8 @@ function create()
             }
         }
 
+        button.onHover = ()-> { FlxG.sound.play(Paths.returnModsSound('sounds', 'select')); }
+
         button.cameras = [game.camOther2];
 
         add(button);

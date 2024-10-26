@@ -24,6 +24,7 @@ class TimeSoundTray extends FlxSoundTray
     public function new()
     {
         super();
+
         removeChildren();
 
         var bg:Bitmap = new Bitmap(BitmapData.fromImage(Image.fromFile('assets/shared/images/tray.png')));
@@ -97,5 +98,8 @@ class TimeSoundTray extends FlxSoundTray
 
         for (i in 0..._bars.length)
             _bars[i].visible = i < globalVolume;
+
+        FlxG.save.data.hcVolume = FlxG.sound.volume;
+        FlxG.save.flush();
     }
 }

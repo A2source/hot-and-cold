@@ -44,6 +44,8 @@ function create()
         var sprite = new InteractableSprite().loadGraphic(FlxGraphic.fromBitmapData(tempText.framePixels));
         sprite.onHover = ()-> 
         { 
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+
             underline.makeGraphic(sprite.width, 3);
 
             underline.x = sprite.x;

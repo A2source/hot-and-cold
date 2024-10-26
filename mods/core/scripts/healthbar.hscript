@@ -4,6 +4,13 @@ var accNums = [];
 var miss;
 var acc;
 
+var darkSongs = [
+    'White Eyes',
+    'Substitute',
+    'Ebullient'
+];
+var isDark = false;
+
 function start(song)
 {
     var healthBar = new FlxBar(0, ClientPrefs.data.downScroll ? FlxG.height * 0.075 : FlxG.height * 0.8, FlxBarFillDirection.LEFT_TO_RIGHT, 515, 40, game,
@@ -45,7 +52,13 @@ function start(song)
     add(acc);
 
     for (item in [healthBar, barCover, miss, acc])
+    {
+        item.alpha = ClientPrefs.data.healthBarAlpha;
         item.cameras = [game.camHUD];
+    }
+
+    if (darkSongs.contains(SONG.song))
+        isDark = true;
 }
 
 var prevMiss = -1;
@@ -109,6 +122,11 @@ function getNums(x, y, number, percent)
         spr.animation.play('idle');
         spr.cameras = [game.camHUD];
 
+        spr.alpha = ClientPrefs.data.healthBarAlpha;
+
+        if (!isDark)
+            spr.color = 0xFF000000;
+
         spr.scale.set(0.65, 0.65);
         spr.updateHitbox();
 
@@ -132,6 +150,11 @@ function getNums(x, y, number, percent)
     sprite.animation.addByPrefix('idle', '%', 12, true);
     sprite.animation.play('idle');
     sprite.cameras = [game.camHUD];
+
+    if (!isDark)
+        sprite.color = 0xFF000000;
+    
+    sprite.alpha = ClientPrefs.data.healthBarAlpha;
 
     sprite.scale.set(0.65, 0.65);
     sprite.updateHitbox();

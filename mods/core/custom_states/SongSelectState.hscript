@@ -168,10 +168,7 @@ function changeSelection(amt)
     curSongText.text = songs[selec];
     curSongText.x = FlxG.width / 2 - curSongText.width / 2;
 
-    FlxTween.cancelTweensOf(curSongText.scale);
-    curSongText.scale.set(6, 6);
-
-    FlxTween.tween(curSongText.scale, {x: 5, y: 5}, 1.3, {ease: FlxEase.expoOut});
+    tweenSongTextScale();
 
     FlxG.save.data.hcSongIndex = selec;
     FlxG.save.flush();
@@ -201,6 +198,14 @@ function changeSelection(amt)
             completed.alpha = 0.999;
             FlxTween.tween(completed.scale, {x: 0, y: 0}, 0.35, {ease: FlxEase.backIn});
     }
+}
+
+function tweenSongTextScale()
+{
+    FlxTween.cancelTweensOf(curSongText.scale);
+    curSongText.scale.set(6, 6);
+
+    FlxTween.tween(curSongText.scale, {x: 5, y: 5}, 1.3, {ease: FlxEase.expoOut});
 }
 
 function changeVerticalSelection(amt, sound)
@@ -342,6 +347,8 @@ function addUI()
     {
         if (transitioning)
             return;
+
+        tweenSongTextScale();
 
         FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'), 0.5);
 

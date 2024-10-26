@@ -267,7 +267,7 @@ function genericVerticalSelect(amt)
             {
                 curSprite = spritesToRemove[1];
 
-                tweenMouse(curSprite.x + curSprite.width - 60, curSprite.y + curSprite.height - 25, camOptions);
+                tweenMouse(FlxG.width * 0.5, curSprite.y + curSprite.height - 25, camOptions);
             }
             else
                 tweenMouse(rArrow.x + 30, rArrow.y + 50);
@@ -491,6 +491,9 @@ function createControls()
             bind.onClick = ()->
             {
                 if (bindingInfo.binding)
+                    return;
+
+                if (!skipped || transitioning)
                     return;
 
                 FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'));
@@ -839,6 +842,9 @@ function setupOptions(page)
 
                 display.onClick = ()->
                 {
+                    if (!skipped || transitioning)
+                        return;
+
                     FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
                     Reflect.setProperty(ClientPrefs.data, option, !Reflect.field(ClientPrefs.data, option));
@@ -888,6 +894,9 @@ function setupOptions(page)
 
                 leftArrow.onClick = ()->
                 {
+                    if (!skipped || transitioning)
+                        return;
+
                     var value = Reflect.field(ClientPrefs.data, option);
 
                     value -= data.step;
@@ -916,6 +925,9 @@ function setupOptions(page)
 
                 rightArrow.onClick = ()->
                 {
+                    if (!skipped || transitioning)
+                        return;
+
                     var value = Reflect.field(ClientPrefs.data, option);
 
                     value += data.step;
@@ -923,6 +935,10 @@ function setupOptions(page)
                         value = data.max;
                     else
                         FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
+
+                    value *= 10;
+                    value = Std.int(value);
+                    value /= 10;
 
                     Reflect.setProperty(ClientPrefs.data, option, value);
                     displayText.text = value;
@@ -1005,6 +1021,9 @@ function createFuncs()
 
     resetData.onClick = ()->
     {
+        if (!skipped || transitioning)
+            return;
+
         FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'));
 
         FlxG.save.data.hcData = [
@@ -1147,6 +1166,9 @@ function addUI()
 
     lArrow.onClick = ()->
     {
+        if (!skipped || transitioning)
+            return;
+
         FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
         lArrow.animation.play('use', true);
@@ -1188,6 +1210,9 @@ function addUI()
 
     rArrow.onClick = ()->
     {
+        if (!skipped || transitioning)
+            return;
+
         FlxG.sound.play(Paths.returnModsSound('sounds', 'change'));
 
         rArrow.animation.play('use', true);

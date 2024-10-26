@@ -73,6 +73,11 @@ class IntroState extends MusicBeatState
 
 		trace('should be running startup now.');
 
+		if (FlxG.save.data.hcVolume == null)
+            FlxG.save.data.hcVolume = 10;
+
+        FlxG.sound.volume = FlxG.save.data.hcVolume;
+
 		new a2.time.util.HscriptManager(null).addScript('startup', Paths.mods('', Main.MOD_NAME), 'onStartup', 'hscript').callAll('create', []);
 	}
 }

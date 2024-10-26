@@ -11,8 +11,8 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            game.modchartTweens['cam move down'] = FlxTween.tween(game.camManager.currentPos, {y: 200}, 8 / game.playbackRate, {ease: FlxEase.expoInOut});
-            game.modchartTweens['cam zoom in'] = FlxTween.tween(game.camManager, {defaultZoom: 0.8}, 8 / game.playbackRate, {ease: FlxEase.expoOut});
+            FlxTween.tween(game.camManager.currentPos, {y: 200}, 8 / game.playbackRate, {ease: FlxEase.expoInOut}, 'cam move down');
+            FlxTween.tween(game.camManager, {defaultZoom: 0.8}, 8 / game.playbackRate, {ease: FlxEase.expoOut}, 'cam zoom in');
 
         case 64:
             game.camManager.resume();
@@ -20,7 +20,7 @@ function stepHit(step)
 
             game.camManager.zoom.interval = 1;
 
-            game.modchartTweens['cam hud in'] = FlxTween.tween(game.camHUD, {alpha: 1}, 2 / game.playbackRate, {ease: FlxEase.expoOut});
+            FlxTween.tween(game.camHUD, {alpha: 1}, 2 / game.playbackRate, {ease: FlxEase.expoOut}, 'cam hud in');
 
         case 320:
             game.camManager.zoom.interval = 2;
@@ -33,10 +33,10 @@ function stepHit(step)
         case 976:
             game.camManager.zoom.interval = 999;
 
-            game.modchartTweens['cam hud out'] = FlxTween.tween(game.camHUD, {alpha: 0}, 2 / game.playbackRate);
-            game.modchartTweens['cam zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 0.4}, 2 / game.playbackRate);
+            FlxTween.tween(game.camHUD, {alpha: 0}, 2 / game.playbackRate, {}, 'cam hud out');
+            FlxTween.tween(game.camManager, {defaultZoom: 0.4}, 2 / game.playbackRate, {}, 'cam zoom out');
 
             for (name in ['cr00l', 'alyssa'])
-                game.modchartTweens[name + ' out'] = FlxTween.tween(char(name), {alpha: 0}, 2 / game.playbackRate);
+                FlxTween.tween(char(name), {alpha: 0}, 2 / game.playbackRate, {}, name + ' out');
     }   
 }

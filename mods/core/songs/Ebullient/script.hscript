@@ -16,7 +16,7 @@ function postStart(song)
     });
     
     screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
-    screen.cameras = [game.camHUD];
+    screen.cameras = [game.camOther2];
     add(screen);
 }
 
@@ -33,8 +33,8 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            game.modchartTweens['cam zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 0.6}, 3 / game.playbackRate);
-            game.modchartTweens['screen fade'] = FlxTween.tween(screen, {alpha: 0}, 3 / game.playbackRate);
+            FlxTween.tween(game.camManager, {defaultZoom: 0.6}, 3 / game.playbackRate, {}, 'cam zoom out');
+            FlxTween.tween(screen, {alpha: 0}, 3 / game.playbackRate, {}, 'screen fade');
 
         case 32:
             game.camManager.resume();
@@ -51,10 +51,10 @@ function stepHit(step)
         case 1048:
             game.camManager.snapToPos(game.camManager.currentPos.x, game.camManager.currentPos.y);
 
-            game.modchartTweens['fade to portraits'] = FlxTween.tween(gameScreen, {alpha: 1}, 1 / game.playbackRate, {ease: FlxEase.expoIn});
-            game.modchartTweens['move cam out'] = FlxTween.tween(game.camManager.currentPos, {x: game.camManager.currentPos.x + 700}, 1 / game.playbackRate, {ease: FlxEase.backIn, onComplete: (tween)->
+            FlxTween.tween(gameScreen, {alpha: 1}, 1 / game.playbackRate, {ease: FlxEase.expoIn}, 'fade to portraits');
+            FlxTween.tween(game.camManager.currentPos, {x: game.camManager.currentPos.x + 700}, 1 / game.playbackRate, {ease: FlxEase.backIn, onComplete: (tween)->
             {
                 scrolling = true;
-            }});
+            }}, 'move cam out');
     }
 }

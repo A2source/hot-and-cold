@@ -336,6 +336,8 @@ function goBack()
     for (sprite in [browserLink, lArrow, rArrow])
         sprite.setCursor = false;
 
+    Mouse.cursor = cursorARROW;
+
     for (sprite in [box, title, portrait, text, creditText, lArrow, rArrow, browserLink])
         FlxTween.tween(sprite, {alpha: 0}, 1, {ease: FlxEase.expoOut, onComplete: (t)->
         {

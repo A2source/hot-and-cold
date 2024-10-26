@@ -18,11 +18,12 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            game.modchartTweens['fade game in'] = FlxTween.tween(screen, {alpha: 0}, 12 / game.playbackRate);
-            game.modchartTweens['zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 1.34}, 12 / game.playbackRate);
+            var lol = FlxTween.tween(screen, {alpha: 0}, 12 / game.playbackRate, {}, 'fade game in');
+            privateAccess(()->{ trace(lol.nameInPlayState); });
+            FlxTween.tween(game.camManager, {defaultZoom: 1.34}, 12 / game.playbackRate, {}, 'zoom out');
 
         case 128:
-            game.modchartTweens['hud in'] = FlxTween.tween(game.camHUD, {alpha: 1}, 1 / game.playbackRate);
+            FlxTween.tween(game.camHUD, {alpha: 1}, 1 / game.playbackRate, {}, 'hud in');
             
             game.camManager.resume();
             game.camManager.focusOnPoint(char('wilson').getCameraPosition());

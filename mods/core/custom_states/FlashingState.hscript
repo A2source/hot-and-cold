@@ -1,0 +1,140 @@
+var text;
+
+var options = ['Turn Off', 'Continue'];
+
+var menuItems = [];
+var selec = 0;
+
+function create()
+{
+    text = new FlxText(0, 0, -1, 'Warning! This mod contains flashing lights.\nSelect "Turn Off" to disable them now.\nSelect "Continue" to change it in the options later.');
+    text.size = 20;
+    text.alignment = 'center';
+    text.antialiasing = false;
+    add(text);
+
+    text.screenCenter();
+    text.y -= 125;
+
+    var i = -0.25;
+    for (item in options)
+    {
+        var letters = [];
+        var width = 0;
+
+        for (character in item.split(''))
+        {
+            var letter = new FlxText(0, 0, -1, character);
+            letter.size = 26;
+            letter.antialiasing = false;
+            letters.push(letter);
+
+            width += letter.width;
+        }
+
+        var hitbox = new InteractableSprite();
+        hitbox.makeGraphic(width - (4 * (item.split('').length - 1)), 20 * 1.5, 0xFFFF0000);
+        hitbox.alpha = 0;
+
+        hitbox.onClick = ()->
+        {
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'accept'));
+
+            FlxG.save.data.hcSeenFlashing = true;
+
+            if (item == 'Turn Off')
+            {
+                ClientPrefs.data.flashing = false;
+                ClientPrefs.saveSettings();
+            }
+
+            // to be safe
+            FlxG.save.flush();
+
+            FlxG.camera.visible = false;
+            for (item in menuItems)
+                item.hitbox.setCursor = false;
+
+            Mouse.cursor = cursorARROW;
+
+            FlxTimer.wait(1.5, ()->
+            {
+                LoadingState.loadAndSwitchCustomState('MainMenuState');
+            });
+        }
+        
+        hitbox.onHover = ()->
+        {
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+
+            var i = 0;
+            for (letter in letters)
+            {
+                FlxTween.tween(letter, {y: letter.y - 10}, 1, {ease: FlxEase.sineOut, startDelay: i * 0.1, onComplete: (tween)->
+                {
+                    FlxTween.tween(letter, {y: letter.y + 10}, 1, {ease: FlxEase.sineInOut, type: FlxTween.PINGPONG});
+                }});
+
+                letter.color = colorFromRGB(FlxG.random.int(0, 255), FlxG.random.int(0, 255), FlxG.random.int(0, 255));
+                
+                i++;
+            }
+        }
+
+        hitbox.onExit = ()->
+        {
+            for (letter in letters)
+            {
+                FlxTween.cancelTweensOf(letter);
+                FlxTween.tween(letter, {y: FlxG.height / 2 - letter.height / 4}, 1, {ease: FlxEase.expoOut});
+
+                letter.color = 0xFFFFFFFF;
+            }
+        }
+
+        add(hitbox);
+
+        hitbox.screenCenter();
+        hitbox.x += FlxG.width * i;
+
+        var total = 0;
+        for (letter in letters)
+        {
+            letter.x = hitbox.x + total;
+            letter.y = FlxG.height / 2 - letter.height / 4;
+
+            add(letter);
+
+            total += letter.width - 2;
+        }
+
+        i = Math.abs(i);
+
+        menuItems.push({hitbox: hitbox, letters: letters});
+    }
+}
+
+function update(dt)
+{
+    if (controls.UI_LEFT_P) select(-1);
+    if (controls.UI_RIGHT_P) select(1);
+
+    if (controls.ACCEPT) 
+    {
+        tweenMouseOff();
+        menuItems[selec].hitbox.onClick();
+    }
+}
+
+function select(amt)
+{
+    selec += amt;
+
+    if (selec > 1)
+        selec = 0;
+    if (selec < 0)
+        selec = 1;
+
+    var button = menuItems[selec].hitbox;
+    tweenMouse(button.x + button.width * 0.75, button.y + button.height / 2);
+}

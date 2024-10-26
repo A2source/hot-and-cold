@@ -15,10 +15,14 @@ function postStart(song)
     game.camManager.defaultZoom = 1.7;
     game.camManager.zoom.decay = 2;
 
-    screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
-    screen.alpha = 0;
-    screen.cameras = [game.camHUD];
-    add(screen);
+    // the timer appears over top of the screen if we dont wait
+    game.modchartTimers['add screen'] = FlxTimer.wait(1, ()->
+    {
+        screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+        screen.alpha = 0;
+        screen.cameras = [game.camHUD];
+        add(screen);
+    });
 }
 
 function stepHit(step)
@@ -88,8 +92,8 @@ function stepHit(step)
         case 1504:
             game.camManager.defaultZoom = 1.75;
             
-            game.modchartTweens['zoom'] = FlxTween.tween(game.camManager, {defaultZoom: 1.45}, 3 / game.playbackRate, {ease: FlxEase.sineIn});
-            game.modchartTweens['screem in'] = FlxTween.tween(screen, {alpha: 1}, 3 / game.playbackRate, {ease: FlxEase.sineOut});
+            FlxTween.tween(game.camManager, {defaultZoom: 1.45}, 3 / game.playbackRate, {ease: FlxEase.sineIn}, 'zoom');
+            FlxTween.tween(screen, {alpha: 1}, 3 / game.playbackRate, {ease: FlxEase.sineOut}, 'screen in');
 
         case 1521:
             bald.skipDance = true;

@@ -24,10 +24,21 @@ function start(song)
     add(text);
 }
 
+var prevBotplay = game.cpuControlled;
 function update(dt)
 {
     if (text == null)
         return;
+
+    if (game.cpuControlled != prevBotplay)
+    {
+        text.text = 'BOTPLAY';
+
+        if (!ClientPrefs.data.middleScroll)
+            text.x = FlxG.width * 0.2 - text.width / 2;
+        else
+            text.x = FlxG.width / 2 - text.width / 2;
+    }
 
     switch(text.text)
     {
@@ -40,4 +51,6 @@ function update(dt)
         case 'INSTAKILL':
             text.visible = game.instakillOnMiss;
     }
+
+    prevBotplay = game.cpuControlled;
 }

@@ -83,6 +83,8 @@ function create()
 
         hitbox.onHover = ()->
         {
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+            
             redSprite.y = item.y + text.height / 2 + 4;
 
             FlxTween.cancelTweensOf(redSprite.scale);

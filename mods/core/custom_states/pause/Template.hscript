@@ -20,7 +20,11 @@ function create()
         button.animation.addByPrefix('selec', item + '-selec0', 1, false);
         button.animation.play('idle');
 
-        button.onHover = ()-> { button.animation.play('selec'); }
+        button.onHover = ()-> 
+        { 
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+            button.animation.play('selec'); 
+        }
         button.onExit = ()-> { button.animation.play('idle'); }
         button.onClick = ()-> 
         {

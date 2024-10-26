@@ -20,7 +20,7 @@ function stepHit(step)
 
     songLength = FlxG.sound.music.length;
 
-    game.modchartTweens['timer in'] = FlxTween.tween(timer, {alpha: 1 / game.playbackRate}, 1, {ease: FlxEase.expoOut});
+    FlxTween.tween(timer, {alpha: 1 / game.playbackRate}, 1, {ease: FlxEase.expoOut}, 'timer in');
 }
 
 var done = false;
@@ -32,7 +32,7 @@ function update(dt)
     var calc = songLength - (Conductor.songPosition - ClientPrefs.data.noteOffset);
 
     timer.text = FlxStringUtil.formatTime(Math.floor(calc / 1000), false);
-    timer.x = game.playerStrums.members[1].x + 110 - timer.width / 2;
+    timer.x = game.playerStrums.members[1].x + 132 - timer.width / 2;
 
     if (timer.text == '0:00')
         done = true;

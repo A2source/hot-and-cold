@@ -2754,15 +2754,16 @@ class PlayState extends MusicBeatState
 							var sustainNote:Note = new Note(note.ms + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2)), note.d, oldNote, true);
 							sustainNote.mustPress = swagNote.mustPress;
 							sustainNote.noteType = swagNote.noteType;
-
-							sustainNote.scale.y = Std.int(Conductor.stepCrochet * 1.25);
+								
+							sustainNote.scale.y = Std.int(Conductor.stepCrochet + (Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2)));
 
 							sustainNote.cameras = [camSustains];
 
-							if (sustainNote.isHoldEnd)
+							if (susNote == floorSus)
+							{
 								sustainNote.scale.y /= 2;
-
-							sustainNote.scale.y *= playbackRate;
+								sustainNote.offsetY -= ClientPrefs.data.downScroll ? -sustainNote.scale.y * 2 : sustainNote.scale.y;
+							}
 
 							sustainNote.updateHitbox();
 							sustainNote.origin.set(0, 0);
@@ -2945,7 +2946,7 @@ class PlayState extends MusicBeatState
 		for(video in modchartVideos)
 			if(video.bitmap != null) video.pause();
 
-		FlxG.camera.target = null;
+		// FlxG.camera.target = null;
 	}
 
 	function unpauseStuff()
@@ -2966,6 +2967,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		// FlxG.camera.target = camManager.currentPos;
+
 		for (tween in modchartTweens)
 			tween.active = true;
 
@@ -2977,8 +2980,6 @@ class PlayState extends MusicBeatState
 	
 		for(video in modchartVideos)
 			if(video.bitmap != null) video.resume();
-
-		FlxG.camera.target = camManager.currentPos;
 	}
 
 	override function closeSubState()
@@ -2987,6 +2988,8 @@ class PlayState extends MusicBeatState
 		{
 			unpauseStuff();
 			paused = false;
+
+			hscriptManager.callAll('onUnpause', [getCurBF()]);
 		}
 
 		super.closeSubState();
@@ -3540,33 +3543,6 @@ class PlayState extends MusicBeatState
 						daNote.updateHitbox();
 						daNote.origin.set(0, 0);
 					}
-					
-					// var center:Float = strumY - 50;
-					// if(strumGroup.members[daNote.noteData].sustainReduce && daNote.isSustainNote && (daNote.mustPress || !daNote.ignoreNote) &&
-					// 	(!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
-					// {
-					// 	if (strumScroll)
-					// 	{
-					// 		if(daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center)
-					// 		{
-					// 			var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
-					// 			swagRect.height = (center - (daNote.y - daNote.offset.y * daNote.scale.y + daNote.height);
-
-					// 			daNote.clipRect = swagRect;
-					// 		}
-					// 	}
-					// 	else
-					// 	{
-					// 		if (daNote.y + daNote.offset.y * daNote.scale.y <= center)
-					// 		{
-					// 			var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-					// 			swagRect.y = (center - daNote.y) / daNote.scale.y;
-					// 			swagRect.height -= swagRect.y;
-
-					// 			daNote.clipRect = swagRect;
-					// 		}
-					// 	}
-					// }
 
 					// Kill extremely late notes and cause misses
 					if (Conductor.songPosition > noteKillOffset + daNote.strumTime)

@@ -127,7 +127,8 @@ function create()
 
         spawnLogo();
 
-        FlxG.camera.flash(0xFFFFFFFF, 3);
+        if (ClientPrefs.data.flashing)
+            FlxG.camera.flash(0xFFFFFFFF, 3);
 
         skipped = true;
 

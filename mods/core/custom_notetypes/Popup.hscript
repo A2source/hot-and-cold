@@ -18,14 +18,14 @@ function goodNoteHit(note)
     insert(game.length, popup);
 
     popup.scale.set(0.5, 0.5);
-    game.modchartTweens['popup fade in ' + i] = FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2 / game.playbackRate, {ease: FlxEase.backOut});
+    FlxTween.tween(popup.scale, {x: 1, y: 1}, 0.2 / game.playbackRate, {ease: FlxEase.backOut}, 'popup fade in ' + i);
 
     var type = types[FlxG.random.int(0, types.length)];
     var data = {sprite: popup, type: type, id: i, left: false, up: false, x: popup.x, y: popup.y};
 
     game.modchartTimers['popup wait fade ' + i] = FlxTimer.wait(FlxG.random.int(3, 4), ()->
     {
-        game.modchartTweens['popup fade out ' + i] = FlxTween.tween(popup, {alpha: 0}, 2 / game.playbackRate, {onComplete: (tween)->
+        FlxTween.tween(popup, {alpha: 0}, 2 / game.playbackRate, {onComplete: (tween)->
         {
             popup.active = false;
             popup.destroy();
@@ -33,7 +33,7 @@ function goodNoteHit(note)
             popups.remove(data);
 
             FlxTween.cancelTweensOf(popup);
-        }});
+        }}, 'popup fade out ' + i);
     });
 
     switch(type)
@@ -106,11 +106,11 @@ function beatHit(beat)
 
         if (beat % 2 == 0)
         {
-            game.modchartTweens['popup vertical ' + popup.id] = FlxTween.tween(popup.sprite, {x: popup.x + (popup.left ? -10 : 10)}, 0.8 / game.playbackRate, {ease: FlxEase.expoOut});
+            FlxTween.tween(popup.sprite, {x: popup.x + (popup.left ? -10 : 10)}, 0.8 / game.playbackRate, {ease: FlxEase.expoOut}, 'popup vertical ' + popup.id);
             popup.left = !popup.left;
         }
 
-        game.modchartTweens['popup horizontal ' + popup.id] = FlxTween.tween(popup.sprite, {y: popup.y + (popup.up ? -10 : 10)}, 0.8 / 3 / game.playbackRate, {ease: FlxEase.expoOut});
+        FlxTween.tween(popup.sprite, {y: popup.y + (popup.up ? -10 : 10)}, 0.8 / 3 / game.playbackRate, {ease: FlxEase.expoOut}, 'popup horizontal ' + popup.id);
         popup.up = !popup.up;
     }
 }

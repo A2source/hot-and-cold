@@ -22,11 +22,15 @@ var selec = 0;
 
 function create()
 {
+    DiscordClient.changePresence('GAME OVER');
+
     FlxTimer.wait(1, addStuff);
 }
 
 function addStuff()
 {
+    FlxG.sound.play(Paths.returnModsSound('sounds', 'boowomp'));
+
     screen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
     screen.cameras = [game.camOther2];
 
@@ -40,8 +44,10 @@ function addStuff()
 
     var random = names[FlxG.random.int(0, names.length - 1)];
 
-    sprite = new FlxSprite().load(Paths.modsImage('dead/' + random));
+    sprite = new InteractableSprite().load(Paths.modsImage('dead/' + random));
     sprite.cameras = [game.camOther2];
+
+    sprite.onClick = ()-> { FlxG.sound.play(Paths.getModsSound('huggy'), 0.5); }
 
     while (sprite.width > 175)
     {
@@ -95,6 +101,8 @@ function addStuff()
         
         hitbox.onHover = ()->
         {
+            FlxG.sound.play(Paths.returnModsSound('sounds', 'select'));
+
             var i = 0;
             for (letter in letters)
             {

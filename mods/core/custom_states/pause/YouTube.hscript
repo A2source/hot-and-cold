@@ -115,6 +115,8 @@ function create()
             selectedOption = item;
         }
 
+        back.onHover = ()-> { FlxG.sound.play(Paths.returnModsSound('sounds', 'select')); }
+
         text.screenCenter();
         text.x -= FlxG.width * i;
 

@@ -150,19 +150,19 @@ function onSpotlight(focus, enable)
 
     if (!enable)
     {
-        game.modchartTweens['spotlight screen out'] = FlxTween.tween(screen, {alpha: 0}, 1 / game.playbackRate);
-        game.modchartTweens['spotlight out'] = FlxTween.tween(light, {alpha: 0}, 1 / game.playbackRate);
+        FlxTween.tween(screen, {alpha: 0}, 1 / game.playbackRate, {}, 'spotlight screen out');
+        FlxTween.tween(light, {alpha: 0}, 1 / game.playbackRate, {}, 'spotlight out');
 
         return;
     }
     else    
-        game.modchartTweens['spotlight screen in'] = FlxTween.tween(screen, {alpha: 0.6}, 2 / game.playbackRate, {ease: FlxEase.expoOut});
+        FlxTween.tween(screen, {alpha: 0.6}, 2 / game.playbackRate, {ease: FlxEase.expoOut}, 'spotlight screen in');
 
     screen.visible = true;
     light.visible = true;
 
     var target = char(focus);
 
-    game.modchartTweens['move spotlight x'] = FlxTween.tween(light, {x: target.x}, 3 / game.playbackRate, {ease: FlxEase.expoOut});
-    game.modchartTweens['spotlight angle'] = FlxTween.tween(light, {angle: 0}, 3 / game.playbackRate, {ease: FlxEase.backOut});
+    FlxTween.tween(light, {x: target.x}, 3 / game.playbackRate, {ease: FlxEase.expoOut}, 'move spotlight x');
+    FlxTween.tween(light, {angle: 0}, 3 / game.playbackRate, {ease: FlxEase.backOut}, 'spotlight angle');
 }

@@ -10,8 +10,8 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            game.modchartTweens['move cam in'] = FlxTween.tween(game.camManager.currentPos, {x: char('doge').x + 500, y: char('doge').getCameraPosition().y}, 6 / game.playbackRate, {ease: FlxEase.sineInOut});
-            game.modchartTweens['zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 0.6}, 5 / game.playbackRate, {ease: FlxEase.expoOut, startDelay: 1 / game.playbackRate});
+            FlxTween.tween(game.camManager.currentPos, {x: char('doge').x + 500, y: char('doge').getCameraPosition().y}, 6 / game.playbackRate, {ease: FlxEase.sineInOut}, 'move cam in');
+            FlxTween.tween(game.camManager, {defaultZoom: 0.6}, 5 / game.playbackRate, {ease: FlxEase.expoOut, startDelay: 1 / game.playbackRate}, 'zoom out');
 
         case 60:
             game.camManager.resume();
@@ -19,7 +19,7 @@ function stepHit(step)
             game.camManager.defaultZoom = 0.9;
 
         case 64:
-            game.modchartTweens['hud in'] = FlxTween.tween(game.camHUD, {alpha: 1}, 2 / game.playbackRate, {ease: FlxEase.expoOut});
+            FlxTween.tween(game.camHUD, {alpha: 1}, 2 / game.playbackRate, {ease: FlxEase.expoOut}, 'hud in');
 
             game.camManager.defaultZoom = 0.7;
 

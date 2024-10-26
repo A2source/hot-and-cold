@@ -1,7 +1,11 @@
 function onEndSong()
 {
+    checkSaveData();
     LoadingState.loadAndSwitchCustomState('SongSelectState');
+}
 
+function checkSaveData()
+{
     if (FlxG.save.data.hcData[curSong])
         return;
 

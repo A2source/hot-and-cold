@@ -19,13 +19,13 @@ function stepHit(step)
     switch(step)
     {
         case 1:
-            game.modchartTweens['move cam in'] = FlxTween.tween(game.camManager.currentPos, {x: 550, y: 210}, 6.7 / game.playbackRate, {ease: FlxEase.expoInOut});
-            game.modchartTweens['zoom out'] = FlxTween.tween(game.camManager, {defaultZoom: 1.7}, 5 / game.playbackRate, {ease: FlxEase.sineOut});
+            FlxTween.tween(game.camManager.currentPos, {x: 550, y: 210}, 6.7 / game.playbackRate, {ease: FlxEase.expoInOut}, 'move cam in');
+            FlxTween.tween(game.camManager, {defaultZoom: 1.7}, 5 / game.playbackRate, {ease: FlxEase.sineOut}, 'zoom out');
 
-            game.modchartTweens['fade screen'] = FlxTween.tween(screen, {alpha: 0}, 2 / game.playbackRate, {ease: FlxEase.sineOut, onComplete: (tween) ->
+            FlxTween.tween(screen, {alpha: 0}, 2 / game.playbackRate, {ease: FlxEase.sineOut, onComplete: (tween) ->
             {
                 screen.destroy();
-            }});
+            }}, 'fade screen');
 
         case 48:
             game.camManager.resume();
@@ -33,13 +33,13 @@ function stepHit(step)
 
             game.camManager.defaultZoom = 2.2;
 
-            game.modchartTweens['herobrine scary'] = FlxTween.tween(char('herobrine'), {alpha: 1}, 1);
+            FlxTween.tween(char('herobrine'), {alpha: 1}, 1, {}, 'herobrine scary');
 
         case 64, 576:
             game.camManager.defaultZoom = 1.8;
             game.camManager.zoom.interval = 1;
 
-            game.modchartTweens['hud in'] = FlxTween.tween(game.camHUD, {alpha: 1}, 1);
+            FlxTween.tween(game.camHUD, {alpha: 1}, 1, {}, 'hud in');
 
         case 320:
             game.camManager.defaultZoom = 2;
@@ -57,9 +57,9 @@ function stepHit(step)
 
             game.camManager.defaultZoom = 2;
 
-            game.modchartTweens['hud out'] = FlxTween.tween(game.camHUD, {alpha: 0}, 0.5 / game.playbackRate);
+            FlxTween.tween(game.camHUD, {alpha: 0}, 0.5 / game.playbackRate, {}, 'hud out');
 
         case 712:
-            game.modchartTweens['byebye!'] = FlxTween.tween(char('herobrine'), {alpha: 0}, 2 / game.playbackRate);
+            FlxTween.tween(char('herobrine'), {alpha: 0}, 2 / game.playbackRate, {}, 'byebye!');
     }
 }

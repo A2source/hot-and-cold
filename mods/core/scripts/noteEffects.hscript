@@ -87,7 +87,10 @@ function goodNoteHit(note)
         return;
     
     if (!note.isSustainNote)
+    {
+        FlxG.sound.play(Paths.getModsSound('hitsound'), ClientPrefs.data.hitsoundVolume);
         return;
+    }
 
     spawnHoldCover(note);
 }

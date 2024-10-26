@@ -57,7 +57,7 @@ class CameraManager
 
     public function update(dt:Float, playbackRate:Float)
     {
-        if (moving)
+        if (moving && !PlayState.instance.paused)
         {
             var lerpVal:Float = 1 - Math.exp(-speed * dt * playbackRate * 3.5);
             currentPos.setPosition(FlxMath.lerp(currentPos.x, desiredPos.x, lerpVal), FlxMath.lerp(currentPos.y, desiredPos.y, lerpVal));

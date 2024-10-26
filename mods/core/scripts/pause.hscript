@@ -22,8 +22,16 @@ function onPause(bf)
             toLoad = 'Entropy';
     }
 
-    var pause = new CustomSubState('pause/' + toLoad, null);
+    var pause = new CustomSubState('pause/' + toLoad, game);
     pause.hscriptManager.setAll('game', game);
     pause.hscriptManager.setAll('curSong', SONG.song);
 	game.openSubState(pause);
+
+    DiscordClient.changePresence('Paused', SONG.song);
+}
+
+function onUnpause(bf)
+{
+    if (game.health > 0)
+        DiscordClient.changePresence('In Game', SONG.song);
 }

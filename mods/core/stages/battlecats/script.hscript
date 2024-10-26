@@ -132,7 +132,7 @@ function spawnWalker()
     }
 
     var spawnPosition = {
-        x: isEnemy ? -1000 : 1200,
+        x: isEnemy ? -1200 : 1200,
         y: positions[FlxG.random.int(0, positions.length - 1)]
     }
 
