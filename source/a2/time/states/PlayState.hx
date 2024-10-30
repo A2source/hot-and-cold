@@ -438,10 +438,11 @@ class PlayState extends MusicBeatState
 	private var controlArray:Array<String>;
 
 	var precacheList:Map<String, String> = new Map<String, String>();
-
-	public var marketableShakeIntensity:Float = 0;
 	
 	public var windowsUser:String = "";
+
+	// where you go when a song ends
+	public static var postSongState:String = 'MasterEditorMenu';
 
 	function getHaxeActor(name:String):Dynamic {
 		switch (name) {
@@ -519,10 +520,8 @@ class PlayState extends MusicBeatState
 
 		interp.variables.set("colFromInt", FlxColor.fromInt);
 
-		// literally for marketable
 		interp.variables.set("FlxSpriteUtil", FlxSpriteUtil);
 		interp.variables.set('HealthIcon', HealthIcon);
-		interp.variables.set('marketableShakeIntensity', marketableShakeIntensity);
 
 		interp.variables.set("FlxBarFillDirection", FlxBarFillDirection);
 		interp.variables.set("TRANSPARENT", FlxColor.TRANSPARENT);
@@ -2744,6 +2743,12 @@ class PlayState extends MusicBeatState
 					susLength = susLength / Conductor.stepCrochet;
 					unspawnNotes.push(swagNote);
 
+					var stuffToCheck:{note:Note, hold:Note} = 
+					{
+						note: null,
+						hold: null
+					}
+
 					var floorSus:Int = Math.floor(susLength);
 					if(floorSus > 0) 
 					{
@@ -2754,36 +2759,34 @@ class PlayState extends MusicBeatState
 							var sustainNote:Note = new Note(note.ms + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2)), note.d, oldNote, true);
 							sustainNote.mustPress = swagNote.mustPress;
 							sustainNote.noteType = swagNote.noteType;
-								
-							sustainNote.scale.y = Std.int(Conductor.stepCrochet + (Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2)));
+
+							sustainNote.scale.y = Conductor.stepCrochet + Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2);
 
 							sustainNote.cameras = [camSustains];
 
 							if (susNote == floorSus)
-							{
-								sustainNote.scale.y /= 2;
-								sustainNote.offsetY -= ClientPrefs.data.downScroll ? -sustainNote.scale.y * 2 : sustainNote.scale.y;
-							}
+								sustainNote.visible = false;
 
-							sustainNote.updateHitbox();
-							sustainNote.origin.set(0, 0);
+							if (sustainNote.prevNote != null && !sustainNote.prevNote.isSustainNote)
+							{
+								stuffToCheck.note = sustainNote.prevNote;
+								stuffToCheck.hold = sustainNote;
+							}
 
 							sustainNote.scrollFactor.set();
 							swagNote.tail.push(sustainNote);
 							sustainNote.parent = swagNote;
 							unspawnNotes.push(sustainNote);
 							sustainNote.attachedChar = swagNote.attachedChar;
+						}
 
-							if (sustainNote.mustPress)
-								sustainNote.x += FlxG.width / 2; // general offset
-							else if(ClientPrefs.data.middleScroll)
-							{
-								sustainNote.x += 310;
-								if(note.d > 1) //Up and Right
-								{
-									sustainNote.x += FlxG.width / 2 + 25;
-								}
-							}
+						if (ClientPrefs.data.downScroll)
+						{
+							var desiredY:Float = stuffToCheck.note.y + stuffToCheck.note.height / 2;
+							var diff:Float = stuffToCheck.hold.y - desiredY + stuffToCheck.hold.scale.y;
+
+							for (sus in stuffToCheck.note.tail)
+								sus.offsetY -= diff;
 						}
 					}
 
@@ -3934,8 +3937,6 @@ class PlayState extends MusicBeatState
 			vocals.pause();
 		}
 
-		FlxG.sound.music.onComplete = null;
-
 		endingSong = true;
 
 		if (videoToPlay != '')
@@ -3956,8 +3957,6 @@ class PlayState extends MusicBeatState
 	public var transitioning = false;
 	public function endSong():Void
 	{
-		hscriptManager.callAll('onEndSong', []);
-
 		//Should kill you if you tried to cheat
 		if(!startingSong) 
 		{
@@ -3988,6 +3987,8 @@ class PlayState extends MusicBeatState
 
 		storyPlaylist.remove(storyPlaylist[0]);
 
+		var loadState:Bool = false;
+
 		if (storyPlaylist.length <= 0)
 		{
 			cancelMusicFadeTween();
@@ -3995,6 +3996,8 @@ class PlayState extends MusicBeatState
 				CustomFadeTransition.nextCamera = null;
 
 			changedDifficulty = false;
+
+			loadState = true;
 		}
 		else
 		{
@@ -4008,10 +4011,19 @@ class PlayState extends MusicBeatState
 			FlxG.sound.music.stop();
 
 			cancelMusicFadeTween();
-			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
 		transitioning = true;
+
+		hscriptManager.callAll('onEndSong', []);
+
+		if (loadState)
+			LoadingState.loadAndSwitchCustomState(postSongState);
+		else
+			LoadingState.loadAndSwitchState(new PlayState());
+
+		trace('ending $loadState');
+		FlxG.sound.music.onComplete = null;
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
@@ -4450,7 +4462,14 @@ class PlayState extends MusicBeatState
 				zoomCams();
 
 			if (SONG.sections[curSection].changeBPM)
+			{
+				var diff:Float = SONG.sections[curSection].bpm - Conductor.bpm;
 				Conductor.changeBPM(SONG.sections[curSection].bpm);
+
+				for (note in unspawnNotes)
+					if (note.isSustainNote)
+						note.offsetY -= diff;
+			}
 
 			charFocus = SONG.sections[curSection].charFocus;
 			hscriptManager.setAll('charFocus', charFocus);

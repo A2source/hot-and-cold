@@ -111,7 +111,7 @@ class Conductor
 					stepTime: totalSteps,
 					songTime: totalPos,
 					bpm: curBPM,
-					stepCrochet: calculateCrochet(curBPM)/4
+					stepCrochet: calculateCrochet(curBPM) / 4
 				};
 				bpmChangeMap.push(event);
 			}

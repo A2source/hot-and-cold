@@ -1,13 +1,20 @@
+function start(song)
+{
+    PlayState.postSongState = 'SongSelectState';
+}
+
 function onEndSong()
 {
     checkSaveData();
-    LoadingState.loadAndSwitchCustomState('SongSelectState');
 }
 
 function checkSaveData()
 {
     if (FlxG.save.data.hcData[curSong])
+    {
+        trace('alr cleared ' + curSong);
         return;
+    }
 
     FlxG.save.data.hcData[curSong] = true;
     trace('Cleared song "' + curSong + '"!');

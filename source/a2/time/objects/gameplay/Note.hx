@@ -152,7 +152,30 @@ class Note extends FlxSprite
 			return;
 
 		scale.y *= ratio;
+
 		updateHitbox();
+	}
+
+	public function setSusOffset()
+	{
+		if (prevNote == null || prevNote.isSustainNote)
+			return;
+
+		var desiredY:Float = prevNote.y + prevNote.height / 2;
+		if (ClientPrefs.data.downScroll)
+		{
+			var diff:Float = y - desiredY + scale.y;
+
+			for (sus in prevNote.tail)
+				sus.offsetY = -178 - diff;
+		}
+		else
+		{
+			var diff:Float = desiredY - y;
+
+			for (sus in prevNote.tail)
+				sus.offsetY = -195 - diff;
+		}
 	}
 
 	private function set_texture(value:String):String 
@@ -217,7 +240,7 @@ class Note extends FlxSprite
 			hitsoundDisabled = true;
 
 			offsetX = 66;
-			offsetY = ClientPrefs.data.downScroll ? -155 : -195;
+			offsetY = ClientPrefs.data.downScroll ? -175 : -195;
 
 			isHoldEnd = false;
 
@@ -239,6 +262,9 @@ class Note extends FlxSprite
 				offsetX += 20;
 				offsetY -= 30;
 			}
+
+			if (dir == 'up')
+				offsetY -= 5;
 		}
 
 		x += offsetX;
